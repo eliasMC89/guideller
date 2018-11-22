@@ -27,12 +27,12 @@ Travel app to check and create new activities by location, price and type. User 
 
 ## Routes
 
-###index
+### index
 
 GET /
 - renders the user to the homepage
 
-###auth
+### auth
 
 GET /auth/signup
 - renders to sign up page
@@ -60,7 +60,7 @@ POST /auth/login
 GET /auth/logout
 - redirect the user to the homepage after loging out
 
-###activities
+### activities
 
 GET /activities
 - renders a list of activities to the user
