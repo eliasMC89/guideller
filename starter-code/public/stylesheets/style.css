@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+/* ---- reset ---- */
+
+html {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0; 
+}
+
+/* ---- nav ---- */ 
+
+.nav-container {
+  display: flex;
+  height: 60px;
+  background-color: rgb(124, 206, 188);
+  margin-left: auto;
+  padding-right: 15px;
+  padding-left: 15px;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+}
+
+.logo {
+  font-size: 20px;
+}
+
+
+img {
+  width: 30px;
+}
+
+.profile {
+  margin-left: auto;
+}
+
+footer {
+  align-items: center;
+  display: flex;
+  position: fixed;
+  bottom: 0px;
+  height: 60px;
+  background-color: #7ccebc;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.footer-img {
+  width: 35px;
+}
+
+.index-main {
+  padding-top: 60px;
+  background-image: url('../images/globe.png');
+  background-size: cover;
+  height: 695px;
+  background-repeat: no-repeat;
+}
+
+.ft-backpack {
+  padding-top: 9px;
+}
+
+.index-text {
+  width: 70%;
+  margin: auto;
+  padding-top: 130px;
+  text-align: center;
+  font-size: 20px;
+}
+
+.index-header {
+  font-size: 25px;
+}
