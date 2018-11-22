@@ -27,8 +27,12 @@ Travel app to check and create new activities by location, price and type. User 
 
 ## Routes
 
+###index
+
 GET /
-- renders the user to the homepage showing all the recent created activites
+- renders the user to the homepage
+
+###auth
 
 GET /auth/signup
 - renders to sign up page
@@ -56,44 +60,57 @@ POST /auth/login
 GET /auth/logout
 - redirect the user to the homepage after loging out
 
-GET /activities/new
-- renders the /activities/new page to create a new activity linked to the user
-- redirect to / if user is not logged in
+###activities
 
-POST /activities/new
-- redirect to / if user is not logged in
+GET /activities
+- renders a list of activities to the user
+
+GET /activities/new
+- renders the new activity form to the user
+- redirect to /activities if user is not logged in
+
+POST /activities
+- receives the new activity created
 - body:
   name
-  location
+  country
+  city
   price
+  rating
   description
-  photo
   reservation
+  photo
+  owner
+- redirects to the user's list of activities
 
 GET /activities/myActivities
-- renders the /activities/:userid/list page to see the list of the activities the user has created
-- redirect to / if user is not logged in
-- redirect to / if user is not the same as the one logged in
+- renders the list of activities created by the user
+- redirect to /activities if user is not logged in
+- redirect to /activities if user is not the same as the one logged in
 
 GET /activities/:activityId/edit
 - renders the /activities/:userid/edit page to edit the users activity
 - redirect to / if user is not logged in
-- redirect to / if user is not the same as the one logged in
+- redirect to /activities if user is not the owner of the activity
 
 POST /activities/:activityId/edit
-- redirect to / if user is not logged in
+- receives the new activity edited
 - body:
   name
-  location
+  country
+  city
   price
+  rating
   description
-  photo
   reservation
+  photo
+  owner
+- redirects to the user's list of activities
 
 POST /activities/:activityId/delete
 - deletes the user's activity
-- redirect to / if user is not logged in
-- redirect to / if user is not the same as the one logged in
+- redirect to /activities if user is not logged in
+- redirect to /activities if user is not the owner of the activity
 
 GET /activities/:activityId
 - renders user to activity detail
@@ -104,6 +121,7 @@ GET /activities/:activityId
 
 User Model
 
+```
 const userSchema = new Schema({
   username: {
     type: String,
@@ -114,10 +132,11 @@ const userSchema = new Schema({
     required: true
   }
 }, );
- 
+ ```
 
 Activity
 
+```
 const activitySchema = new Schema({
   name: {
     type: String,
@@ -158,4 +177,5 @@ const activitySchema = new Schema({
     required: true
   }
 }, );
+```
 
