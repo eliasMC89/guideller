@@ -56,11 +56,11 @@ POST /auth/login
 GET /auth/logout
 - redirect the user to the homepage after loging out
 
-GET /activities/:userid/new
+GET /activities/new
 - renders the /activities/new page to create a new activity linked to the user
 - redirect to / if user is not logged in
 
-POST /activities/:userId/new
+POST /activities/new
 - redirect to / if user is not logged in
 - body:
   name
@@ -70,17 +70,17 @@ POST /activities/:userId/new
   photo
   reservation
 
-GET /activities/:userId/list
+GET /activities/myActivities
 - renders the /activities/:userid/list page to see the list of the activities the user has created
 - redirect to / if user is not logged in
 - redirect to / if user is not the same as the one logged in
 
-GET /activities/:userId/:activityId/edit
+GET /activities/:activityId/edit
 - renders the /activities/:userid/edit page to edit the users activity
 - redirect to / if user is not logged in
 - redirect to / if user is not the same as the one logged in
 
-POST /activities/:userId/:activityId/edit
+POST /activities/:activityId/edit
 - redirect to / if user is not logged in
 - body:
   name
@@ -90,10 +90,13 @@ POST /activities/:userId/:activityId/edit
   photo
   reservation
 
-POST /activities/:userId/:activityId/delete
+POST /activities/:activityId/delete
 - deletes the user's activity
 - redirect to / if user is not logged in
 - redirect to / if user is not the same as the one logged in
+
+GET /activities/:activityId
+- renders user to activity detail
 
 
 
@@ -119,5 +122,7 @@ rating: number, required
 Photo: file
 Location: string
 Description: string
+Reservation: boolean
+Owner: string, required
 ```
 
