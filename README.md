@@ -104,25 +104,58 @@ GET /activities/:activityId
 
 User Model
 
- ```
- username: String, required
- password: String, required
- ```
+const userSchema = new Schema({
+  username: {
+    type: String,
+    required: true
+  },
+  password: {
+    type: String,
+    required: true
+  }
+}, );
  
 
 Activity
 
-```
-name: string, required
-city: string, required
-country: string, required
-type: string, required
-price: number, required
-rating: number, required
-Photo: file
-Location: string
-Description: string
-Reservation: boolean
-Owner: string, required
-```
+const activitySchema = new Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  city: {
+    type: String,
+    required: true
+  },
+  country: {
+    type: String,
+    required: true
+  },
+  location: {
+    type: String,
+    required: true
+  },
+  type: {
+    type: String,
+    required: true
+  },
+  price: {
+    type: Number,
+    required: true
+  },
+  photoURL: {
+    type: String,
+  },
+  reservation: {
+    type: String,
+  },
+  description: {
+    type: String,
+    required: true
+  },
+  owner: {
+    type: String,
+    required: true
+  }
+}, );
 
