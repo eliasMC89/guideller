@@ -101,13 +101,16 @@ POST /activities/:userId/:activityId/delete
 
 User Model
 
- ```username: String, required
- password: String, required```
+ ```
+ username: String, required
+ password: String, required
+ ```
  
 
 Activity
 
-```name: string, required
+```
+name: string, required
 city: string, required
 country: string, required
 type: string, required
@@ -115,5 +118,6 @@ price: number, required
 rating: number, required
 Photo: file
 Location: string
-Description: string```
+Description: string
+```
 
