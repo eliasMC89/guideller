@@ -82,3 +82,21 @@ footer {
 .index-header {
   font-size: 25px;
 }
+
+.not-found-header {
+  padding-top: 80px;
+  margin: 0px;
+  text-align: center;
+}
+
+.signup-container {
+  padding-top: 80px;
+  margin: 0px;
+  text-align: center;
+}
+
+.login-container {
+  padding-top: 80px;
+  margin: 0px;
+  text-align: center;
+}

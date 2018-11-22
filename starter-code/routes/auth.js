@@ -78,7 +78,7 @@ router.post('/login', authMiddleware.requireAnon, formMiddleware.requireFields, 
 /* POST logout */
 router.post('/logout', authMiddleware.requireUser, (req, res, next) => {
   delete req.session.currentUser;
-  res.redirect('/auth/login');
+  res.redirect('/');
 });
 
 module.exports = router;

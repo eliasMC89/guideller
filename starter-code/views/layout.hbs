@@ -1,21 +1,33 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <nav class="nav-container">
-      <div class="nav-item logo">GUIDELLER</div>
-      <div class="nav-item profile"><img src="images/profile.svg" alt="profile-button"></div>
-    </nav>
-    {{{body}}}
-    <footer>
-      <div><img src="images/home.svg" alt="" class="footer-img ft-home"></div>
-      <div><img src="images/search.png" alt="" class="footer-img ft-search"></div>
-      <div><img src="images/add.svg" alt="" class="footer-img ft-add"></div>
-      <div><img src="images/suitcase.svg" alt="" class="footer-img ft-backpack"></div>
-      <div><img src="images/heart.svg" alt="" class="footer-img ft-like"></div>
-    </footer>
-  </body>
+
+<head>
+  <title>{{title}}</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <nav class="nav-container">
+    <div class="nav-item logo">GUIDELLER</div>
+    {{#unless currentUser}}
+    <div class="nav-item profile"><a href="/auth/signup"><img src="/images/profile.svg" alt="profile-button"></a></div>
+    <div class="nav-item profile"><a href="/auth/login"><img src="/images/profile.svg" alt="profile-button"></a></div>
+    {{else}}
+    <div class="log-out profile">
+      <form action="/auth/logout" method="POST">
+        <button type="submit">Logout</button>
+      </form>
+    </div>
+    {{/unless}}
+  </nav>
+  {{{body}}}
+  <footer>
+    <div><img src="/images/home.svg" alt="" class="footer-img ft-home"></div>
+    <div><img src="/images/search.png" alt="" class="footer-img ft-search"></div>
+    <div><img src="/images/add.svg" alt="" class="footer-img ft-add"></div>
+    <div><img src="/images/suitcase.svg" alt="" class="footer-img ft-backpack"></div>
+    <div><img src="/images/heart.svg" alt="" class="footer-img ft-like"></div>
+  </footer>
+</body>
+
 </html>
