@@ -28,11 +28,7 @@ Travel app to check and create new activities by location, price and type. User 
 ## Routes
 
 GET /
-- renders the not logged in homepage
-
-GET /activities
-- renders to user's homepage once logged in
-- redirect to / if user is not logged in
+- renders the user to the homepage showing all the recent created activites
 
 GET /auth/signup
 - renders to sign up page
@@ -57,11 +53,14 @@ POST /auth/login
   password
 - redirects to /activities once you click the "LOG IN" button
 
+GET /auth/logout
+- redirect the user to the homepage after loging out
+
 GET /activities/:userid/new
 - renders the /activities/new page to create a new activity linked to the user
 - redirect to / if user is not logged in
 
-POST /activities/:userid/new
+POST /activities/:userId/new
 - redirect to / if user is not logged in
 - body:
   name
@@ -71,17 +70,17 @@ POST /activities/:userid/new
   photo
   reservation
 
-GET /activities/:userid/list
+GET /activities/:userId/list
 - renders the /activities/:userid/list page to see the list of the activities the user has created
 - redirect to / if user is not logged in
 - redirect to / if user is not the same as the one logged in
 
-GET /activities/:userid/:activityid/edit
+GET /activities/:userId/:activityId/edit
 - renders the /activities/:userid/edit page to edit the users activity
 - redirect to / if user is not logged in
 - redirect to / if user is not the same as the one logged in
 
-POST /activities/:userid/:activityid/edit
+POST /activities/:userId/:activityId/edit
 - redirect to / if user is not logged in
 - body:
   name
@@ -91,12 +90,11 @@ POST /activities/:userid/:activityid/edit
   photo
   reservation
 
-GET /activities/:userid/:activityid/remove
-- renders the /activities/:userid/delete page to delete the users activity
+POST /activities/:userId/:activityId/delete
+- deletes the user's activity
 - redirect to / if user is not logged in
 - redirect to / if user is not the same as the one logged in
 
-POST /activities/:userid/:activityid/remove
 
 
 ## Models
