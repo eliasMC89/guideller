@@ -20,14 +20,13 @@ authMiddleware.requireUser = (req, res, next) => {
 };
 
 authMiddleware.checkUser = (req, res, next) => {
+  // console.log(req.params.activityId);
+  const activityId = req.params.activityId;
   const { _id } = req.session.currentUser;
-  const activityID = req.params.activityID;
-  console.log(_id);
-  console.log(activityID);
   User.findById(_id)
     .then((user) => {
       const userActivities = user.activities;
-      if (!userActivities.includes(activityID)) {
+      if (userActivities.indexOf(activityId) < 0) {
         return res.redirect('/');
       }
     })

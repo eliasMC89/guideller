@@ -3,9 +3,9 @@ const router = express.Router();
 const User = require('../models/user');
 const Activity = require('../models/activity');
 const authMiddleware = require('../middlewares/authMiddleware'); // Middleware
-const formMiddleware = require('../middlewares/formMiddleware');
+// const formMiddleware = require('../middlewares/formMiddleware');
 
-/* GET ducks page. */
+/* GET activities page. */
 router.get('/', (req, res, next) => {
   // R in CRUD
   Activity.find()
@@ -15,21 +15,12 @@ router.get('/', (req, res, next) => {
     .catch(next);
 });
 
-// Render the create duck form
+// Render the create activity form
 router.get('/create', authMiddleware.requireUser, (req, res, next) => {
   res.render('activities/create-activity', { title: 'Activities' });
 });
 
-/* router.get('/people', (req, res, next) => {
-  User.find()
-    .populate('ducks')
-    .then((result) => {
-      res.render('ducks/peoples-ducks', { users: result });
-    })
-    .catch(next);
-}); */
-
-// Receive the duck post
+// Receive the acitivity post
 router.post('/', authMiddleware.requireUser, (req, res, next) => {
   // to see the information from the post, we need the body of the request
   const { name, location } = req.body;
@@ -45,42 +36,21 @@ router.post('/', authMiddleware.requireUser, (req, res, next) => {
     .catch(next);
 });
 
-router.get('/:activityId/edit', authMiddleware.requireUser, (req, res, next) => {
+router.get('/:activityId/edit', authMiddleware.requireUser, authMiddleware.checkUser, (req, res, next) => {
   const activityId = req.params.activityId;
   Activity.findById(activityId)
     .then((activity) => {
-      const { _id } = req.session.currentUser;
-      User.findById(_id)
-        .then((user) => {
-          const userActivities = user.activities;
-          console.log(userActivities);
-          console.log(activityId);
-          if (userActivities.indexOf(activityId) < 0) {
-            console.log('cannot do it!!');
-            return res.redirect('/');
-          }
-        })
-        .catch(next);
       res.render('activities/edit-activity', { activity });
     })
     .catch(next);
 });
 
 // U in CRUD
-router.post('/:activityId/edit', authMiddleware.requireUser, (req, res, next) => {
+router.post('/:activityId/edit', authMiddleware.requireUser, authMiddleware.checkUser, (req, res, next) => {
   const activityId = req.params.activityId;
   const updatedActivityInformation = req.body;
   Activity.findByIdAndUpdate(activityId, { $set: updatedActivityInformation })
     .then(() => {
-      const { _id } = req.session.currentUser;
-      User.findById(_id)
-        .then((user) => {
-          const userActivities = user.activities;
-          if (userActivities.indexOf(activityId) < 0) {
-            return res.redirect('/');
-          }
-        })
-        .catch(next);
       res.redirect('/activities/my');
     })
     .catch(next);
@@ -91,6 +61,15 @@ router.post('/:activityId/delete', authMiddleware.requireUser, authMiddleware.ch
   const activityId = req.params.activityId;
   Activity.deleteOne({ _id: activityId })
     .then(() => {
+      const { _id } = req.session.currentUser;
+      User.findById(_id)
+        .then((user) => {
+          const userActivities = user.activities;
+          if (userActivities.indexOf(activityId) < 0) {
+            return res.redirect('/');
+          }
+        })
+        .catch(next);
       res.redirect('/activities/my');
     })
     .catch(next);
@@ -101,14 +80,6 @@ router.get('/my', authMiddleware.requireUser, (req, res, next) => {
   User.findById(_id)
     .populate('activities')
     .then((user) => {
-      /* const userActivities = user.activities;
-      const activitiesArray = [];
-      userActivities.forEach(item => {
-        Activity.findById(item)
-          .then((result) => {
-            activitiesArray.push(result);
-          })
-          .catch(next); */
       res.render('activities/my-activities', { user });
     })
     .catch(next);
