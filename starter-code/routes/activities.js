@@ -49,6 +49,15 @@ router.get('/:activityId/edit', authMiddleware.requireUser, (req, res, next) => 
   const activityId = req.params.activityId;
   Activity.findById(activityId)
     .then((activity) => {
+    //   const { _id } = req.session.currentUser;
+    //   User.findById(_id)
+    //     .then((user) => {
+    //       const userActivities = user.activities;
+    //       if (!userActivities.includes(activityId)) {
+    //         return res.redirect('/');
+    //       }
+    //     })
+    //     .catch(next);
       res.render('activities/edit-activity', { activity });
     })
     .catch(next);
@@ -58,16 +67,24 @@ router.get('/:activityId/edit', authMiddleware.requireUser, (req, res, next) => 
 router.post('/:activityId/edit', authMiddleware.requireUser, (req, res, next) => {
   const activityId = req.params.activityId;
   const updatedActivityInformation = req.body;
-
   Activity.findByIdAndUpdate(activityId, { $set: updatedActivityInformation })
     .then(() => {
+      const { _id } = req.session.currentUser;
+      User.findById(_id)
+        .then((user) => {
+          const userActivities = user.activities;
+          if (!userActivities.includes(activityId)) {
+            return res.redirect('/');
+          }
+        })
+        .catch(next);
       res.redirect('/activities/my');
     })
     .catch(next);
 });
 
 // D in CRUD
-router.post('/:activityId/delete', authMiddleware.requireUser, (req, res, next) => {
+router.post('/:activityId/delete', authMiddleware.requireUser, authMiddleware.checkUser, (req, res, next) => {
   const activityId = req.params.activityId;
   Activity.deleteOne({ _id: activityId })
     .then(() => {
@@ -81,7 +98,6 @@ router.get('/my', authMiddleware.requireUser, (req, res, next) => {
   User.findById(_id)
     .populate('activities')
     .then((user) => {
-      console.log(user);
       /* const userActivities = user.activities;
       const activitiesArray = [];
       userActivities.forEach(item => {
