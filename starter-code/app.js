@@ -12,6 +12,7 @@ const flash = require('connect-flash');
 // declare routes
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
+const activityRouter = require('./routes/activities');
 
 const app = express();
 
@@ -57,6 +58,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
+app.use('/activities', activityRouter);
 
 // -- 404 and error handler
 

@@ -2,6 +2,7 @@
 
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const ObjectId = Schema.Types.ObjectId;
 
 const userSchema = new Schema({
   username: {
@@ -12,7 +13,12 @@ const userSchema = new Schema({
   password: {
     type: String,
     required: true
-  }
+  },
+  activities: [{
+    type: ObjectId,
+    ref: 'Activity'
+  }]
+
 });
 
 const User = mongoose.model('User', userSchema);
