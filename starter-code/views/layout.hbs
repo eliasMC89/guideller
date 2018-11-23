@@ -23,12 +23,14 @@
     {{/unless}}
   </nav>
   {{{body}}}
-  <footer>
-    <div><a href="/"><img src="/images/home.svg" alt="" class="footer-img ft-home"></a></div>
-    <div><a href="/activities"><img src="/images/search.png" alt="" class="footer-img ft-search"></a></div>
-    <div><a href="/activities/create"><img src="/images/add.svg" alt="" class="footer-img ft-add"></a></div>
-    <div><a href="/"><img src="/images/heart.svg" alt="" class="footer-img ft-backpack"></a></div>
-    <div><a href="/activities/my"><img src="/images/profile.svg" alt="" class="footer-img ft-like"></a></div>
-  </footer>
+  {{#if currentUser}}
+    <footer>
+      <div><a href="/"><img src="/images/home.svg" alt="" class="footer-img ft-home"></a></div>
+      <div><a href="/activities"><img src="/images/search.png" alt="" class="footer-img ft-search"></a></div>
+      <div><a href="/activities/create"><img src="/images/add.svg" alt="" class="footer-img ft-add"></a></div>
+      <div><a href="/"><img src="/images/heart.svg" alt="" class="footer-img ft-backpack"></a></div>
+      <div><a href="/activities/my"><img src="/images/profile.svg" alt="" class="footer-img ft-like"></a></div>
+    </footer>
+  {{/if}}
 </body>
 </html>
