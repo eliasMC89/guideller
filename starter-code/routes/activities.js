@@ -49,15 +49,18 @@ router.get('/:activityId/edit', authMiddleware.requireUser, (req, res, next) => 
   const activityId = req.params.activityId;
   Activity.findById(activityId)
     .then((activity) => {
-    //   const { _id } = req.session.currentUser;
-    //   User.findById(_id)
-    //     .then((user) => {
-    //       const userActivities = user.activities;
-    //       if (!userActivities.includes(activityId)) {
-    //         return res.redirect('/');
-    //       }
-    //     })
-    //     .catch(next);
+      const { _id } = req.session.currentUser;
+      User.findById(_id)
+        .then((user) => {
+          const userActivities = user.activities;
+          console.log(userActivities);
+          console.log(activityId);
+          if (userActivities.indexOf(activityId) < 0) {
+            console.log('cannot do it!!');
+            return res.redirect('/');
+          }
+        })
+        .catch(next);
       res.render('activities/edit-activity', { activity });
     })
     .catch(next);
@@ -73,7 +76,7 @@ router.post('/:activityId/edit', authMiddleware.requireUser, (req, res, next) =>
       User.findById(_id)
         .then((user) => {
           const userActivities = user.activities;
-          if (!userActivities.includes(activityId)) {
+          if (userActivities.indexOf(activityId) < 0) {
             return res.redirect('/');
           }
         })
