@@ -79,17 +79,18 @@ router.post('/:activityId/delete', authMiddleware.requireUser, (req, res, next) 
 router.get('/my', authMiddleware.requireUser, (req, res, next) => {
   const { _id } = req.session.currentUser;
   User.findById(_id)
+    .populate('activities')
     .then((user) => {
-      const userActivities = user.activities;
+      console.log(user);
+      /* const userActivities = user.activities;
       const activitiesArray = [];
       userActivities.forEach(item => {
         Activity.findById(item)
           .then((result) => {
             activitiesArray.push(result);
           })
-          .catch(next);
-      });
-      res.render('activities/my-activities', { activitiesArray });
+          .catch(next); */
+      res.render('activities/my-activities', { user });
     })
     .catch(next);
 });
