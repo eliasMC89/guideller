@@ -45,37 +45,53 @@ router.post('/', authMiddleware.requireUser, (req, res, next) => {
     .catch(next);
 });
 
-/*
-router.get('/:duckId/edit', (req, res, next) => {
-  const duckId = req.params.duckId;
-
-  Duck.findById(duckId)
-    .then((duck) => {
-      res.render('ducks/edit-duck', { duck });
+router.get('/:activityId/edit', authMiddleware.requireUser, (req, res, next) => {
+  const activityId = req.params.activityId;
+  Activity.findById(activityId)
+    .then((activity) => {
+      res.render('activities/edit-activity', { activity });
     })
     .catch(next);
 });
 
 // U in CRUD
-router.post('/:duckId/edit', (req, res, next) => {
-  const duckId = req.params.duckId;
-  const updatedDuckInformation = req.body;
+router.post('/:activityId/edit', authMiddleware.requireUser, (req, res, next) => {
+  const activityId = req.params.activityId;
+  const updatedActivityInformation = req.body;
 
-  Duck.findByIdAndUpdate(duckId, { $set: updatedDuckInformation })
-    .then((duck) => {
-      res.redirect('/ducks');
+  Activity.findByIdAndUpdate(activityId, { $set: updatedActivityInformation })
+    .then(() => {
+      res.redirect('/activities/my');
     })
     .catch(next);
 });
 
 // D in CRUD
-router.post('/:duckId/delete', (req, res, next) => {
-  const duckId = req.params.duckId;
-  Duck.deleteOne({ _id: duckId })
-    .then((result) => {
-      res.redirect('/ducks');
+router.post('/:activityId/delete', authMiddleware.requireUser, (req, res, next) => {
+  const activityId = req.params.activityId;
+  Activity.deleteOne({ _id: activityId })
+    .then(() => {
+      res.redirect('/activities/my');
     })
     .catch(next);
-}); */
+});
+
+router.get('/my', authMiddleware.requireUser, (req, res, next) => {
+  const { _id } = req.session.currentUser;
+  User.findById(_id)
+    .then((user) => {
+      const userActivities = user.activities;
+      const activitiesArray = [];
+      userActivities.forEach(item => {
+        Activity.findById(item)
+          .then((result) => {
+            activitiesArray.push(result);
+          })
+          .catch(next);
+      });
+      res.render('activities/my-activities', { activitiesArray });
+    })
+    .catch(next);
+});
 
 module.exports = router;

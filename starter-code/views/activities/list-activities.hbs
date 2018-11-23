@@ -7,12 +7,6 @@
   <li>
     <h2>{{this.name}}</h2>
     <p>{{this.location}}</p>
-    <a href="/activities/{{this._id}}/edit">Edit</a>
-    <form action="/activities/{{this._id}}/delete" method="post">
-      <div>
-        <button type="submit">Delete</button>
-      </div>
-    </form>
   </li>
   {{/each}}
 </ul>

@@ -1,0 +1,19 @@
+
+<h1>Edit activity</h1>
+
+<form method="POST" action="/activities/{{activity._id}}/edit">
+
+  <div class="field" >
+    <label>Name</label>
+    <input type="text" name="name" value="{{activity.name}}"/>
+  </div>
+
+  <div class="field" >
+    <label>Location</label>
+    <input type="text" name="location" value="{{activity.location}}"/>
+  </div>
+
+  <div class="field submit">
+    <button type="submit">Edit</button>
+  </div>
+</form>
