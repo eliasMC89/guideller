@@ -13,7 +13,9 @@
     <div class="nav-item profile"><a href="/auth/signup">Sign Up</a></div>
     <div class="nav-item profile"><a href="/auth/login">Log In</a></div>
     {{else}}
+    
     <div class="log-out profile">
+      <div><p>{{currentUser.username}}</p></div>
       <form action="/auth/logout" method="POST">
         <button type="submit">Logout</button>
       </form>
