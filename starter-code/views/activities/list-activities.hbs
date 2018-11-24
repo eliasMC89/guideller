@@ -1,12 +1,12 @@
-<h1>
-  Look at all my activities!
-</h1>
+<section class="list-activities activities">
+  <h1>
+    Look at all the activities!
+  </h1>
 
-<ul>
-  {{#each activities}}
-  <li>
-    <h2>{{this.name}}</h2>
-    <p>{{this.location}}</p>
-  </li>
-  {{/each}}
-</ul>
+    {{#each activities}}
+      <h2>{{this.name}}</h2>
+      <p>{{this.location}}</p>
+      <hr>
+    {{/each}}
+
+</section>
