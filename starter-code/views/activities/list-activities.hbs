@@ -3,10 +3,21 @@
     Look at all the activities!
   </h1>
 
-    {{#each activities}}
-      <h2>{{this.name}}</h2>
-      <p>{{this.location}}</p>
-      <hr>
-    {{/each}}
+  {{#each activities}}
+    <h2 class="activity-text activity-title">{{this.name}}</h2>
+    <p class="activity-text activity-location">{{this.location}}</p>
+    <a href="/"><img src="../images/ironhack.png" alt="" class="activity-img"></a>
+    <div class="activity-info-container">
+      <div class="activity-text-container">
+        <p class="activity-text">{{this.type}}</p>
+        <p class="activity-text">{{this.price}}€</p>
+      </div>
+      <img src="../images/bookmark.svg" alt="" class="activity-bookmark">
+    </div>
+  <br>
+  <hr>
+  <br>
+
+  {{/each}}
 
 </section>

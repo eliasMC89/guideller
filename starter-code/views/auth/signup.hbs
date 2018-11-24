@@ -1,21 +1,20 @@
 <section class="signup-container">
-<h1>Sign Up</h1>
+<form method="POST" action="/auth/signup" class="login-signup-form">
+  <div class="login-signup-container">
+    <h1 class="form-title">Create new user</h1>
+    <div class="field">
+      <input type="text" name="username" placeholder="Username" class="login-signup-input" />
+    </div>
 
-<form method="POST" action="/auth/signup">
+    <div class="field">
+      <input type="password" name="password" placeholder="Password" class="login-signup-input" />
+    </div>
 
-  <div class="field" >
-    <label>Username</label>
-    <input type="text" name="username"/>
-  </div>
-
-  <div class="field" >
-    <label>Password</label>
-    <input type="password" name="password"/>
-  </div>
-
-  <div class="field submit">
-    <button type="submit">Sign Up</button>
-  </div>
+    <div class="field submit">
+      <button type="submit">Sign up</button>
+    </div>
+    <p>Already have an account? Log in <a href="/auth/login"><b>here</b></a></p>
+    </div>
 </form>
 
 {{#if messages.length}}

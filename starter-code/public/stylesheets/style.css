@@ -27,13 +27,14 @@ a {
 .nav-container {
   display: flex;
   height: 80px;
-  background-color: rgb(124, 206, 188);
+  background-color: rgb(157, 224, 209);
   margin-left: auto;
   padding-right: 15px;
   padding-left: 15px;
   align-items: center;
   position: fixed;
   width: 100%;
+  top: 0px;
 }
 
 .logo {
@@ -41,7 +42,7 @@ a {
 }
 
 
-img {
+.footer-img {
   width: 30px;
 }
 
@@ -55,7 +56,7 @@ footer {
   position: fixed;
   bottom: 0px;
   height: 80px;
-  background-color: #7ccebc;
+  background-color: rgb(157, 224, 209);
   width: 100%;
   justify-content: space-around;
 }
@@ -63,6 +64,7 @@ footer {
 
 section {
   padding-top: 100px;
+  padding-bottom: 100px;
 }
 
 
@@ -111,12 +113,12 @@ section {
   text-align: center;
 }
 
-.activity-input {
+input, select {
   display: block;
   box-sizing: border-box;
   margin-bottom: 20px;
+  margin-top: 0px;
   padding: 4px;
-  width: 220px;
   height: 32px;
   border: none;
   border-bottom: 1px solid #AAA;
@@ -127,25 +129,29 @@ section {
   width: 380px;
 }
 
-.activity-input:focus {
-  border-bottom: 2px solid rgb(124, 206, 188);
-  color: rgb(124, 206, 188);
+input:focus {
+  border-bottom: 2px solid rgb(141, 201, 187);
+  color: rgb(141, 201, 187);
   transition: 0.2s ease;
 }
 
-.activity-form {
+.login-signup-input {
+  width: 200px;
+}
+
+.activity-form,.login-signup-form {
   position: relative;
   margin: 5% auto;
   margin-top: 140px;
   width: 600px;
-  height: 500px;
+  height: 600px;
   background: #FFF;
   border-radius: 2px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
   justify-content: center;
 }
 
-.activity-container {
+.activity-container,.login-signup-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -154,7 +160,10 @@ section {
   width: 100%;
   height: 100%;
 }
-
+.login-signup-form {
+  height: 300px;
+  width: 400px;
+}
 select {
   margin-bottom: 1em;
   padding: .25em;
@@ -173,11 +182,11 @@ button {
   padding: 0px 30px;
   border-style: none;
   background: white;
-  color: rgb(124, 206, 188);
+  color: rgb(141, 201, 187);
 }
 
 button:hover {
-  background: rgb(124, 206, 188);
+  background: rgb(157, 224, 209);
   color: white;
 }
 
@@ -210,6 +219,71 @@ h2 {
   font-size: 20px;
 }
 
+.btn-activity {
+  font-size: 23px;
+  width: 100px;
+  text-align: center;
+  padding: 0;
+}
 
+.log-out {
+  display: flex;
+  justify-content: space-between;
+}
 
+.user-info {
+  padding-right: 30px;
+  font-size: 20px;
+}
+
+.logo-img {
+  padding-left: 10px;
+  width: 50px;
+}
+
+.logout-btn {
+  margin-top: 11px;
+  border: 1px solid white;
+}
+
+.activity-img {
+  width: 600px;
+}
+
+.activity-title {
+  margin-bottom: 0;
+  font-weight: bold;
+  font-size: 20px;
+  
+}
+
+.activity-location {
+  margin-top: 5px;
+  font-style: italic;
+}
+
+.activity-bookmark {
+  width: 35px;
+}
+
+.activity-info-container {
+  height: 80px;
+  background-color: rgb(157, 224, 209);
+  width: 600px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.activity-text-container {
+  margin-top: 10px;
+}
+
+.activity-text {
+  margin-bottom: 8px;
+  margin-top: 3px;
+  font-size: 20px;
+}
 

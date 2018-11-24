@@ -20,7 +20,7 @@ const activitySchema = new Schema({
     type: String
     // required: true
   },
-  typeof: {
+  type: {
     type: String
     // required: true
   },
