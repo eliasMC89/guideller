@@ -1,0 +1,23 @@
+<h1>Create Trip</h1>
+
+<form method="POST" action="/trips/{{trip._id}}/edit">
+
+  <div class="field" >
+    <label>Name</label>
+    <input type="text" name="name" value="{{trip.name}}"/>
+  </div>
+
+  <div class="field" >
+    <label>Location</label>
+    <input type="text" name="location" value="{{trip.location}}"/>
+  </div>
+
+  <div class="field" >
+    <label>Budget</label>
+    <input type="number" name="budget" value="{{trip.budget}}"/>
+  </div>
+
+  <div class="field submit">
+    <button type="submit">Edit</button>
+  </div>
+</form>

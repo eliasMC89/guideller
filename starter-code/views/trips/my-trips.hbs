@@ -1,0 +1,29 @@
+<h1>
+  Look at all my activities!
+</h1>
+
+<ul>
+  {{#each user.trips}}
+  <li>
+    <h2>{{this.name}}</h2>
+    <p>{{this.location}}</p>
+    <p>Budget: {{this.budget}} €</p>
+    <a href="/trips/{{this._id}}/edit">Edit</a>
+    <form action="/trips/{{this._id}}/delete" method="post">
+      <div>
+        <button type="submit">Delete</button>
+      </div>
+    </form>
+    {{!-- <ul>
+    {{#each activities}}
+      <li>
+        <h2>{{this.name}}</h2>
+        <p>{{this.location}}</p>
+      </li>
+    {{/each}}
+    </ul> --}}
+  </li>
+  {{/each}}
+</ul>
+
+<p><a href="/trips/create">Create Trip</a></p>

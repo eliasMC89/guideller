@@ -1,3 +1,5 @@
+'use strict';
+
 const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
@@ -36,7 +38,7 @@ router.post('/', authMiddleware.requireUser, (req, res, next) => {
     .catch(next);
 });
 
-router.get('/:activityId/edit', authMiddleware.requireUser, authMiddleware.checkUser, (req, res, next) => {
+router.get('/:activityId/edit', authMiddleware.requireUser, authMiddleware.checkActivityUser, (req, res, next) => {
   const activityId = req.params.activityId;
   Activity.findById(activityId)
     .then((activity) => {
@@ -46,7 +48,7 @@ router.get('/:activityId/edit', authMiddleware.requireUser, authMiddleware.check
 });
 
 // U in CRUD
-router.post('/:activityId/edit', authMiddleware.requireUser, authMiddleware.checkUser, (req, res, next) => {
+router.post('/:activityId/edit', authMiddleware.requireUser, authMiddleware.checkActivityUser, (req, res, next) => {
   const activityId = req.params.activityId;
   const updatedActivityInformation = req.body;
   Activity.findByIdAndUpdate(activityId, { $set: updatedActivityInformation })
@@ -57,19 +59,10 @@ router.post('/:activityId/edit', authMiddleware.requireUser, authMiddleware.chec
 });
 
 // D in CRUD
-router.post('/:activityId/delete', authMiddleware.requireUser, authMiddleware.checkUser, (req, res, next) => {
+router.post('/:activityId/delete', authMiddleware.requireUser, authMiddleware.checkActivityUser, (req, res, next) => {
   const activityId = req.params.activityId;
   Activity.deleteOne({ _id: activityId })
     .then(() => {
-      const { _id } = req.session.currentUser;
-      User.findById(_id)
-        .then((user) => {
-          const userActivities = user.activities;
-          if (userActivities.indexOf(activityId) < 0) {
-            return res.redirect('/');
-          }
-        })
-        .catch(next);
       res.redirect('/activities/my');
     })
     .catch(next);
