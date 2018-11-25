@@ -4,6 +4,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
 const Trip = require('../models/trip');
+const Activity = require('../models/activity');
 const authMiddleware = require('../middlewares/authMiddleware'); // Middleware
 // const formMiddleware = require('../middlewares/formMiddleware');
 
@@ -78,6 +79,25 @@ router.post('/:tripId/delete', authMiddleware.requireUser, authMiddleware.checkT
       res.redirect('/trips');
     })
     .catch(next);
+});
+
+// Get all the activities to add
+router.get('/:tripId/addActivity', (req, res, next) => {
+  Activity.find()
+    .then((activities) => {
+      res.render('trips/activities-trip', { activities, tripId: 'testing second key' }); // tripId: req.params.tripId
+    })
+    .catch(next);
+});
+
+// Add activites to trip
+router.post('/:tripId/addActivity/:activityId', (req, res, next) => {
+  const tripId = req.params.tripId;
+  const activityId = req.params.activityId;
+  Trip.findByIdAndUpdate(tripId, { $push: { trips: activityId } })
+    .then(() => {
+      res.redirect('/trips/activities-trip');
+    });
 });
 
 module.exports = router;

@@ -27,6 +27,7 @@
       <h2>{{this.name}}</h2>
       <p>{{this.location}}</p>
       <p>{{this.budget}}</p>
+      <a href="/trips/{{this._id}}/addActivity">Add activities</a>
       <button class="btn-trip"><a href="/trips/{{this._id}}/edit">Edit</a></button>
       <form action="/trips/{{this._id}}/delete" method="post">
         <div>

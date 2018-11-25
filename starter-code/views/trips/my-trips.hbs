@@ -9,6 +9,7 @@
     <h2 class="activity-text activity-title">{{this.name}}</h2>
     <p class="activity-text activity-location">{{this.location}}</p>
     <p>Budget: {{this.budget}} €</p>
+    <a href="/{{this._id}}/addActivity">Add activities</a>
     <a href="/trips/{{this._id}}/edit">Edit</a>
     <form action="/trips/{{this._id}}/delete" method="post">
       <div>
