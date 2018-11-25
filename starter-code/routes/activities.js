@@ -25,9 +25,9 @@ router.get('/create', authMiddleware.requireUser, (req, res, next) => {
 // Receive the acitivity post
 router.post('/', authMiddleware.requireUser, (req, res, next) => {
   // to see the information from the post, we need the body of the request
-  const { name, location } = req.body;
+  const { name, location, price, type } = req.body;
   const { _id } = req.session.currentUser;
-  const newActivity = new Activity({ name, location });
+  const newActivity = new Activity({ name, location, price, type });
   const updateUserPromise = User.findByIdAndUpdate(_id, { $push: { activities: newActivity._id } });
   const saveActivityPromise = newActivity.save();
 
@@ -72,6 +72,7 @@ router.get('/my', authMiddleware.requireUser, (req, res, next) => {
   const { _id } = req.session.currentUser;
   User.findById(_id)
     .populate('activities')
+    .populate('trips')
     .then((user) => {
       res.render('activities/my-activities', { user });
     })

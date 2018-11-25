@@ -1,12 +1,13 @@
 <h1>
-  Look at all my activities!
+  Look at all my trips!
 </h1>
 
 <ul>
   {{#each user.trips}}
   <li>
-    <h2>{{this.name}}</h2>
-    <p>{{this.location}}</p>
+    <img src="/images/ironhack.png" alt="" class="activity-img">
+    <h2 class="activity-text activity-title">{{this.name}}</h2>
+    <p class="activity-text activity-location">{{this.location}}</p>
     <p>Budget: {{this.budget}} €</p>
     <a href="/{{this._id}}/addActivity">Add activities</a>
     <a href="/trips/{{this._id}}/edit">Edit</a>
@@ -16,12 +17,12 @@
       </div>
     </form>
     {{!-- <ul>
-    {{#each activities}}
+      {{#each activities}}
       <li>
         <h2>{{this.name}}</h2>
         <p>{{this.location}}</p>
       </li>
-    {{/each}}
+      {{/each}}
     </ul> --}}
   </li>
   {{/each}}

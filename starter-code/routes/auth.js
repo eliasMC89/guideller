@@ -38,7 +38,7 @@ router.post('/signup', authMiddleware.requireAnon, formMiddleware.requireFields,
       })
         .then((newUser) => {
           req.session.currentUser = newUser; // stores user in session collection
-          res.redirect('/');
+          res.redirect('/activities');
         })
         .catch(next);
     })
@@ -66,7 +66,7 @@ router.post('/login', authMiddleware.requireAnon, formMiddleware.requireFields, 
       if (bcrypt.compareSync(password, user.password)) {
         // Save the login in the session!
         req.session.currentUser = user;
-        res.redirect('/');
+        res.redirect('/activities');
       } else {
         req.flash('validationError', 'Wrong password!');
         res.redirect('/auth/login');

@@ -1,19 +1,46 @@
+<form method="POST" action="/activities" class="activity-form">
+  <div class="activity-container">
+    <h1>Create activity</h1>
+    <div class="field">
+      <input type="text" class="activity-input" name="name" placeholder="Name" />
+    </div>
 
-<h1>Create activity</h1>
+    <div class="field">
+      <input type="text" class="activity-input" name="city" placeholder="City" />
+    </div>
 
-<form method="POST" action="/activities">
+    <div class="field">
+      <input type="text" class="activity-input" name="country" placeholder="Country" />
+    </div>
 
-  <div class="field" >
-    <label>Name</label>
-    <input type="text" name="name"/>
-  </div>
+    <div class="field">
+      <input type="text" class="activity-input" name="location" placeholder="Location" />
+    </div>
 
-  <div class="field" >
-    <label>Location</label>
-    <input type="text" name="location"/>
-  </div>
+    <div class="field">
+      <select name="type" class="activity-input" placeholder="Type of activity">
+        <option placeholder="title" disabled selected>Type of activity</option>
+        <option placeholder="social">Social</option>
+        <option placeholder="nature">Nature</option>
+        <option placeholder="museums">Museums</option>
+      </select>
+    </div>
 
-  <div class="field submit">
-    <button type="submit">Create</button>
+    <div class="field">
+      <input type="number" class="activity-input" name="price" placeholder="Price" />
+    </div>
+
+    <div class="field">
+      <input type="text" class="activity-input" name="reservation" placeholder="If needs reservation, please provide URL" />
+    </div>
+
+    <div class="field">
+      <input type="text" class="activity-input" name="description" placeholder="Description" />
+    </div>
+
+    <div class="field submit">
+      <button type="submit">Create</button>
+    </div>
+
   </div>
 </form>
