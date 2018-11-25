@@ -85,9 +85,9 @@ router.post('/:tripId/delete', authMiddleware.requireUser, authMiddleware.checkT
 router.get('/:tripId/addActivity', (req, res, next) => {
   console.log('getting activities page');
   Activity.find()
-    .then((result) => {
+    .then((activities) => {
       console.log('looking for activities in mongo');
-      res.render('trips/activities-trip', { activities: result, tripId: req.params.tripId });
+      res.render('trips/activities-trip', { activities, tripId: req.params.tripId }); // tripId: req.params.tripId
     })
     .catch(next);
 });
@@ -98,7 +98,7 @@ router.post('/:tripId/addActivity/:activityId', (req, res, next) => {
   const activityId = req.params.activityId;
   Trip.findByIdAndUpdate(tripId, { $push: { trips: activityId } })
     .then(() => {
-      res.redirect('trips/activities-trip');
+      res.redirect('/trips/activities-trip');
     });
 });
 

@@ -1,17 +1,29 @@
-<h1>
-  Add some activities to your trip!
-</h1>
+<section class="list-activities activities">
+  <h1>
+    Add some activities!
+  </h1>
 
-<ul>
   {{#each activities}}
-  <li>
-    <h2>{{this.name}}</h2>
-    <p>{{this.location}}</p>
-    <form action="{{tripId}}/addActivity/{{this._id}}" method="post">
+    <h2 class="activity-text activity-title">{{this.name}}</h2>
+    <p class="activity-text activity-location">{{this.location}}</p>
+    <a href="/"><img src="../images/ironhack.png" alt="" class="activity-img"></a>
+    <div class="activity-info-container">
+      <div class="activity-text-container">
+        <p class="activity-text">{{this.type}}</p>
+        <p class="activity-text">{{this.price}}€</p>
+      </div>
+      <img src="../images/bookmark.svg" alt="" class="activity-bookmark">
+    </div>
+    <br>
+    <hr>
+    <br>
+    <form action="/trips/{{tripId}}/addActivity/{{this._id}}" method="post">
       <div>
         <button type="submit">Add to trip</button>
       </div>
     </form>
-  </li>
+
   {{/each}}
-</ul>
+
+</section>
+    
