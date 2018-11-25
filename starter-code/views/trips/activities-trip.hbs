@@ -1,0 +1,17 @@
+<h1>
+  Add some activities to your trip!
+</h1>
+
+<ul>
+  {{#each activities}}
+  <li>
+    <h2>{{this.name}}</h2>
+    <p>{{this.location}}</p>
+    <form action="{{tripId}}/addActivity/{{this._id}}" method="post">
+      <div>
+        <button type="submit">Add to trip</button>
+      </div>
+    </form>
+  </li>
+  {{/each}}
+</ul>

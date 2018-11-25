@@ -8,6 +8,7 @@
     <h2>{{this.name}}</h2>
     <p>{{this.location}}</p>
     <p>Budget: {{this.budget}} €</p>
+    <a href="/{{this._id}}/addActivity">Add activities</a>
     <a href="/trips/{{this._id}}/edit">Edit</a>
     <form action="/trips/{{this._id}}/delete" method="post">
       <div>
