@@ -83,11 +83,9 @@ router.post('/:tripId/delete', authMiddleware.requireUser, authMiddleware.checkT
 
 // Get all the activities to add
 router.get('/:tripId/addActivity', (req, res, next) => {
-  console.log('getting activities page');
   Activity.find()
     .then((activities) => {
-      console.log('looking for activities in mongo');
-      res.render('trips/activities-trip', { activities, tripId: req.params.tripId }); // tripId: req.params.tripId
+      res.render('trips/activities-trip', { activities, tripId: 'testing second key' }); // tripId: req.params.tripId
     })
     .catch(next);
 });
