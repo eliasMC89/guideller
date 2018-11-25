@@ -17,6 +17,10 @@ router.get('/', (req, res, next) => {
     .catch(next);
 });
 
+router.get('/create-options', authMiddleware.requireUser, (req, res, next) => {
+  res.render('activities/create-options', { title: 'Activities' });
+});
+
 // Render the create activity form
 router.get('/create', authMiddleware.requireUser, (req, res, next) => {
   res.render('activities/create-activity', { title: 'Activities' });
