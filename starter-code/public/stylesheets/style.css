@@ -202,16 +202,31 @@ button:hover {
 
 .btn-activity {
   width: 160px;
+  margin-top: 12px;
+}
+
+.btn-trip {
+  width: 190px;
+  margin-top: 12px;
+  font-size: 23px;
+  text-align: center;
+  padding: 0;
 }
 
 .each-activity {
-  width: 40%;
+  width: 600px;
+  justify-content: center;
+  align-items: center;
+}
+
+.each-trip {
+  width: 600px;
   justify-content: center;
   align-items: center;
 }
 
 hr {
-  width: 300px;
+  width: 350px;
   color: gray;
 }
 
@@ -268,7 +283,7 @@ h2 {
 
 .activity-info-container {
   height: 80px;
-  background-color: rgb(157, 224, 209);
+  background-color: rgb(255, 251, 196);
   width: 600px;
   display: flex;
   flex-direction: row;
@@ -293,3 +308,82 @@ h2 {
   top: 100px;
 }
 
+.create-options {
+  width: 100%;
+  height: 100%;
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.create-options-container {
+  position: relative;
+  margin: 5% auto;
+  width: 400px;
+  height: 400px;
+  background: #FFF;
+  border-radius: 2px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  justify-content: center;
+  display: flex;
+}
+
+.create-opt {
+  font-size: 30px;
+  padding: 0px 30px;
+  border-style: none;
+  background: white;
+  color: rgb(141, 201, 187);
+  width: 260px;
+  text-align: center;
+  margin: 20px;
+  border-radius: 15px;
+  border: 2px solid rgb(157, 224, 209);
+}
+
+.create-opt:hover {
+  background: rgb(157, 224, 209);
+  color: white;
+  width: 260px;
+  margin: 20px;
+  border-radius: 15px;
+  align-items: center;
+}
+
+.option-links-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.options-title {
+  font-size: 20px;
+}
+
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 600px;
+}
+
+.profile-list {
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+}
+
+.triangle-icon {
+  width: 30px;
+  margin-left: 30px;
+}
+
+.up {
+  background-color: green;
+}
+
+.down {
+  background-color: blue;
+}
