@@ -202,6 +202,7 @@ button:hover {
 
 .btn-activity {
   width: 160px;
+  margin-top: 12px;
 }
 
 .each-activity {
@@ -268,7 +269,7 @@ h2 {
 
 .activity-info-container {
   height: 80px;
-  background-color: rgb(157, 224, 209);
+  background-color: rgb(255, 251, 196);
   width: 600px;
   display: flex;
   flex-direction: row;
