@@ -97,7 +97,7 @@ router.post('/:tripId/addActivity/:activityId', (req, res, next) => {
   const activityId = req.params.activityId;
   Trip.findByIdAndUpdate(tripId, { $push: { activities: activityId } })
     .then(() => {
-      res.redirect('/trips/activities-trip');
+      res.redirect(`/trips/${tripId}/addActivity`);
     });
 });
 

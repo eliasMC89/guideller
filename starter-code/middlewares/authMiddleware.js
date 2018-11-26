@@ -6,7 +6,7 @@ const User = require('../models/user');
 // if user is logged in, can't login or sign up
 authMiddleware.requireAnon = (req, res, next) => {
   if (req.session.currentUser) {
-    return res.redirect('/');
+    return res.redirect('/activities');
   }
   next();
 };

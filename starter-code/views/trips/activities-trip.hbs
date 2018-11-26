@@ -7,7 +7,7 @@
     {{!-- testing --}}
   {{#each activities}}
     {{!-- testing --}}
-    <h1>{{tripId}}</h1>
+    <h1>{{../tripId}}</h1>
     {{!-- testing --}}
 
     <h2 class="activity-text activity-title">{{this.name}}</h2>
@@ -23,7 +23,7 @@
     <br>
     <hr>
     <br>
-    <form action="/trips/{{tripId}}/addActivity/{{this._id}}" method="post">
+    <form action="/trips/{{../tripId}}/addActivity/{{this._id}}" method="post">
       <div>
         <button type="submit">Add to trip</button>
       </div>
