@@ -1,0 +1,21 @@
+<section class="trip-details-container">
+  <div class="trip-details-text">
+    <h1>{{trip.name}}</h1>
+    <p>{{trip.location}}</p>
+    <p>{{trip.currentBudget}}/{{trip.budget}}</p>
+  </div>
+  <br>
+  <hr>
+  <br>
+  {{#each trip.activities}}
+  <h2 class="activity-text activity-title">{{this.name}}</h2>
+    <p class="activity-text activity-location">{{this.location}}</p>
+    <a href="/activities/{{this._id}}/details"><img src="../../images/ironhack.png" alt="" class="activity-img"></a>
+    <div class="activity-info-container">
+      <div class="activity-text-container">
+        <p class="activity-text">{{this.type}}</p>
+        <p class="activity-text">{{this.price}}€</p>
+      </div>
+    </div>
+  {{/each}}
+</section>

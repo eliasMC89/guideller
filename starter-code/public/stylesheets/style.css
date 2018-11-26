@@ -190,6 +190,7 @@ input:focus {
   align-content: center;
   width: 100%;
   height: 400px;
+  margin-top: 50px;
 }
 
 .login-signup-container {
@@ -475,4 +476,18 @@ option {
   padding-top: 0px;
   margin: 0px;
   text-align: center;
+}
+
+.trip-details-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.trip-details-text {
+  text-align: center;
+}
+
+.create-edit-activity {
+  padding-top: 0px;
 }

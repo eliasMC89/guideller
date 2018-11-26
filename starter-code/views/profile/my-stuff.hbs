@@ -51,7 +51,7 @@
         <p class="activity-text activity-title">{{this.name}}</p>
         <p class="activity-text activity-location">{{this.location}}</p>
         <p class="activity-text">Budget: {{this.currentBudget}}/{{this.budget}}€</p>
-        <img src="../images/ironhack.png" alt="" class="activity-img">
+        <a href="/trips/{{this._id}}/details"><img src="../images/ironhack.png" alt="" class="activity-img"></a>
         <button class="btn-trip"><a href="/trips/{{this._id}}/addActivity">Add activities</a></button>
         <button class="btn-trip"><a href="/trips/{{this._id}}/edit">Edit</a></button>
         <form action="/trips/{{this._id}}/delete" method="post">
@@ -77,7 +77,7 @@
       <div class="each-trip activities">
         <p class="activity-text activity-title">{{this.name}}</p>
         <p class="activity-text activity-location">{{this.location}}</p>
-        <img src="../images/ironhack.png" alt="" class="activity-img">
+        <a href="/activities/{{this._id}}/details"><img src="../images/ironhack.png" alt="" class="activity-img"></a>
         <p class="activity-text activity-price">{{this.price}}€</p>
         <br>
         <hr>

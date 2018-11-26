@@ -1,23 +1,22 @@
-<h1>Create Trip</h1>
+<section class="create-edit-activity">
+  <form method="POST" action="/trips/{{trip._id}}/edit">
+    <div class="trip-container">
+      <h1>Edit Trip</h1>
+      <div class="field">
+        <input type="text" name="name" placeholder="{{trip.name}}" />
+      </div>
 
-<form method="POST" action="/trips/{{trip._id}}/edit">
+      <div class="field">
+        <input type="text" name="location" placeholder="{{trip.location}}" />
+      </div>
 
-  <div class="field" >
-    <label>Name</label>
-    <input type="text" name="name" value="{{trip.name}}"/>
-  </div>
+      <div class="field">
+        <input type="number" name="budget" placeholder="{{trip.budget}}" />
+      </div>
 
-  <div class="field" >
-    <label>Location</label>
-    <input type="text" name="location" value="{{trip.location}}"/>
-  </div>
-
-  <div class="field" >
-    <label>Budget</label>
-    <input type="number" name="budget" value="{{trip.budget}}"/>
-  </div>
-
-  <div class="field submit">
-    <button type="submit">Edit</button>
-  </div>
-</form>
+      <div class="field submit create">
+        <button type="submit">Create</button>
+      </div>
+    </div>
+  </form>
+</section>

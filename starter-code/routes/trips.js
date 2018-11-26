@@ -121,4 +121,14 @@ router.post('/:tripId/addActivity/:activityId', authMiddleware.checkTripActiviti
     .catch(next);
 });
 
+router.get('/:tripId/details', authMiddleware.requireUser, (req, res, next) => {
+  const tripId = req.params.tripId;
+  Trip.findById({ _id: tripId })
+    .populate('activities')
+    .then((trip) => {
+      res.render('trips/trip-details', { trip });
+    })
+    .catch(next);
+});
+
 module.exports = router;
