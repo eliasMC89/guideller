@@ -6,7 +6,7 @@ html {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-size: 30px;
+  font-size: 20px;
 }
 *, *:before, *:after {
   box-sizing: inherit;
@@ -15,7 +15,8 @@ html {
 
 body {
   margin: 0;
-  padding: 0; 
+  padding: 0;
+  width: 100%;
 }
 
 a {
@@ -27,7 +28,7 @@ a {
 
 .nav-container {
   display: flex;
-  height: 100px;
+  height: 70px;
   background-color: rgb(157, 224, 209);
   margin-left: auto;
   padding-right: 15px;
@@ -39,12 +40,24 @@ a {
 }
 
 .logo {
-  font-size: 40px;
+  font-size: 20px;
+}
+.logo-img {
+  padding-left: 10px;
+  width: 50px;
 }
 
+.user-info {
+  font-size: 15px;
+  text-align: center;
+}
+
+.logout-btn {
+  border: 1px solid white;
+}
 
 .footer-img {
-  width: 68px;
+  width: 45px;
 }
 
 .profile {
@@ -56,7 +69,7 @@ footer {
   display: flex;
   position: fixed;
   bottom: 0px;
-  height: 100px;
+  height: 70px;
   background-color: rgb(157, 224, 209);
   width: 100%;
   justify-content: space-around;
@@ -64,25 +77,13 @@ footer {
 
 
 section {
-  padding-top: 120px;
-  padding-bottom: 120px;
+  padding-top: 90px;
+  padding-bottom: 90px;
 }
 
 .index-main {
-  /*background-image: url('../images/globe.png');*/
-  background-size: cover;
-  height: 100%;
-  background-repeat: no-repeat;
-}
 
-.login-or-signup {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  /*margin-right: 390px;*/
-  /*margin-left: 390px;*/
 }
-
 
 .index-text {
   width: 70%;
@@ -92,8 +93,7 @@ section {
 }
 
 .index-header {
-  font-size: 40px;
-  padding-bottom: 40px;
+  font-size: 20px;
 }
 
 .not-found-header {
@@ -103,7 +103,6 @@ section {
 }
 
 .signup-container {
-  padding-top: 80px;
   margin: 0px;
   text-align: center;
 }
@@ -124,10 +123,9 @@ input, select {
   border-bottom: 1px solid #AAA;
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
-  font-size: 35px;
+  font-size: 23px;
   transition: 0.2s ease;
-  width: 500px;
-  height: 120px;
+  height: 25px;
 }
 
 input:focus {
@@ -140,7 +138,7 @@ input:focus {
   width: 200px;
 }
 
-.trip-form,.login-signup-form {
+.login-signup-form {
   /*position: relative;*/
   margin: 5% auto;
   margin-top: 140px;
@@ -151,35 +149,65 @@ input:focus {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
   justify-content: center;
 }
+.trip-form {
+  margin: 5% auto;
+
+  background: #FFF;
+  border-radius: 2px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  justify-content: center;
+  width: 90%;
+  margin-top: 170px;
+}
 
 .activity-form {
   /*position: relative;*/
   margin: 5% auto;
-  margin-top: 140px;
-  width: 700px;
-  height: 1400px;
+  margin-top: 100px;
+  width: 90%;
+  height: 90%;
   background: #FFF;
   border-radius: 2px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
   justify-content: center;
 }
 
-.activity-container,.login-signup-container {
+.activity-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   align-content: center;
   width: 100%;
-  height: 100%;
+  height: 560px;
 }
-.login-signup-form {
+
+.trip-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  width: 100%;
   height: 400px;
-  width: 500px;
+}
+
+.login-signup-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  width: 100%;
+}
+
+.login-signup-form {
+  height: 240px;
+  width: 300px;
 }
 
 .form-title {
-  font-size: 40px;
+  font-size: 25px;
 }
 
 select {
@@ -196,7 +224,7 @@ select {
 }
 
 button {
-  font-size: 45px;
+  font-size: 25px;
   padding: 0px 30px;
   border-style: none;
   background: white;
@@ -219,7 +247,7 @@ button:hover {
 }
 
 .btn-activity {
-  font-size: 45px;
+  font-size: 25px;
   width: 190px;
   text-align: center;
   padding: 0;
@@ -227,26 +255,24 @@ button:hover {
 
 .btn-trip {
   margin-top: 12px;
-  font-size: 45px;
+  font-size: 25px;
   width: 190px;
   text-align: center;
   padding: 0;
 }
 
 .each-activity {
-  width: 600px;
   justify-content: center;
   align-items: center;
 }
 
 .each-trip {
-  width: 600px;
   justify-content: center;
   align-items: center;
 }
 
 hr {
-  width: 350px;
+  width: 250px;
   color: gray;
 }
 
@@ -259,35 +285,26 @@ h2 {
 .log-out {
   display: flex;
   justify-content: space-between;
+  flex-direction: column;
+  margin-bottom: 20px;
 }
 
-.user-info {
-  padding-right: 30px;
-  font-size: 30px;
-}
 
-.logo-img {
-  padding-left: 10px;
-  width: 70px;
-}
 
-.logout-btn {
-  margin-top: 18px;
-  border: 1px solid white;
-}
+
 
 .activity-img {
-  width: 600px;
+  width: 350px;
 }
 .activity-text {
   margin-bottom: 8px;
   margin-top: 3px;
-  font-size: 35px;
+  font-size: 18px;
 }
 .activity-title {
   margin-bottom: 0;
   font-weight: bold;
-  font-size: 45px;
+  font-size: 20px;
   
 }
 
@@ -297,9 +314,9 @@ h2 {
 }
 
 .activity-info-container {
-  height: 110px;
+  height: 75px;
   background-color: #edf4f4;
-  width: 600px;
+  width: 350px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -322,7 +339,7 @@ h2 {
 .create-options {
   width: 100%;
   height: 100%;
-  margin-top: 100px;
+  margin-top: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -330,8 +347,8 @@ h2 {
 .create-options-container {
   /*position: relative;*/
   margin: 5% auto;
-  width: 600px;
-  height: 600px;
+  width: 400px;
+  height: 400px;
   background: #FFF;
   border-radius: 2px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
@@ -340,12 +357,11 @@ h2 {
 }
 
 .create-opt {
-  font-size: 50px;
-  padding: 30px 30px;
+  font-size: 30px;
+  padding: 20px 30px;
   border-style: none;
   background: white;
   color: rgb(141, 201, 187);
-  width: 450px;
   text-align: center;
   margin: 20px;
   border-radius: 15px;
@@ -355,8 +371,7 @@ h2 {
 .create-opt:hover {
   background: rgb(157, 224, 209);
   color: white;
-  width: 450px;
-  margin: 20px;
+  padding: 20px 30px;
   border-radius: 15px;
   align-items: center;
 }
@@ -369,7 +384,7 @@ h2 {
 }
 
 .options-title {
-  font-size: 50px;
+  font-size: 30px;
 }
 
 .profile-container {
@@ -377,7 +392,7 @@ h2 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 600px;
+  width: 90%;
 }
 
 .profile-list {
@@ -413,29 +428,33 @@ h2 {
 }
 
 .list-title {
-  font-size: 50px;
+  font-size: 25px;
   text-decoration: underline;
 }
 
 .list-activities-title {
-  font-size: 45px;
+  font-size: 25px;
 }
 
 .activity-details-container {
   display: flex;
   justify-content: center;
-  padding-top: 170px;
+  padding-top: 130px;
 }
 
 .activity-bar {
   display: flex;
   flex-direction: row;
-  height: 100px;
+  height: 70px;
   justify-content: space-between;
 }
 
+.activity-description {
+  font-size: 20px;
+}
+
 .activity-bookmark, .details {
-  width: 55px;
+  width: 35px;
 }
 
 .detail-button-add {
@@ -449,4 +468,11 @@ option {
 
 .create {
   padding-top: 20px;
+}
+
+
+.signup-container {
+  padding-top: 0px;
+  margin: 0px;
+  text-align: center;
 }
