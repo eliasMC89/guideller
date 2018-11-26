@@ -8,6 +8,7 @@
     "seed": "node ./bin/seed"
   },
   "dependencies": {
+    "@mapbox/mapbox-sdk": "^0.4.1",
     "bcrypt": "^3.0.2",
     "connect-flash": "^0.1.1",
     "connect-mongo": "^2.0.1",
