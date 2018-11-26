@@ -1,12 +1,12 @@
 <section class="list-activities activities">
-  <h1>
+  <h1 class="list-activities-title">
     Look at all the activities!
   </h1>
 
   {{#each activities}}
     <h2 class="activity-text activity-title">{{this.name}}</h2>
     <p class="activity-text activity-location">{{this.location}}</p>
-    <a href="/"><img src="../images/ironhack.png" alt="" class="activity-img"></a>
+    <a href="/activities"><img src="../images/ironhack.png" alt="" class="activity-img"></a>
     <div class="activity-info-container">
       <div class="activity-text-container">
         <p class="activity-text">{{this.type}}</p>

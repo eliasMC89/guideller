@@ -1,31 +1,36 @@
-<h1>
-  Look at all my trips!
-</h1>
-
-<ul>
-  {{#each user.trips}}
-  <li>
-    <img src="/images/ironhack.png" alt="" class="activity-img">
-    <h2 class="activity-text activity-title">{{this.name}}</h2>
-    <p class="activity-text activity-location">{{this.location}}</p>
-    <p>Budget: {{this.budget}} €</p>
-    <a href="/{{this._id}}/addActivity">Add activities</a>
-    <a href="/trips/{{this._id}}/edit">Edit</a>
-    <form action="/trips/{{this._id}}/delete" method="post">
-      <div>
-        <button type="submit">Delete</button>
-      </div>
-    </form>
-    {{!-- <ul>
+<section class="my-activities activities">
+  <div class="profile-container">
+    <div class="profile-list">
+      <h1 class="list-title">
+        My trips
+      </h1>
+    </div>
+  <div class="trips-list">
+    {{#each user.trips}}
+    <div class="each-trip activities">
+      <p class="activity-text activity-title">{{this.name}}</p>
+      <p class="activity-text activity-location">{{this.location}}</p>
+      <p class="activity-text">{{this.budget}}€</p>
+      <img src="../images/ironhack.png" alt="" class="activity-img">
+      <button class="btn-trip"><a href="/trips/{{this._id}}/addActivity">Add activities</a></button>
+      <button class="btn-trip"><a href="/trips/{{this._id}}/edit">Edit</a></button>
+      <form action="/trips/{{this._id}}/delete" method="post">
+        <div>
+          <button class="btn-trip" type="submit">Delete</button>
+        </div>
+      </form>
+    {{!--
       {{#each activities}}
-      <li>
         <h2>{{this.name}}</h2>
         <p>{{this.location}}</p>
-      </li>
       {{/each}}
-    </ul> --}}
-  </li>
+    --}}
+          <br>
+      <hr>
+      <br>
+    </div>
   {{/each}}
-</ul>
-
+</div>
+  </div>
+</section>
 <p><a href="/trips/create">Create Trip</a></p>

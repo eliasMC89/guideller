@@ -83,9 +83,10 @@ router.post('/:tripId/delete', authMiddleware.requireUser, authMiddleware.checkT
 
 // Get all the activities to add
 router.get('/:tripId/addActivity', (req, res, next) => {
+  const tripId = req.params.tripId;
   Activity.find()
     .then((activities) => {
-      res.render('trips/activities-trip', { activities, tripId: 'testing second key' }); // tripId: req.params.tripId
+      res.render('trips/activities-trip', { activities, tripId }); // tripId: req.params.tripId
     })
     .catch(next);
 });
@@ -94,7 +95,7 @@ router.get('/:tripId/addActivity', (req, res, next) => {
 router.post('/:tripId/addActivity/:activityId', (req, res, next) => {
   const tripId = req.params.tripId;
   const activityId = req.params.activityId;
-  Trip.findByIdAndUpdate(tripId, { $push: { trips: activityId } })
+  Trip.findByIdAndUpdate(tripId, { $push: { activities: activityId } })
     .then(() => {
       res.redirect('/trips/activities-trip');
     });

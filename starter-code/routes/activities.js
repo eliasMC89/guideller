@@ -83,4 +83,13 @@ router.get('/my', authMiddleware.requireUser, (req, res, next) => {
     .catch(next);
 });
 
+router.get('/:activityId/details', authMiddleware.requireUser, (req, res, next) => {
+  const activityId = req.params.activityId;
+  Activity.findById({ _id: activityId })
+    .then((activity) => {
+      res.render('activities/activity-details', { activity });
+    })
+    .catch(next);
+});
+
 module.exports = router;
