@@ -9,24 +9,24 @@ const activitySchema = new Schema({
     required: true
   },
   city: {
-    type: String
-    // required: true
+    type: String,
+    required: true
   },
   country: {
-    type: String
-    // required: true
+    type: String,
+    required: true
   },
   location: {
     type: String
     // required: true
   },
   type: {
-    type: String
-    // required: true
+    type: String,
+    required: true
   },
   price: {
-    type: Number
-    // required: true
+    type: Number,
+    required: true
   },
   photoURL: {
     type: String
