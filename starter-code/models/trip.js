@@ -18,6 +18,10 @@ const tripSchema = new Schema({
     type: Number
     // required: true
   },
+  currentBudget: {
+    type: Number
+    // required: true
+  },
   activities: [{
     type: ObjectId,
     ref: 'Activity'
