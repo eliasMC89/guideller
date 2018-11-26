@@ -15,6 +15,7 @@ const authRouter = require('./routes/auth');
 const activityRouter = require('./routes/activities');
 const tripRouter = require('./routes/trips');
 const favouritesRouter = require('./routes/favourites');
+const profileRouter = require('./routes/profile');
 
 const app = express();
 
@@ -63,6 +64,7 @@ app.use('/auth', authRouter);
 app.use('/activities', activityRouter);
 app.use('/trips', tripRouter);
 app.use('/favourites', favouritesRouter);
+app.use('/profile', profileRouter);
 
 // -- 404 and error handler
 

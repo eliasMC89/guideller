@@ -17,8 +17,8 @@ const activitySchema = new Schema({
     required: true
   },
   location: {
-    type: String
-    // required: true
+    type: String,
+    required: true
   },
   type: {
     type: String,

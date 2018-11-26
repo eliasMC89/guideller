@@ -24,7 +24,6 @@ router.get('/', async (req, res, next) => {
     const activities = await Activity.find();
 
     const citiesCoordinates = {};
-    console.log('!!!!!!!!' + activities[0].location);
     for (let i = 0; i < activities.length; i++) {
       if (!citiesCoordinates[activities[i].location]) {
         const queryObj = {
@@ -35,7 +34,6 @@ router.get('/', async (req, res, next) => {
         citiesCoordinates[activities[i].location] = cityCoordinates.body.features[0].center;
       }
     }
-    console.log('????' + citiesCoordinates);
     activities.sort((a, b) => {
       let result = -1;
       if (a.location !== 'Barcelona' && b.location === 'Barcelona') {
@@ -85,7 +83,7 @@ router.post('/', authMiddleware.requireUser, (req, res, next) => {
 
   Promise.all([updateUserPromise, saveActivityPromise])
     .then(() => {
-      res.redirect('/activities/my');
+      res.redirect('/profile');
     })
     .catch(next);
 });
@@ -105,7 +103,7 @@ router.post('/:activityId/edit', authMiddleware.requireUser, authMiddleware.chec
   const updatedActivityInformation = req.body;
   Activity.findByIdAndUpdate(activityId, { $set: updatedActivityInformation })
     .then(() => {
-      res.redirect('/activities/my');
+      res.redirect('/profile');
     })
     .catch(next);
 });
@@ -115,22 +113,23 @@ router.post('/:activityId/delete', authMiddleware.requireUser, authMiddleware.ch
   const activityId = req.params.activityId;
   Activity.deleteOne({ _id: activityId })
     .then(() => {
-      res.redirect('/activities/my');
+      res.redirect('/profile');
     })
     .catch(next);
 });
 
-router.get('/my', authMiddleware.requireUser, (req, res, next) => {
-  const { _id } = req.session.currentUser;
-  User.findById(_id)
-    .populate('activities')
-    .populate('trips')
-    .populate('favourites')
-    .then((user) => {
-      res.render('activities/my-activities', { user });
-    })
-    .catch(next);
-});
+// >>>>>>>>>>>>>!!!!cambiar a my-profile
+// router.get('/my', authMiddleware.requireUser, (req, res, next) => {
+//   const { _id } = req.session.currentUser;
+//   User.findById(_id)
+//     .populate('activities')
+//     .populate('trips')
+//     .populate('favourites')
+//     .then((user) => {
+//       res.render('activities/my-activities', { user });
+//     })
+//     .catch(next);
+// });
 
 router.get('/:activityId/details', authMiddleware.requireUser, (req, res, next) => {
   const activityId = req.params.activityId;
