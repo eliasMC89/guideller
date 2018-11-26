@@ -4,11 +4,17 @@
       <h1 class="list-title">
         My activities
       </h1>
-      <div class="triangle-icon up triangle-act">Hide</div>
+      <div class="triangle-icon up triangle-act">Show</div>
     </div>
-    <div class="activities-list">
+    <div class="activities-list hidden">
       {{#each user.activities}}
       <div class="each-activity activities">
+        <p>{{../user._id}}</p>
+        <form action="/favourites/{{../user._id}}/addFavourite/{{this._id}}" method="post">
+          <div>
+            <button type="submit"><img src="../images/bookmark.svg" alt="" class="activity-bookmark details"></button>
+          </div>
+        </form>
         <p class="activity-text activity-title">{{this.name}}</h2>
           <p class="activity-text activity-location">{{this.location}}</p>
           <a href="/activities/{{this._id}}/details"><img src="../images/ironhack.png" alt="" class="activity-img"></a>
@@ -22,37 +28,73 @@
           <hr>
           <br>
       </div>
-  
-    {{/each}}
-      </div>
+
+      <!--<form action="/trips/{{../tripId}}/addActivity/{{this._id}}" method="post">
+        <div>
+          <button type="submit">Add to trip</button>
+        </div>
+      </form>-->
+
+      {{/each}}
+    </div>
 
 
     <div class="profile-list">
       <h1 class="list-title">
         My trips
       </h1>
-      <div class="triangle-icon up triangle-trip">Hide</div>
+      <div class="triangle-icon up triangle-trip">Show</div>
     </div>
-  <div class="trips-list">
-    {{#each user.trips}}
-    <div class="each-trip activities">
-      <p class="activity-text activity-title">{{this.name}}</p>
-      <p class="activity-text activity-location">{{this.location}}</p>
-      <p class="activity-text">{{this.budget}}€</p>
-      <img src="../images/ironhack.png" alt="" class="activity-img">
-      <button class="btn-trip"><a href="/trips/{{this._id}}/addActivity">Add activities</a></button>
-      <button class="btn-trip"><a href="/trips/{{this._id}}/edit">Edit</a></button>
-      <form action="/trips/{{this._id}}/delete" method="post">
-        <div>
-          <button class="btn-trip" type="submit">Delete</button>
-        </div>
-      </form>
-      <br>
-      <hr>
-      <br>
+    <div class="trips-list hidden">
+      {{#each user.trips}}
+      <div class="each-trip activities">
+        <p class="activity-text activity-title">{{this.name}}</p>
+        <p class="activity-text activity-location">{{this.location}}</p>
+        <p class="activity-text">{{this.budget}}€</p>
+        <img src="../images/ironhack.png" alt="" class="activity-img">
+        <button class="btn-trip"><a href="/trips/{{this._id}}/addActivity">Add activities</a></button>
+        <button class="btn-trip"><a href="/trips/{{this._id}}/edit">Edit</a></button>
+        <form action="/trips/{{this._id}}/delete" method="post">
+          <div>
+            <button class="btn-trip" type="submit">Delete</button>
+          </div>
+        </form>
+        <br>
+        <hr>
+        <br>
+      </div>
+      {{/each}}
     </div>
-    {{/each}}
+
+    <div class="profile-list">
+      <h1 class="list-title">
+        My favourites
+      </h1>
+      <div class="triangle-icon up triangle-fav">Show</div>
     </div>
+    <div class="favs-list hidden">
+      {{#each user.favourites}}
+      <div class="each-trip activities">
+        <p class="activity-text activity-title">{{this.name}}</p>
+        <p class="activity-text activity-location">{{this.location}}</p>
+        <img src="../images/ironhack.png" alt="" class="activity-img">
+        <button class="btn-trip"><a href="/trips/{{this._id}}/addActivity">Add activities</a></button>
+        <button class="btn-trip"><a href="/trips/{{this._id}}/edit">Edit</a></button>
+        <form action="/trips/{{this._id}}/delete" method="post">
+          <div>
+            <button class="btn-trip" type="submit">Delete</button>
+          </div>
+        </form>
+        <br>
+        <hr>
+        <br>
+      </div>
+      {{/each}}
+    </div>
+
+
+
+
   </div>
 </section>
 <script src="/javascript/main.js"></script>

@@ -66,4 +66,20 @@ authMiddleware.checkTripActivities = (req, res, next) => {
     })
     .catch(next);
 };
+
+authMiddleware.checkUserFavourites = (req, res, next) => {
+  const activityId = req.params.activityId;
+  const userId = req.session.currentUser;
+  User.findById(userId)
+    .then((user) => {
+      const userFavourites = user.favourites;
+      if (userFavourites.indexOf(activityId) >= 0) {
+        res.redirect('/activities');
+      } else {
+        next();
+      }
+    })
+    .catch(next);
+};
+
 module.exports = authMiddleware;

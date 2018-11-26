@@ -77,6 +77,7 @@ router.get('/my', authMiddleware.requireUser, (req, res, next) => {
   User.findById(_id)
     .populate('activities')
     .populate('trips')
+    .populate('favourites')
     .then((user) => {
       res.render('activities/my-activities', { user });
     })

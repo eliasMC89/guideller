@@ -6,7 +6,7 @@
         <h2 class="activity-text activity-title">{{activity.name}}</h2>
         <p class="activity-text activity-location">{{activity.location}}</p>
       </div>
-      <img src="../../images/bookmark.svg" alt="" class="activity-bookmark details">
+      <a href="/:userId/addFavourite/{{activity.location}}"><img src="../../images/bookmark.svg" alt="" class="activity-bookmark details"></a>
     </div>
     <p class="activity-text">{{activity.type}}</p>
     <p class="activity-text">{{activity.price}}€</p>

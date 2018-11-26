@@ -3,8 +3,10 @@
 function main () {
   var activitiesSectionElement = document.querySelector('.activities-list');
   var tripsSectionElement = document.querySelector('.trips-list');
+  var favsSectionElement = document.querySelector('.favs-list');
   var buttonActivities = document.querySelector('.triangle-act');
   var buttonTrips = document.querySelector('.triangle-trip');
+  var buttonFavs = document.querySelector('.triangle-fav');
 
   var hideActivities = function (event) {
     event.stopPropagation();
@@ -29,5 +31,17 @@ function main () {
   };
 
   buttonTrips.addEventListener('click', hideTrips);
+
+  var hideFavs = function (event) {
+    event.stopPropagation();
+    favsSectionElement.classList.toggle('hidden');
+    if (favsSectionElement.classList.contains('hidden')) {
+      buttonFavs.innerText = 'Show';
+    } else {
+      buttonFavs.innerText = 'Hide';
+    }
+  };
+
+  buttonFavs.addEventListener('click', hideFavs);
 }
 window.addEventListener('load', main);
