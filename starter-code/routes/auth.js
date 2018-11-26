@@ -19,7 +19,7 @@ router.get('/signup', authMiddleware.requireAnon, (req, res, next) => {
 });
 
 /* POST sign up user data */
-router.post('/signup', authMiddleware.requireAnon, formMiddleware.requireFields, (req, res, next) => {
+router.post('/signup', authMiddleware.requireAnon, formMiddleware.requireUserFields, (req, res, next) => {
   const { username, password } = req.body;
   // Check if username exists
   User.findOne({ username })
@@ -54,7 +54,7 @@ router.get('/login', authMiddleware.requireAnon, (req, res, next) => {
 });
 
 /* Post user log in data */
-router.post('/login', authMiddleware.requireAnon, formMiddleware.requireFields, (req, res, next) => {
+router.post('/login', authMiddleware.requireAnon, formMiddleware.requireUserFields, (req, res, next) => {
   const { username, password } = req.body;
   User.findOne({ username })
     .then((user) => {

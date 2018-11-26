@@ -46,7 +46,7 @@ router.post('/', authMiddleware.requireUser, (req, res, next) => {
 
   Promise.all([updateUserPromise, saveTripPromise, updateCurrentBudgetPromise])
     .then(() => {
-      res.redirect('/activities/my');
+      res.redirect('/profile');
     })
     .catch(next);
 });
@@ -66,17 +66,17 @@ router.post('/:tripId/edit', authMiddleware.requireUser, authMiddleware.checkTri
   const updatedTripInformation = req.body;
   Trip.findByIdAndUpdate(tripId, { $set: updatedTripInformation })
     .then(() => {
-      res.redirect('/activities/my');
+      res.redirect('/profile');
     })
     .catch(next);
 });
 
-// D in CRUD
+// // D in CRUD
 router.post('/:tripId/delete', authMiddleware.requireUser, authMiddleware.checkTripUser, (req, res, next) => {
   const tripId = req.params.tripId;
   Trip.deleteOne({ _id: tripId })
     .then(() => {
-      res.redirect('/activities/my');
+      res.redirect('/profile');
     })
     .catch(next);
 });
