@@ -7,6 +7,7 @@ const Trip = require('../models/trip');
 const Activity = require('../models/activity');
 const authMiddleware = require('../middlewares/authMiddleware'); // Middleware
 // const formMiddleware = require('../middlewares/formMiddleware');
+const ObjectId = require('mongodb').ObjectID;
 
 /* GET trips page. */
 router.get('/', (req, res, next) => {
@@ -84,20 +85,26 @@ router.post('/:tripId/delete', authMiddleware.requireUser, authMiddleware.checkT
 // Get all the activities to add
 router.get('/:tripId/addActivity', (req, res, next) => {
   const tripId = req.params.tripId;
-  Activity.find()
-    .then((activities) => {
-      res.render('trips/activities-trip', { activities, tripId }); // tripId: req.params.tripId
+  let tripActivities;
+  Trip.findById(tripId)
+    .then((trip) => {
+      tripActivities = trip.activities;
+      Activity.find({ _id: { $nin: tripActivities } })
+        .then((activities) => {
+          res.render('trips/activities-trip', { activities, tripId }); // tripId: req.params.tripId
+        })
+        .catch(next);
     })
     .catch(next);
 });
 
 // Add activites to trip
-router.post('/:tripId/addActivity/:activityId', (req, res, next) => {
+router.post('/:tripId/addActivity/:activityId', authMiddleware.checkTripActivities, (req, res, next) => {
   const tripId = req.params.tripId;
   const activityId = req.params.activityId;
   Trip.findByIdAndUpdate(tripId, { $push: { activities: activityId } })
     .then(() => {
-      res.redirect(`/trips/${tripId}/addActivity`);
+      return res.redirect(`/trips/${tripId}/addActivity`);
     });
 });
 
