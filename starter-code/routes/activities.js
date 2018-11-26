@@ -6,16 +6,65 @@ const User = require('../models/user');
 const Activity = require('../models/activity');
 const authMiddleware = require('../middlewares/authMiddleware'); // Middleware
 // const formMiddleware = require('../middlewares/formMiddleware');
+const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
+const geocodingClient = mbxGeocoding({ accessToken: 'pk.eyJ1IjoianFiYWVuYSIsImEiOiJjam92YTEwZ3kwMzJqM3FwY3g2bzQ3OHV3In0.u-dT5_6jWWZQ7F8etEMzfA' });
+const { getDistanceFromLatLonInKm } = require('../helpers/calcDistanceCoords');
 
 /* GET activities page. */
 router.get('/', (req, res, next) => {
-  // R in CRUD
   Activity.find()
     .then((result) => {
       res.render('activities/list-activities', { activities: result });
     })
     .catch(next);
 });
+
+// router.get('/', async (req, res, next) => {
+//   try {
+//     const activities = await Activity.find();
+
+//     const citiesCoordinates = {};
+
+//     for (let i = 0; i < activities.length; i++) {
+//       if (!citiesCoordinates[activities[i].location]) {
+//         console.log('!!!!!!!!' + activities[i].location);
+//         const queryObj = {
+//           query: activities[i].location, // Barcelona = query
+//           limit: 2
+//         };
+//         const cityCoordinates = await geocodingClient.forwardGeocode(queryObj).send();
+//         citiesCoordinates[activities[i].location] = cityCoordinates.body.features[0].center;
+//       }
+//     }
+//     console.log('????' + citiesCoordinates);
+//     activities.sort((a, b) => {
+//       let result = -1;
+//       if (a.location !== 'Barcelona' && b.location === 'Barcelona') {
+//         result = 1;
+//       } else if (a.location !== 'Barcelona' && b.location !== 'Barcelona') {
+//         const cityADistanceBarcelona = getDistanceFromLatLonInKm(citiesCoordinates['Barcelona'][0], citiesCoordinates['Barcelona'][1], citiesCoordinates[a.location][0], citiesCoordinates[a.location][1]);
+//         const cityBDistanceBarcelona = getDistanceFromLatLonInKm(citiesCoordinates['Barcelona'][0], citiesCoordinates['Barcelona'][1], citiesCoordinates[b.location][0], citiesCoordinates[b.location][1]);
+
+//         if (cityADistanceBarcelona > cityBDistanceBarcelona) {
+//           console.log(a.location, cityADistanceBarcelona);
+//           console.log(b.location, cityBDistanceBarcelona);
+//           console.log('swap');
+
+//           result = 1;
+//         } else {
+//           console.log(a.location, cityADistanceBarcelona);
+//           console.log(b.location, cityBDistanceBarcelona);
+//           console.log('dont swap');
+//           result = -1;
+//         }
+//       }
+//       return result;
+//     });
+//     res.render('activities/list-activities', { activities });
+//   } catch (error) {
+//     next(error);
+//   }
+// });
 
 router.get('/create-options', authMiddleware.requireUser, (req, res, next) => {
   res.render('activities/create-options', { title: 'Activities' });
