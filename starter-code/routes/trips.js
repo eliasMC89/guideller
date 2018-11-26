@@ -7,7 +7,6 @@ const Trip = require('../models/trip');
 const Activity = require('../models/activity');
 const authMiddleware = require('../middlewares/authMiddleware'); // Middleware
 // const formMiddleware = require('../middlewares/formMiddleware');
-const ObjectId = require('mongodb').ObjectID;
 
 /* GET trips page. */
 router.get('/', (req, res, next) => {
@@ -62,7 +61,6 @@ router.get('/:tripId/edit', authMiddleware.requireUser, authMiddleware.checkTrip
 
 // U in CRUD
 router.post('/:tripId/edit', authMiddleware.requireUser, authMiddleware.checkTripUser, (req, res, next) => {
-  console.log('posted the edit!!');
   const tripId = req.params.tripId;
   const updatedTripInformation = req.body;
   Trip.findByIdAndUpdate(tripId, { $set: updatedTripInformation })
