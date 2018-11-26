@@ -38,7 +38,8 @@
     <div class="each-trip activities">
       <p class="activity-text activity-title">{{this.name}}</p>
       <p class="activity-text activity-location">{{this.location}}</p>
-      <p class="activity-text">{{this.budget}}€</p>
+      <p class="activity-text">budget: {{this.budget}}€</p>
+      <p class="activity-text">current budget: {{this.currentBudget}}€</p>
       <img src="../images/ironhack.png" alt="" class="activity-img">
       <button class="btn-trip"><a href="/trips/{{this._id}}/addActivity">Add activities</a></button>
       <button class="btn-trip"><a href="/trips/{{this._id}}/edit">Edit</a></button>

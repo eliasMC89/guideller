@@ -40,12 +40,13 @@ router.post('/', authMiddleware.requireUser, (req, res, next) => {
   const { name, location, budget } = req.body;
   const { _id } = req.session.currentUser;
   const newTrip = new Trip({ name, location, budget });
+  const updateCurrentBudgetPromise = Trip.findByIdAndUpdate(newTrip._id, { $set: { currentBudget: budget } });
   const updateUserPromise = User.findByIdAndUpdate(_id, { $push: { trips: newTrip._id } });
   const saveTripPromise = newTrip.save();
 
-  Promise.all([updateUserPromise, saveTripPromise])
+  Promise.all([updateUserPromise, saveTripPromise, updateCurrentBudgetPromise])
     .then(() => {
-      res.redirect('/trips');
+      res.redirect('/activities/my');
     })
     .catch(next);
 });
@@ -65,7 +66,7 @@ router.post('/:tripId/edit', authMiddleware.requireUser, authMiddleware.checkTri
   const updatedTripInformation = req.body;
   Trip.findByIdAndUpdate(tripId, { $set: updatedTripInformation })
     .then(() => {
-      res.redirect('/trips');
+      res.redirect('/activities/my');
     })
     .catch(next);
 });
@@ -75,7 +76,7 @@ router.post('/:tripId/delete', authMiddleware.requireUser, authMiddleware.checkT
   const tripId = req.params.tripId;
   Trip.deleteOne({ _id: tripId })
     .then(() => {
-      res.redirect('/trips');
+      res.redirect('/activities/my');
     })
     .catch(next);
 });
@@ -100,10 +101,24 @@ router.get('/:tripId/addActivity', (req, res, next) => {
 router.post('/:tripId/addActivity/:activityId', authMiddleware.checkTripActivities, (req, res, next) => {
   const tripId = req.params.tripId;
   const activityId = req.params.activityId;
-  Trip.findByIdAndUpdate(tripId, { $push: { activities: activityId } })
-    .then(() => {
-      return res.redirect(`/trips/${tripId}/addActivity`);
-    });
+  Trip.findById(tripId)
+    .then((trip) => {
+      Activity.findById(activityId)
+        .then((activity) => {
+          if (trip.currentBudget >= activity.price) {
+            let newBudget = trip.currentBudget - activity.price;
+            Trip.findByIdAndUpdate(tripId, { $set: { currentBudget: newBudget }, $push: { activities: activityId } }) //, { $push: { activities: activityId } }
+              .then(() => {
+                return res.redirect(`/trips/${tripId}/addActivity`);
+              })
+              .catch(next);
+          } else {
+            return res.redirect(`/trips/${tripId}/addActivity`);
+          }
+        })
+        .catch(next);
+    })
+    .catch(next);
 });
 
 module.exports = router;
