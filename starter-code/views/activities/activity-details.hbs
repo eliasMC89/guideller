@@ -6,7 +6,7 @@
         <h2 class="activity-text activity-title">{{activity.name}}</h2>
         <p class="activity-text activity-location">{{activity.location}}</p>
       </div>
-      <form action="/favourites/{{currentUser._id}}/addFavourite/{{activity._id}}" method="post">
+      <form action="/favourites/addDeleteFavourite/{{activity._id}}" method="post">
         <div>
           <button type="submit" class="favourite-btn add-favourite"><img src="../../images/bookmark.svg" alt="" class="activity-bookmark details"></button>
         </div>

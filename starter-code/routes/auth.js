@@ -19,7 +19,7 @@ router.get('/signup', authMiddleware.requireAnon, (req, res, next) => {
 });
 
 /* POST sign up user data */
-router.post('/signup', authMiddleware.requireAnon, authMiddleware.checkUserExists, formMiddleware.requireSignUpFields, (req, res, next) => {
+router.post('/signup', authMiddleware.requireAnon, authMiddleware.checkUserAvailable, formMiddleware.requireSignUpFields, (req, res, next) => {
   const { username, password } = req.body;
   const salt = bcrypt.genSaltSync(saltRounds);
   const hashedPassword = bcrypt.hashSync(password, salt);
@@ -34,32 +34,13 @@ router.post('/signup', authMiddleware.requireAnon, authMiddleware.checkUserExist
     .catch(next);
 });
 
-// /* GET log in page */
-// router.get('/login', authMiddleware.requireAnon, (req, res, next) => {
-//   const data = {
-//     messages: req.flash('validationError')
-//   };
-//   res.render('auth/login', data);
-// });
-
 /* Post user log in data */
-router.post('/login', authMiddleware.requireAnon, formMiddleware.requireLoginFields, (req, res, next) => {
-  const { username, password } = req.body;
+router.post('/login', authMiddleware.requireAnon, formMiddleware.requireLoginFields, authMiddleware.checkUserExists, authMiddleware.checkPassword, (req, res, next) => {
+  const { username } = req.body;
   User.findOne({ username })
     .then((user) => {
-      // check if user exists
-      if (!user) {
-        req.flash('validationError', "User doesn't exist!");
-        return res.redirect('/');
-      }
-      if (bcrypt.compareSync(password, user.password)) {
-        // Save the login in the session!
-        req.session.currentUser = user;
-        res.redirect('/activities');
-      } else {
-        req.flash('validationError', 'Wrong password!');
-        res.redirect('/');
-      }
+      req.session.currentUser = user;
+      res.redirect('/activities');
     })
     .catch(next);
 });

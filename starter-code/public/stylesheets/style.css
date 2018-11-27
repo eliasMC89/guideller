@@ -512,4 +512,9 @@ option {
   text-decoration: underline;
 }
 
+.index-main {
+  padding-top: 65px;
+  padding-bottom: 0px;
+}
+
 
