@@ -144,7 +144,7 @@ router.post('/:activityId/delete', authMiddleware.requireUser, activityMiddlewar
 
 router.get('/:activityId/details', authMiddleware.requireUser, (req, res, next) => {
   const activityId = req.params.activityId;
-  const userId = req.session.currentUser;
+  // const userId = req.session.currentUser;
   Activity.findById({ _id: activityId })
     .populate('owner')
     .then((activity) => {
