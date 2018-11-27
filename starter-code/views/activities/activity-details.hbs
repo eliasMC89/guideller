@@ -6,8 +6,13 @@
         <h2 class="activity-text activity-title">{{activity.name}}</h2>
         <p class="activity-text activity-location">{{activity.location}}</p>
       </div>
-      <a href="/:userId/addFavourite/{{activity.location}}"><img src="../../images/bookmark.svg" alt="" class="activity-bookmark details"></a>
+      <form action="/favourites/{{currentUser._id}}/addFavourite/{{activity._id}}" method="post">
+        <div>
+          <button type="submit" class="favourite-btn"><img src="../../images/bookmark.svg" alt="" class="activity-bookmark details"></button>
+        </div>
+      </form>
     </div>
+    <p class="activity-text activity-owner">Created by: {{activity.owner.username}}</p>
     <p class="activity-text">{{activity.type}}</p>
     <p class="activity-text">{{activity.price}}€</p>
     <p class="activity-description">{{activity.description}}</p>

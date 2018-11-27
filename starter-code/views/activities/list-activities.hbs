@@ -4,16 +4,20 @@
   </h1>
 
   {{#each activities}}
-    <h2 class="activity-text activity-title">{{this.name}}</h2>
-    <p class="activity-text activity-location">{{this.location}}</p>
-    <a href="/activities/{{this._id}}/details"><img src="../images/ironhack.png" alt="" class="activity-img"></a>
-    <div class="activity-info-container">
-      <div class="activity-text-container">
-        <p class="activity-text">{{this.type}}</p>
-        <p class="activity-text">{{this.price}}€</p>
-      </div>
-      <a href=""><img src="../images/bookmark.svg" alt="" class="activity-bookmark"></a>
+  <h2 class="activity-text activity-title">{{this.name}}</h2>
+  <p class="activity-text activity-location">{{this.location}}</p>
+  <a href="/activities/{{this._id}}/details"><img src="../images/ironhack.png" alt="" class="activity-img"></a>
+  <div class="activity-info-container">
+    <div class="activity-text-container">
+      <p class="activity-text">{{this.type}}</p>
+      <p class="activity-text">{{this.price}}€</p>
     </div>
+    <form action="/favourites/{{../currentUser._id}}/addFavourite/{{this._id}}" method="post">
+      <div>
+        <button type="submit" class="favourite-btn"><img src="../../images/bookmark.svg" alt="" class="activity-bookmark details"></button>
+      </div>
+    </form>
+  </div>
   <br>
   <hr>
   <br>

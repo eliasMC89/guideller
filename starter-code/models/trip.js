@@ -25,6 +25,10 @@ const tripSchema = new Schema({
   activities: [{
     type: ObjectId,
     ref: 'Activity'
+  }],
+  owner: [{
+    type: ObjectId,
+    ref: 'User'
   }]
 });
 
