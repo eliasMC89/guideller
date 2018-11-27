@@ -7,6 +7,7 @@ const Trip = require('../models/trip');
 const Activity = require('../models/activity');
 const authMiddleware = require('../middlewares/authMiddleware'); // Middleware
 // const formMiddleware = require('../middlewares/formMiddleware');
+const tripMiddleware = require('../middlewares/tripMiddleware');
 
 /* GET trips page. */
 router.get('/', (req, res, next) => {
@@ -51,7 +52,7 @@ router.post('/', authMiddleware.requireUser, (req, res, next) => {
     .catch(next);
 });
 
-router.get('/:tripId/edit', authMiddleware.requireUser, authMiddleware.checkTripUser, (req, res, next) => {
+router.get('/:tripId/edit', authMiddleware.requireUser, tripMiddleware.checkTripUser, (req, res, next) => {
   const tripId = req.params.tripId;
   Trip.findById(tripId)
     .then((trip) => {
@@ -61,7 +62,7 @@ router.get('/:tripId/edit', authMiddleware.requireUser, authMiddleware.checkTrip
 });
 
 // U in CRUD
-router.post('/:tripId/edit', authMiddleware.requireUser, authMiddleware.checkTripUser, (req, res, next) => {
+router.post('/:tripId/edit', authMiddleware.requireUser, tripMiddleware.checkTripUser, (req, res, next) => {
   const tripId = req.params.tripId;
   const updatedTripInformation = req.body;
   Trip.findByIdAndUpdate(tripId, { $set: updatedTripInformation })
@@ -71,8 +72,8 @@ router.post('/:tripId/edit', authMiddleware.requireUser, authMiddleware.checkTri
     .catch(next);
 });
 
-// // D in CRUD
-router.post('/:tripId/delete', authMiddleware.requireUser, authMiddleware.checkTripUser, (req, res, next) => {
+// // // D in CRUD
+router.post('/:tripId/delete', authMiddleware.requireUser, tripMiddleware.checkTripUser, (req, res, next) => {
   const tripId = req.params.tripId;
   Trip.deleteOne({ _id: tripId })
     .then(() => {
@@ -81,7 +82,7 @@ router.post('/:tripId/delete', authMiddleware.requireUser, authMiddleware.checkT
     .catch(next);
 });
 
-// Get all the activities to add
+// // Get all the activities to add
 router.get('/:tripId/addActivity', (req, res, next) => {
   const tripId = req.params.tripId;
   let tripActivities;
@@ -98,7 +99,7 @@ router.get('/:tripId/addActivity', (req, res, next) => {
 });
 
 // Add activites to trip
-router.post('/:tripId/addActivity/:activityId', authMiddleware.checkTripActivities, (req, res, next) => {
+router.post('/:tripId/addActivity/:activityId', tripMiddleware.checkTripActivities, (req, res, next) => {
   const tripId = req.params.tripId;
   const activityId = req.params.activityId;
   Trip.findById(tripId)

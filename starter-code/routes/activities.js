@@ -5,19 +5,20 @@ const router = express.Router();
 const User = require('../models/user');
 const Activity = require('../models/activity');
 const authMiddleware = require('../middlewares/authMiddleware'); // Middleware
-// const formMiddleware = require('../middlewares/formMiddleware');
+const formMiddleware = require('../middlewares/formMiddleware');
+const activityMiddleware = require('../middlewares/activityMiddleware');
 const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
 const geocodingClient = mbxGeocoding({ accessToken: 'pk.eyJ1IjoianFiYWVuYSIsImEiOiJjam92YTEwZ3kwMzJqM3FwY3g2bzQ3OHV3In0.u-dT5_6jWWZQ7F8etEMzfA' });
 const { getDistanceFromLatLonInKm } = require('../helpers/calcDistanceCoords');
 
 // /* GET activities page. */
-// router.get('/', (req, res, next) => {
-//   Activity.find()
-//     .then((result) => {
-//       res.render('activities/list-activities', { activities: result });
-//     })
-//     .catch(next);
-// });
+router.get('/', (req, res, next) => {
+  Activity.find()
+    .then((result) => {
+      res.render('activities/list-activities', { activities: result });
+    })
+    .catch(next);
+});
 
 router.get('/', async (req, res, next) => {
   // const { _id } = req.session.currentUser;
@@ -72,11 +73,14 @@ router.get('/create-options', authMiddleware.requireUser, (req, res, next) => {
 
 // Render the create activity form
 router.get('/create', authMiddleware.requireUser, (req, res, next) => {
-  res.render('activities/create-activity', { title: 'Activities' });
+  const messageData = {
+    messages: req.flash('validationError')
+  };
+  res.render('activities/create-activity', messageData);
 });
 
 // Receive the acitivity post
-router.post('/', authMiddleware.requireUser, (req, res, next) => {
+router.post('/', authMiddleware.requireUser, formMiddleware.requireActivityFields, (req, res, next) => {
   // to see the information from the post, we need the body of the request
   const { name, city, country, location, type, price, photoURL, reservation, description } = req.body;
   const { _id } = req.session.currentUser;
@@ -91,7 +95,7 @@ router.post('/', authMiddleware.requireUser, (req, res, next) => {
     .catch(next);
 });
 
-router.get('/:activityId/edit', authMiddleware.requireUser, authMiddleware.checkActivityUser, (req, res, next) => {
+router.get('/:activityId/edit', authMiddleware.requireUser, activityMiddleware.checkActivityUser, (req, res, next) => {
   const activityId = req.params.activityId;
   Activity.findById(activityId)
     .then((activity) => {
@@ -101,7 +105,7 @@ router.get('/:activityId/edit', authMiddleware.requireUser, authMiddleware.check
 });
 
 // U in CRUD
-router.post('/:activityId/edit', authMiddleware.requireUser, authMiddleware.checkActivityUser, (req, res, next) => {
+router.post('/:activityId/edit', authMiddleware.requireUser, activityMiddleware.checkActivityUser, (req, res, next) => {
   const activityId = req.params.activityId;
   const updatedActivityInformation = req.body;
   Activity.findByIdAndUpdate(activityId, { $set: updatedActivityInformation })
@@ -111,8 +115,8 @@ router.post('/:activityId/edit', authMiddleware.requireUser, authMiddleware.chec
     .catch(next);
 });
 
-// D in CRUD
-router.post('/:activityId/delete', authMiddleware.requireUser, authMiddleware.checkActivityUser, (req, res, next) => {
+// // D in CRUD
+router.post('/:activityId/delete', authMiddleware.requireUser, activityMiddleware.checkActivityUser, (req, res, next) => {
   const activityId = req.params.activityId;
   Activity.deleteOne({ _id: activityId })
     .then(() => {
