@@ -226,7 +226,7 @@ button:not(.favourite-btn) {
   padding: 0px 30px;
   border-style: none;
   background: white;
-  color: rgb(94, 135, 127);
+  color: rgb(190, 224, 217);
 }
 
 button:not(.favourite-btn):hover {

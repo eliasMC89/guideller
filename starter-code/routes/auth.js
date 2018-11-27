@@ -19,7 +19,7 @@ router.get('/signup', authMiddleware.requireAnon, (req, res, next) => {
 });
 
 /* POST sign up user data */
-router.post('/signup', authMiddleware.requireAnon, formMiddleware.requireUserFields, (req, res, next) => {
+router.post('/signup', authMiddleware.requireAnon, formMiddleware.requireSignUpFields, (req, res, next) => {
   const { username, password } = req.body;
   // Check if username exists
   User.findOne({ username })
@@ -45,16 +45,16 @@ router.post('/signup', authMiddleware.requireAnon, formMiddleware.requireUserFie
     .catch(next);
 });
 
-/* GET log in page */
-router.get('/login', authMiddleware.requireAnon, (req, res, next) => {
-  const data = {
-    messages: req.flash('validationError')
-  };
-  res.render('auth/login', data);
-});
+// /* GET log in page */
+// router.get('/login', authMiddleware.requireAnon, (req, res, next) => {
+//   const data = {
+//     messages: req.flash('validationError')
+//   };
+//   res.render('auth/login', data);
+// });
 
 /* Post user log in data */
-router.post('/login', authMiddleware.requireAnon, formMiddleware.requireUserFields, (req, res, next) => {
+router.post('/login', authMiddleware.requireAnon, formMiddleware.requireLoginFields, (req, res, next) => {
   const { username, password } = req.body;
   User.findOne({ username })
     .then((user) => {
@@ -69,7 +69,7 @@ router.post('/login', authMiddleware.requireAnon, formMiddleware.requireUserFiel
         res.redirect('/activities');
       } else {
         req.flash('validationError', 'Wrong password!');
-        res.redirect('/auth/login');
+        res.redirect('/');
       }
     })
     .catch(next);
