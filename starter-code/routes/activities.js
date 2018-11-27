@@ -20,6 +20,9 @@ const { getDistanceFromLatLonInKm } = require('../helpers/calcDistanceCoords');
 // });
 
 router.get('/', async (req, res, next) => {
+  // const { _id } = req.session.currentUser;
+  // User.findById(_id);
+
   try {
     const activities = await Activity.find();
 

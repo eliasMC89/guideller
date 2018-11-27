@@ -29,7 +29,7 @@ a {
 .nav-container {
   display: flex;
   height: 70px;
-  background-color: rgb(157, 224, 209);
+  background-color: rgb(190, 224, 217);
   margin-left: auto;
   padding-right: 15px;
   padding-left: 15px;
@@ -70,7 +70,7 @@ footer {
   position: fixed;
   bottom: 0px;
   height: 70px;
-  background-color: rgb(157, 224, 209);
+  background-color: rgb(190, 224, 217);
   width: 100%;
   justify-content: space-around;
 }
@@ -126,6 +126,7 @@ input, select {
   font-size: 23px;
   transition: 0.2s ease;
   height: 25px;
+  width: 350px;
 }
 
 input:focus {
@@ -221,7 +222,8 @@ select {
   color: gray;
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
-  font-size: 35px;
+  font-size: 23px;
+  height: 35px;
 }
 
 button {
@@ -229,11 +231,11 @@ button {
   padding: 0px 30px;
   border-style: none;
   background: white;
-  color: rgb(141, 201, 187);
+  color: rgb(124, 183, 169);
 }
 
 button:hover {
-  background: rgb(157, 224, 209);
+  background: rgb(190, 224, 217);
   color: white;
 }
 
@@ -444,6 +446,7 @@ h2 {
 }
 
 .activity-bar {
+  width: 350px;
   display: flex;
   flex-direction: row;
   height: 70px;
@@ -452,6 +455,7 @@ h2 {
 
 .activity-description {
   font-size: 20px;
+  width: 350px;
 }
 
 .activity-bookmark, .details {
@@ -491,3 +495,8 @@ option {
 .create-edit-activity {
   padding-top: 0px;
 }
+
+.activity-bookmark {
+  padding-top: 10px;
+}
+
