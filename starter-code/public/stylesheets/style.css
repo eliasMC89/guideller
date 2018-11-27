@@ -48,8 +48,9 @@ a {
 }
 
 .user-info {
-  font-size: 15px;
+  font-size: 18px;
   text-align: center;
+  margin-bottom: 16px;
 }
 
 .logout-btn {
@@ -57,7 +58,7 @@ a {
 }
 
 .footer-img {
-  width: 45px;
+  width: 35px;
 }
 
 .profile {
@@ -289,7 +290,6 @@ h2 {
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  margin-bottom: 20px;
 }
 
 .header-create {
@@ -306,12 +306,12 @@ h2 {
 .activity-text {
   margin-bottom: 8px;
   margin-top: 3px;
-  font-size: 18px;
+  font-size: 20px;
 }
 .activity-title {
   margin-bottom: 0;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 25px;
   
 }
 
@@ -440,7 +440,7 @@ h2 {
 }
 
 .list-activities-title {
-  font-size: 25px;
+  font-size: 30px;
 }
 
 .activity-details-container {
@@ -517,4 +517,11 @@ option {
   padding-bottom: 0px;
 }
 
+.back-btn {
+  font-size: 60px;
+  width: 100px;
+  height: 60px;
+  border: 0;
+  background-color: inherit;
+}
 
