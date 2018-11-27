@@ -1,55 +1,26 @@
-<section class="index-main">
-  <div class="index-text">
-    <h2 class="index-header">Welcome to Guideller, the app that allows you to plan within a budget</h2>
-  </div>
-    <article class="login-container option-index">
-      <form method="POST" action="/auth/login" class="login-signup-form options-form">
-        <div class="login-signup-container">
-          <h1 class="form-title">Log in</h1>
-          <div class="field">
-            <input type="text" name="username" placeholder="Username" class="login-signup-input" />
-          </div>
+<section class="login-container">
 
-          <div class="field">
-            <input type="password" name="password" placeholder="Password" class="login-signup-input" />
-          </div>
+  <h1>Welcome to Guideller</h1>
+  
+  <form method="POST" action="/auth/login" class="login-signup-form">
+    <div class="login-signup-container">
+      <h2 class="form-title">Log In</h2>
+    <div class="field">
+      <input type="text" name="username" placeholder="Username" class="login-signup-input" />
+    </div>
 
-          <div class="field submit">
-            <button type="submit">Log in</button>
-          </div>
+    <div class="field">
+      <input type="password" name="password" placeholder="Password" class="login-signup-input" />
+    </div>
 
-        </div>
-      </form>
+    <div class="field submit">
+      <button type="submit">Log in</button>
+    </div>
+    <p>Not a member? Sign up <a href="/auth/signup"><b>here</b></a></p>
+    </div>
+  </form>
 
-      {{#if messages.length}}
-      <ul class="validation">
-        {{#each messages}}<li>{{this}}</li>{{/each}}
-      </ul>
-      {{/if}}
-    </article>
-    <article class="signup-container option-index">
-      <form method="POST" action="/auth/signup" class="login-signup-form">
-        <div class="login-signup-container">
-          <h1 class="form-title">Create new user</h1>
-          <div class="field">
-            <input type="text" name="username" placeholder="Username" class="login-signup-input" />
-          </div>
-
-          <div class="field">
-            <input type="password" name="password" placeholder="Password" class="login-signup-input" />
-          </div>
-
-          <div class="field submit">
-            <button type="submit">Sign up</button>
-          </div>
-
-        </div>
-      </form>
-
-      {{#if messages.length}}
-      <ul class="validation">
-        {{#each messages}}<li>{{this}}</li>{{/each}}
-      </ul>
-      {{/if}}
-    </article>
+  {{#if messages.length}}
+    <h3>{{messages}}</h3>
+  {{/if}}
 </section>

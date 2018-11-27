@@ -3,11 +3,20 @@
 const formMiddleware = {};
 
 // Middleware to check for empty fields
-formMiddleware.requireUserFields = (req, res, next) => {
+formMiddleware.requireLoginFields = (req, res, next) => {
   const { username, password } = req.body;
   if (!username || !password) {
     req.flash('validationError', 'Fill in all fields!');
-    return res.redirect(`/auth${req.path}`);
+    return res.redirect('/');
+  }
+  next();
+};
+
+formMiddleware.requireSignUpFields = (req, res, next) => {
+  const { username, password } = req.body;
+  if (!username || !password) {
+    req.flash('validationError', 'Fill in all fields!');
+    return res.redirect('/auth/signup');
   }
   next();
 };
