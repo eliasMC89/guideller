@@ -9,12 +9,11 @@
     <div class="activities-list hidden">
       {{#each user.activities}}
       <div class="each-activity activities">
-        <p>{{../user._id}}</p>
-        <form action="/favourites/{{../user._id}}/addFavourite/{{this._id}}" method="post">
+        {{!-- <form action="/favourites/{{../user._id}}/addFavourite/{{this._id}}" method="post">
           <div>
             <button type="submit" class="favourite-btn"><img src="../images/bookmark.svg" alt="" class="activity-bookmark details"></button>
           </div>
-        </form>
+        </form> --}}
         <p class="activity-text activity-title">{{this.name}}</h2>
           <p class="activity-text activity-location">{{this.location}}</p>
           <a href="/activities/{{this._id}}/details"><img src="../images/ironhack.png" alt="" class="activity-img"></a>
@@ -66,7 +65,7 @@
       {{/each}}
     </div>
 
-    <div class="profile-list">
+    {{!-- <div class="profile-list">
       <h1 class="list-title">
         My favourites
       </h1>
@@ -84,7 +83,7 @@
         <br>
       </div>
       {{/each}}
-    </div>
+    </div> --}}
 
 
 
