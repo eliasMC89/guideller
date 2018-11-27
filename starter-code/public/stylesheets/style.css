@@ -226,7 +226,7 @@ button:not(.favourite-btn) {
   padding: 0px 30px;
   border-style: none;
   background: white;
-  color: rgb(190, 224, 217));
+  color: rgb(94, 135, 127);
 }
 
 button:not(.favourite-btn):hover {
@@ -510,6 +510,11 @@ option {
 .owner-name {
   color: rgb(122, 153, 147);
   text-decoration: underline;
+}
+
+.index-main {
+  padding-top: 65px;
+  padding-bottom: 0px;
 }
 
 

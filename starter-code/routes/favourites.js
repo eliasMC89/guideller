@@ -14,22 +14,43 @@ router.get('/', authMiddleware.requireUser, (req, res, next) => {
     .catch(next);
 });
 
-router.post('/:userId/addFavourite/:activityId', activityMiddleware.checkUserFavouriteActivities, (req, res, next) => {
-  const userId = req.session.currentUser;
-  const activityId = req.params.activityId;
-  User.findByIdAndUpdate(userId, { $push: { favourites: activityId } })
-    .then(() => {
-      return res.redirect('/activities');
-    });
-});
+// router.post('/:userId/addFavourite/:activityId', activityMiddleware.checkUserFavouriteActivities, (req, res, next) => {
+//   const userId = req.session.currentUser;
+//   const activityId = req.params.activityId;
+//   User.findByIdAndUpdate(userId, { $push: { favourites: activityId } })
+//     .then(() => {
+//       return res.redirect('/activities');
+//     });
+// });
 
-router.post('/:userId/deleteFavourite/:activityId', (req, res, next) => {
+// router.post('/:userId/deleteFavourite/:activityId', (req, res, next) => {
+//   const userId = req.session.currentUser;
+//   const activityId = req.params.activityId;
+//   User.findByIdAndUpdate(userId, { $pull: { favourites: activityId } })
+//     .then(() => {
+//       return res.redirect('/favourites');
+//     });
+// });
+
+router.post('/addDeleteFavourite/:activityId', (req, res, next) => {
   const userId = req.session.currentUser;
   const activityId = req.params.activityId;
-  User.findByIdAndUpdate(userId, { $pull: { favourites: activityId } })
-    .then(() => {
-      return res.redirect('/favourites');
-    });
+  User.findById(userId)
+    .then((user) => {
+      const userFavourites = user.favourites;
+      if (userFavourites.indexOf(activityId) < 0) {
+        User.findByIdAndUpdate(userId, { $push: { favourites: activityId } })
+          .then(() => {
+            return res.redirect('/favourites');
+          });
+      } else {
+        User.findByIdAndUpdate(userId, { $pull: { favourites: activityId } })
+          .then(() => {
+            return res.redirect('/favourites');
+          });
+      }
+    })
+    .catch(next);
 });
 
 module.exports = router;

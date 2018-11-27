@@ -26,7 +26,7 @@ router.post('/signup', authMiddleware.requireAnon, formMiddleware.requireUserFie
     .then((user) => {
       if (user) {
         req.flash('validationError', 'User already exists!');
-        return res.redirect('/auth/signup');
+        return res.redirect('/');
       }
       // if everything is fine (no empty fields & user not exists), encrypt password
       const salt = bcrypt.genSaltSync(saltRounds);
@@ -61,7 +61,7 @@ router.post('/login', authMiddleware.requireAnon, formMiddleware.requireUserFiel
       // check if user exists
       if (!user) {
         req.flash('validationError', "User doesn't exist!");
-        return res.redirect('/auth/login');
+        return res.redirect('/');
       }
       if (bcrypt.compareSync(password, user.password)) {
         // Save the login in the session!

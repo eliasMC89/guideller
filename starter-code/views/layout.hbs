@@ -10,7 +10,7 @@
 
 <body>
   <nav class="nav-container">
-    <div class="nav-item logo">GUIDELLER</div>
+    <a href="/activities"><div class="nav-item logo">GUIDELLER</div></a>
     <img src="/images/world.svg" alt="" class="logo-img">
     {{#unless currentUser}}
     <!--<div class="nav-item profile"><a href="/auth/signup">Sign Up</a></div>
@@ -18,7 +18,7 @@
     {{else}}
     
     <div class="log-out profile">
-      <div class="user-info"><p>Welcome, <b>{{currentUser.username}}</b></p></div>
+      <div class="user-info"><p style="margin-bottom: 2px;">Welcome, <b>{{currentUser.username}}</b></p></div>
       <form action="/auth/logout" method="POST">
         <button type="submit" class="logout-btn">Logout</button>
       </form>

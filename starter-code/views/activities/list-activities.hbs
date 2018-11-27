@@ -12,9 +12,9 @@
       <p class="activity-text">{{this.type}}</p>
       <p class="activity-text">{{this.price}}€</p>
     </div>
-    <form action="/favourites/{{../currentUser._id}}/addFavourite/{{this._id}}" method="post">
+    <form action="/favourites/addDeleteFavourite/{{this._id}}" method="post">
       <div>
-        <button type="submit" class="favourite-btn add-favourite"><img src="../../images/bookmark.svg" alt="" class="activity-bookmark details"></button>
+        <button type="submit" class="favourite-btn add-favourite" id={{this.id}}><img src="../../images/bookmark.svg" alt="" class="activity-bookmark details"></button>
       </div>
     </form>
   </div>
@@ -22,5 +22,17 @@
   <hr>
   <br>
   {{/each}}
+  {{!-- <script>
+    button = docuemnt.querySelectorAll(.favorites)
+
+    button.addEvenetListener('click', (event)=> {
+      event.target.id
+      axios.post('/favourites/add...')
+      .then(()=> {
+        button.classList.toggle('')
+      })
+    })
+
+  </script> --}}
 
 </section>
