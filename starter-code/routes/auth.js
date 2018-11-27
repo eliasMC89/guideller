@@ -19,28 +19,17 @@ router.get('/signup', authMiddleware.requireAnon, (req, res, next) => {
 });
 
 /* POST sign up user data */
-router.post('/signup', authMiddleware.requireAnon, formMiddleware.requireSignUpFields, (req, res, next) => {
+router.post('/signup', authMiddleware.requireAnon, authMiddleware.checkUserExists, formMiddleware.requireSignUpFields, (req, res, next) => {
   const { username, password } = req.body;
-  // Check if username exists
-  User.findOne({ username })
-    .then((user) => {
-      if (user) {
-        req.flash('validationError', 'User already exists!');
-        return res.redirect('/auth/signup');
-      }
-      // if everything is fine (no empty fields & user not exists), encrypt password
-      const salt = bcrypt.genSaltSync(saltRounds);
-      const hashedPassword = bcrypt.hashSync(password, salt);
-      // create new user in users collection
-      User.create({
-        username,
-        password: hashedPassword
-      })
-        .then((newUser) => {
-          req.session.currentUser = newUser; // stores user in session collection
-          res.redirect('/activities');
-        })
-        .catch(next);
+  const salt = bcrypt.genSaltSync(saltRounds);
+  const hashedPassword = bcrypt.hashSync(password, salt);
+  User.create({
+    username,
+    password: hashedPassword
+  })
+    .then((newUser) => {
+      req.session.currentUser = newUser;
+      res.redirect('/activities');
     })
     .catch(next);
 });
