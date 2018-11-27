@@ -11,14 +11,14 @@ const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
 const geocodingClient = mbxGeocoding({ accessToken: 'pk.eyJ1IjoianFiYWVuYSIsImEiOiJjam92YTEwZ3kwMzJqM3FwY3g2bzQ3OHV3In0.u-dT5_6jWWZQ7F8etEMzfA' });
 const { getDistanceFromLatLonInKm } = require('../helpers/calcDistanceCoords');
 
-// /* GET activities page. */
-router.get('/', (req, res, next) => {
-  Activity.find()
-    .then((result) => {
-      res.render('activities/list-activities', { activities: result });
-    })
-    .catch(next);
-});
+// // /* GET activities page. */
+// router.get('/', (req, res, next) => {
+//   Activity.find()
+//     .then((result) => {
+//       res.render('activities/list-activities', { activities: result });
+//     })
+//     .catch(next);
+// });
 
 router.get('/', async (req, res, next) => {
   // const { _id } = req.session.currentUser;
@@ -80,7 +80,7 @@ router.get('/create', authMiddleware.requireUser, (req, res, next) => {
 });
 
 // Receive the acitivity post
-router.post('/', authMiddleware.requireUser, formMiddleware.requireActivityFields, (req, res, next) => {
+router.post('/', authMiddleware.requireUser, formMiddleware.requireCreateActivityFields, (req, res, next) => {
   // to see the information from the post, we need the body of the request
   const { name, city, country, location, type, price, photoURL, reservation, description } = req.body;
   const { _id } = req.session.currentUser;
@@ -99,13 +99,17 @@ router.get('/:activityId/edit', authMiddleware.requireUser, activityMiddleware.c
   const activityId = req.params.activityId;
   Activity.findById(activityId)
     .then((activity) => {
-      res.render('activities/edit-activity', { activity });
+      const data = {
+        messages: req.flash('validationError'),
+        activity
+      };
+      res.render('activities/edit-activity', data);
     })
     .catch(next);
 });
 
 // U in CRUD
-router.post('/:activityId/edit', authMiddleware.requireUser, activityMiddleware.checkActivityUser, (req, res, next) => {
+router.post('/:activityId/edit', authMiddleware.requireUser, activityMiddleware.checkActivityUser, formMiddleware.requireEditActivityFields, (req, res, next) => {
   const activityId = req.params.activityId;
   const updatedActivityInformation = req.body;
   Activity.findByIdAndUpdate(activityId, { $set: updatedActivityInformation })
