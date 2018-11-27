@@ -19,58 +19,28 @@ router.get('/signup', authMiddleware.requireAnon, (req, res, next) => {
 });
 
 /* POST sign up user data */
-router.post('/signup', authMiddleware.requireAnon, formMiddleware.requireSignUpFields, (req, res, next) => {
+router.post('/signup', authMiddleware.requireAnon, authMiddleware.checkUserAvailable, formMiddleware.requireSignUpFields, (req, res, next) => {
   const { username, password } = req.body;
-  // Check if username exists
-  User.findOne({ username })
-    .then((user) => {
-      if (user) {
-        req.flash('validationError', 'User already exists!');
-        return res.redirect('/');
-      }
-      // if everything is fine (no empty fields & user not exists), encrypt password
-      const salt = bcrypt.genSaltSync(saltRounds);
-      const hashedPassword = bcrypt.hashSync(password, salt);
-      // create new user in users collection
-      User.create({
-        username,
-        password: hashedPassword
-      })
-        .then((newUser) => {
-          req.session.currentUser = newUser; // stores user in session collection
-          res.redirect('/activities');
-        })
-        .catch(next);
+  const salt = bcrypt.genSaltSync(saltRounds);
+  const hashedPassword = bcrypt.hashSync(password, salt);
+  User.create({
+    username,
+    password: hashedPassword
+  })
+    .then((newUser) => {
+      req.session.currentUser = newUser;
+      res.redirect('/activities');
     })
     .catch(next);
 });
 
-// /* GET log in page */
-// router.get('/login', authMiddleware.requireAnon, (req, res, next) => {
-//   const data = {
-//     messages: req.flash('validationError')
-//   };
-//   res.render('auth/login', data);
-// });
-
 /* Post user log in data */
-router.post('/login', authMiddleware.requireAnon, formMiddleware.requireLoginFields, (req, res, next) => {
-  const { username, password } = req.body;
+router.post('/login', authMiddleware.requireAnon, formMiddleware.requireLoginFields, authMiddleware.checkUserExists, authMiddleware.checkPassword, (req, res, next) => {
+  const { username } = req.body;
   User.findOne({ username })
     .then((user) => {
-      // check if user exists
-      if (!user) {
-        req.flash('validationError', "User doesn't exist!");
-        return res.redirect('/');
-      }
-      if (bcrypt.compareSync(password, user.password)) {
-        // Save the login in the session!
-        req.session.currentUser = user;
-        res.redirect('/activities');
-      } else {
-        req.flash('validationError', 'Wrong password!');
-        res.redirect('/');
-      }
+      req.session.currentUser = user;
+      res.redirect('/activities');
     })
     .catch(next);
 });
