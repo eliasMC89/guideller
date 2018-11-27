@@ -12,7 +12,7 @@
         </div>
       </form>
     </div>
-    <a href="/profile/{{activity.owner._id}}/info"><p class="activity-text activity-owner">Created by: {{activity.owner.username}}</p></a>
+    <p class="activity-text activity-owner">Created by: <a href="/profile/{{activity.owner._id}}/info"><span class="owner-name">{{activity.owner.username}}</span></a></p>
     <p class="activity-text">{{activity.type}}</p>
     <p class="activity-text">{{activity.price}}€</p>
     <p class="activity-description">{{activity.description}}</p>
