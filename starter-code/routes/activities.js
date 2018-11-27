@@ -84,7 +84,7 @@ router.post('/', authMiddleware.requireUser, formMiddleware.requireCreateActivit
   // to see the information from the post, we need the body of the request
   const { name, city, country, location, type, price, photoURL, reservation, description } = req.body;
   const { _id } = req.session.currentUser;
-  const newActivity = new Activity({ name, city, country, location, type, price, photoURL, reservation, description });
+  const newActivity = new Activity({ name, city, country, location, type, price, photoURL, reservation, description, owner: _id });
   const updateUserPromise = User.findByIdAndUpdate(_id, { $push: { activities: newActivity._id } });
   const saveActivityPromise = newActivity.save();
 
@@ -144,7 +144,9 @@ router.post('/:activityId/delete', authMiddleware.requireUser, activityMiddlewar
 
 router.get('/:activityId/details', authMiddleware.requireUser, (req, res, next) => {
   const activityId = req.params.activityId;
+  const userId = req.session.currentUser;
   Activity.findById({ _id: activityId })
+    .populate('owner')
     .then((activity) => {
       res.render('activities/activity-details', { activity });
     })
