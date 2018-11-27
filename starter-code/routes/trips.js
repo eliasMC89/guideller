@@ -8,6 +8,7 @@ const Activity = require('../models/activity');
 const authMiddleware = require('../middlewares/authMiddleware'); // Middleware
 // const formMiddleware = require('../middlewares/formMiddleware');
 const tripMiddleware = require('../middlewares/tripMiddleware');
+const formMiddleware = require('../middlewares/formMiddleware');
 
 /* GET trips page. */
 router.get('/', (req, res, next) => {
@@ -32,11 +33,14 @@ router.get('/', (req, res, next) => {
 
 // Render the create trips form
 router.get('/create', authMiddleware.requireUser, (req, res, next) => {
-  res.render('trips/create-trip', { title: 'Trips' });
+  const messageData = {
+    messages: req.flash('validationError')
+  };
+  res.render('trips/create-trip', messageData);
 });
 
 // Receive the trips post
-router.post('/', authMiddleware.requireUser, (req, res, next) => {
+router.post('/', authMiddleware.requireUser, formMiddleware.requireCreateTripFields, (req, res, next) => {
   // to see the information from the post, we need the body of the request
   const { name, location, budget } = req.body;
   const { _id } = req.session.currentUser;
@@ -56,13 +60,17 @@ router.get('/:tripId/edit', authMiddleware.requireUser, tripMiddleware.checkTrip
   const tripId = req.params.tripId;
   Trip.findById(tripId)
     .then((trip) => {
-      res.render('trips/edit-trip', { trip });
+      const data = {
+        messages: req.flash('validationError'),
+        trip
+      };
+      res.render('trips/edit-trip', data);
     })
     .catch(next);
 });
 
 // U in CRUD
-router.post('/:tripId/edit', authMiddleware.requireUser, tripMiddleware.checkTripUser, (req, res, next) => {
+router.post('/:tripId/edit', authMiddleware.requireUser, tripMiddleware.checkTripUser, formMiddleware.requireEditTripFields, (req, res, next) => {
   const tripId = req.params.tripId;
   const updatedTripInformation = req.body;
   Trip.findByIdAndUpdate(tripId, { $set: updatedTripInformation })
