@@ -15,14 +15,14 @@ router.get('/', authMiddleware.requireUser, (req, res, next) => {
     .catch(next);
 });
 
-router.get('/:userId/profile', authMiddleware.requireUser, (req, res, next) => {
+router.get('/:userId/info', authMiddleware.requireUser, (req, res, next) => {
   const userId = req.params.userId;
   User.findById(userId)
     .populate('activities')
     .populate('trips')
     .populate('favourites')
     .then((user) => {
-      res.render('profile/my-stuff', { user });
+      res.render('profile/user-profile', { user });
     })
     .catch(next);
 });

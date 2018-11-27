@@ -7,7 +7,7 @@
       <div class="triangle-icon up triangle-act">Show</div>
     </div>
     <div class="activities-list hidden">
-      {{#each owner.activities}}
+      {{#each user.activities}}
       <div class="each-activity activities">
         {{!-- <form action="/favourites/{{../user._id}}/addFavourite/{{this._id}}" method="post">
           <div>
@@ -17,12 +17,6 @@
         <p class="activity-text activity-title">{{this.name}}</h2>
           <p class="activity-text activity-location">{{this.location}}</p>
           <a href="/activities/{{this._id}}/details"><img src="../images/ironhack.png" alt="" class="activity-img"></a>
-          <button class="btn-activity"><a href="/activities/{{this._id}}/edit">Edit</a></button>
-          <form action="/activities/{{this._id}}/delete" method="post">
-            <div>
-              <button class="btn-activity" type="submit">Delete</button>
-            </div>
-          </form>
           <br>
           <hr>
           <br>
@@ -45,19 +39,12 @@
       <div class="triangle-icon up triangle-trip">Show</div>
     </div>
     <div class="trips-list hidden">
-      {{#each owner.trips}}
+      {{#each user.trips}}
       <div class="each-trip activities">
         <p class="activity-text activity-title">{{this.name}}</p>
         <p class="activity-text activity-location">{{this.location}}</p>
         <p class="activity-text">Budget: {{this.currentBudget}}/{{this.budget}}€</p>
         <a href="/trips/{{this._id}}/details"><img src="../images/ironhack.png" alt="" class="activity-img"></a>
-        <button class="btn-trip"><a href="/trips/{{this._id}}/addActivity">Add activities</a></button>
-        <button class="btn-trip"><a href="/trips/{{this._id}}/edit">Edit</a></button>
-        <form action="/trips/{{this._id}}/delete" method="post">
-          <div>
-            <button class="btn-trip" type="submit">Delete</button>
-          </div>
-        </form>
         <br>
         <hr>
         <br>
@@ -72,7 +59,7 @@
       <div class="triangle-icon up triangle-fav">Show</div>
     </div>
     <div class="favs-list hidden">
-      {{#each owner.favourites}}
+      {{#each user.favourites}}
       <div class="each-trip activities">
         <p class="activity-text activity-title">{{this.name}}</p>
         <p class="activity-text activity-location">{{this.location}}</p>

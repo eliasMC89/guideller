@@ -22,4 +22,13 @@ router.post('/:userId/addFavourite/:activityId', authMiddleware.checkUserFavouri
     });
 });
 
+router.post('/:userId/deleteFavourite/:activityId', (req, res, next) => {
+  const userId = req.session.currentUser;
+  const activityId = req.params.activityId;
+  User.findByIdAndUpdate(userId, { $pull: { favourites: activityId } })
+    .then(() => {
+      return res.redirect('/favourites');
+    });
+});
+
 module.exports = router;

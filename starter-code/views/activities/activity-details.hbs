@@ -8,11 +8,11 @@
       </div>
       <form action="/favourites/{{currentUser._id}}/addFavourite/{{activity._id}}" method="post">
         <div>
-          <button type="submit" class="favourite-btn"><img src="../../images/bookmark.svg" alt="" class="activity-bookmark details"></button>
+          <button type="submit" class="favourite-btn add-favourite"><img src="../../images/bookmark.svg" alt="" class="activity-bookmark details"></button>
         </div>
       </form>
     </div>
-    <p class="activity-text activity-owner">Created by: {{activity.owner.username}}</p>
+    <a href="/profile/{{activity.owner._id}}/info"><p class="activity-text activity-owner">Created by: {{activity.owner.username}}</p></a>
     <p class="activity-text">{{activity.type}}</p>
     <p class="activity-text">{{activity.price}}€</p>
     <p class="activity-description">{{activity.description}}</p>

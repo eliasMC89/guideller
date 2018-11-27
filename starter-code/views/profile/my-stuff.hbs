@@ -17,7 +17,7 @@
         <p class="activity-text activity-title">{{this.name}}</h2>
           <p class="activity-text activity-location">{{this.location}}</p>
           <a href="/activities/{{this._id}}/details"><img src="../images/ironhack.png" alt="" class="activity-img"></a>
-          <button class="btn-activity"><a href="/activities/{{this._id}}/edit">Edit</a></button>
+          <button class="btn-activity add-favourite"><a href="/activities/{{this._id}}/edit">Edit</a></button>
           <form action="/activities/{{this._id}}/delete" method="post">
             <div>
               <button class="btn-activity" type="submit">Delete</button>
@@ -84,9 +84,6 @@
       </div>
       {{/each}}
     </div> --}}
-
-
-
 
   </div>
 </section>

@@ -81,10 +81,6 @@ section {
   padding-bottom: 90px;
 }
 
-.index-main {
-
-}
-
 .index-text {
   width: 70%;
   margin: auto;
@@ -126,7 +122,7 @@ input, select {
   font-size: 23px;
   transition: 0.2s ease;
   height: 25px;
-  width: 350px;
+  width: 310px;
 }
 
 input:focus {
@@ -152,19 +148,18 @@ input:focus {
 }
 .trip-form {
   margin: 5% auto;
-
   background: #FFF;
   border-radius: 2px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
   justify-content: center;
   width: 90%;
-  margin-top: 170px;
+  margin-top: 130px;
 }
 
 .activity-form {
   /*position: relative;*/
   margin: 5% auto;
-  margin-top: 100px;
+  margin-top: 78px;
   width: 90%;
   height: 90%;
   background: #FFF;
@@ -180,7 +175,7 @@ input:focus {
   align-items: center;
   align-content: center;
   width: 100%;
-  height: 520px;
+  height: 510px;
 }
 
 .trip-container {
@@ -226,7 +221,7 @@ select {
   height: 35px;
 }
 
-button {
+button:not(.favourite-btn) {
   font-size: 25px;
   padding: 0px 30px;
   border-style: none;
@@ -234,9 +229,14 @@ button {
   color: rgb(124, 183, 169);
 }
 
-button:hover {
+button:not(.favourite-btn):hover {
   background: rgb(190, 224, 217);
   color: white;
+}
+
+.favourite-btn {
+  border-style: none;
+  background: inherit;
 }
 
 .activities {
@@ -292,6 +292,10 @@ h2 {
   margin-bottom: 20px;
 }
 
+.header-create {
+  font-size: 25px;
+}
+
 
 
 
@@ -342,7 +346,7 @@ h2 {
 .create-options {
   width: 100%;
   height: 100%;
-  margin-top: 60px;
+  margin-top: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -350,7 +354,7 @@ h2 {
 .create-options-container {
   /*position: relative;*/
   margin: 5% auto;
-  width: 400px;
+  width: 310px;
   height: 400px;
   background: #FFF;
   border-radius: 2px;
@@ -471,10 +475,6 @@ option {
   height: 20px;
 }
 
-.create {
-  padding-top: 20px;
-}
-
 
 .signup-container {
   padding-top: 0px;
@@ -494,9 +494,17 @@ option {
 
 .create-edit-activity {
   padding-top: 0px;
+  padding-bottom: 0px;
 }
 
 .activity-bookmark {
   padding-top: 10px;
 }
+
+.remove-favourites {
+  height: 50px;
+  margin-top: 10px;
+  border-radius: 50%;
+}
+
 
