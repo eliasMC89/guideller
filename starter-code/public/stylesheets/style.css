@@ -332,7 +332,7 @@ h2 {
 }
 
 .activity-text-container {
-  margin-top: 10px;
+  margin-top: 7px;
 }
 
 
@@ -498,7 +498,7 @@ option {
 }
 
 .activity-bookmark {
-  padding-top: 10px;
+  padding-top: 15px;
 }
 
 .remove-favourites {
@@ -519,7 +519,8 @@ option {
 
 .back-btn {
   font-size: 60px;
-  width: 100px;
+  width: 60px;
+  margin-right: 60px;
   height: 60px;
   border: 0;
   background-color: inherit;
