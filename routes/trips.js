@@ -46,7 +46,7 @@ router.post('/', authMiddleware.requireUser, formMiddleware.requireCreateTripFie
   const { _id } = req.session.currentUser;
   const newTrip = new Trip({ name, location, budget });
   const updateCurrentBudgetPromise = Trip.findByIdAndUpdate(newTrip._id, { $set: { currentBudget: budget } });
-  const updateUserPromise = User.findByIdAndUpdate(_id, { $push: { trips: newTrip._id } });
+  const updateUserPromise = User.findByIdAndUpdate(_id, { $push: { trips: newTrip._id } }, { new: true });
   const saveTripPromise = newTrip.save();
 
   Promise.all([updateUserPromise, saveTripPromise, updateCurrentBudgetPromise])

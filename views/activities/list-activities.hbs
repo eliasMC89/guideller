@@ -2,9 +2,8 @@
   <h1 class="list-activities-title">
     Explore Activities
   </h1>
-  <p>{{currentUser.trips}}</p>
   {{#each activities}}
-  <h2 class="activity-text activity-title">{{this.name}}</h2>
+  <h2 activityId="{{this._id}}" class="activity-text activity-title">{{this.name}}</h2>
   <p class="activity-text activity-location">{{this.location}}</p>
   <a href="/activities/{{this._id}}/details"><img src="../images/ironhack.png" alt="" class="activity-img"></a>
   <div class="activity-info-container">
@@ -12,41 +11,38 @@
       <p class="activity-text">{{this.type}}</p>
       <p class="activity-text">{{this.price}}€</p>
     </div>
-    <form action="/favourites/addDeleteFavourite/{{this._id}}" method="post">
-      <div>
-        <button type="submit" class="favourite-btn add-favourite" id={{this.id}}><img src="../../images/star.svg" alt=""
-            class="activity-bookmark details"></button>
-      </div>
-    </form>
+    {{#if this.addedFavourite}}
+    <div>
+      <a type="submit" class="favourite-btn add-favourite yellow-star" activity={{this.id}}><img src="../../images/star.svg" alt=""
+          class="activity-bookmark details"></a>
+    </div>
+    {{else}}
+    <div>
+      <a type="submit" class="favourite-btn add-favourite" activity={{this.id}}><img src="../../images/star.svg" alt=""
+          class="activity-bookmark details"></a>
+    </div>
+    {{/if}}
   </div>
-  <select name="type" class="add-to-trip" placeholder="Add to existing trip">
-    <option disabled selected>Add to trip</option>
-    {{#each ../currentUser.trips}}
-    <form action="/trips/{{this}}/addActivity/{{../currentUser._id}}" method="post">
-      <div>
-        <option value="{{this}}"><button type="submit">{{this}}</button></option>
-      </div>
-    </form>
-    
-    {{/each}}
-  </select>
+  {{#each ../user.trips}}
+  <form action="/trips/{{this._id}}/addActivity/{{../this._id}}" method="post">
+    <div>
+      <button type="submit">{{this.name}}</button>
+    </div>
+    <!--<select name="type" class="add-to-trip" placeholder="Add to existing trip">
+      <option disabled selected>Add to trip</option>
+      <option class="add-trip-value" value="{{this}}">{{this}}</option>
+    </select>-->
+  </form>
+  {{/each}}
+
+
 
   <br>
   <hr>
   <br>
   {{/each}}
-  {{!--
-  <script>
-    button = docuemnt.querySelectorAll(.favorites)
-
-    button.addEvenetListener('click', (event) => {
-      event.target.id
-      axios.post('/favourites/add...')
-        .then(() => {
-          button.classList.toggle('')
-        })
-    })
-
-  </script> --}}
 
 </section>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="/javascript/favourites.js"></script>
+<script src="/javascript/addToTrip.js"></script>

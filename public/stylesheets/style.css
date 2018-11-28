@@ -28,7 +28,7 @@ a {
 
 .nav-container {
   display: flex;
-  height: 70px;
+  height: 50px;
   background-color: rgb(190, 224, 217);
   margin-left: auto;
   padding-right: 15px;
@@ -43,7 +43,7 @@ a {
 }
 .logo-img {
   margin: 0 auto;
-  width: 50px;
+  width: 35px;
 }
 
 .user-info {
@@ -69,7 +69,7 @@ footer {
   display: flex;
   position: fixed;
   bottom: 0px;
-  height: 70px;
+  height: 50px;
   background-color: rgb(190, 224, 217);
   width: 100%;
   justify-content: space-around;
@@ -523,5 +523,9 @@ option {
   height: 60px;
   border: 0;
   background-color: inherit;
+}
+
+.yellow-star {
+  background-color: yellow;
 }
 

@@ -27,6 +27,18 @@ router.get('/', authMiddleware.requireUser, async (req, res, next) => {
 
   try {
     const activities = await Activity.find();
+    const { _id } = req.session.currentUser;
+    const user = await User.findById(_id).populate('trips', 'favourites');
+    const userFavourites = user.favourites;
+
+    activities.map((activity) => {
+      activity.addedFavourite = false;
+      if (userFavourites.indexOf(activity._id) >= 0) {
+        console.log('hola');
+        activity.addedFavourite = true;
+      }
+    });
+    console.log(user.addedFavourite);
 
     const citiesCoordinates = {};
     for (let i = 0; i < activities.length; i++) {
@@ -36,15 +48,9 @@ router.get('/', authMiddleware.requireUser, async (req, res, next) => {
           limit: 2
         };
         const cityCoordinates = await geocodingClient.forwardGeocode(queryObj).send();
-<<<<<<< HEAD:routes/activities.js
-        console.log('down here coordinates');
-        console.log(cityCoordinates.body.features[0]);
-        console.log('up here coordinates');
-=======
         // console.log('down here coordinates');
         // console.log(cityCoordinates.body);
         // console.log('up here coordinates ');
->>>>>>> 650546f02fcb76c6ef55347df9b05cc4eee13db5:routes/activities.js
         citiesCoordinates[activities[i].location] = cityCoordinates.body.features[0].center;
       }
     }
@@ -57,21 +63,22 @@ router.get('/', authMiddleware.requireUser, async (req, res, next) => {
         const cityBDistanceBarcelona = getDistanceFromLatLonInKm(citiesCoordinates['Barcelona'][0], citiesCoordinates['Barcelona'][1], citiesCoordinates[b.location][0], citiesCoordinates[b.location][1]);
 
         if (cityADistanceBarcelona > cityBDistanceBarcelona) {
-          console.log(a.location, cityADistanceBarcelona);
-          console.log(b.location, cityBDistanceBarcelona);
-          console.log('swap');
+          // console.log(a.location, cityADistanceBarcelona);
+          // console.log(b.location, cityBDistanceBarcelona);
+          // console.log('swap');
 
           result = 1;
         } else {
-          console.log(a.location, cityADistanceBarcelona);
-          console.log(b.location, cityBDistanceBarcelona);
-          console.log('dont swap');
+          // console.log(a.location, cityADistanceBarcelona);
+          // console.log(b.location, cityBDistanceBarcelona);
+          // console.log('dont swap');
           result = -1;
         }
       }
       return result;
     });
-    res.render('activities/list-activities', { activities });
+    console.log(user);
+    res.render('activities/list-activities', { activities, user });
   } catch (error) {
     next(error);
   }

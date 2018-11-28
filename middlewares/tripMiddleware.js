@@ -27,6 +27,7 @@ tripMiddleware.checkTripActivities = (req, res, next) => {
   const activityId = req.params.activityId;
   Trip.findById(tripId)
     .then((trip) => {
+      console.log(trip);
       const tripActivities = trip.activities;
       if (tripActivities.indexOf(activityId) >= 0) {
         res.redirect(`/trips/${tripId}/addActivity`);
