@@ -35,6 +35,9 @@ router.get('/', authMiddleware.requireUser, async (req, res, next) => {
           limit: 2
         };
         const cityCoordinates = await geocodingClient.forwardGeocode(queryObj).send();
+        console.log('down here coordinates');
+        console.log(cityCoordinates.body.features[0]);
+        console.log('up here coordinates');
         citiesCoordinates[activities[i].location] = cityCoordinates.body.features[0].center;
       }
     }
@@ -122,9 +125,13 @@ router.post('/:activityId/edit', authMiddleware.requireUser, activityMiddleware.
 // // D in CRUD
 router.post('/:activityId/delete', authMiddleware.requireUser, activityMiddleware.checkActivityUser, (req, res, next) => {
   const activityId = req.params.activityId;
+  const userId = req.session.currentUser;
   Activity.deleteOne({ _id: activityId })
     .then(() => {
-      res.redirect('/profile');
+      User.findByIdAndUpdate(userId, { $pull: { activities: activityId } })
+        .then(() => {
+          res.redirect('/profile');
+        });
     })
     .catch(next);
 });

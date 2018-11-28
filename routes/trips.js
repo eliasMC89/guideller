@@ -83,9 +83,13 @@ router.post('/:tripId/edit', authMiddleware.requireUser, tripMiddleware.checkTri
 // // // D in CRUD
 router.post('/:tripId/delete', authMiddleware.requireUser, tripMiddleware.checkTripUser, (req, res, next) => {
   const tripId = req.params.tripId;
+  const userId = req.session.currentUser;
   Trip.deleteOne({ _id: tripId })
     .then(() => {
-      res.redirect('/profile');
+      User.findByIdAndUpdate(userId, { $pull: { trips: tripId } })
+        .then(() => {
+          res.redirect('/profile');
+        });
     })
     .catch(next);
 });

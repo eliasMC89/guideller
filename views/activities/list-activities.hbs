@@ -2,7 +2,7 @@
   <h1 class="list-activities-title">
     Look at all the activities!
   </h1>
-
+  <p>{{currentUser.trips}}</p>
   {{#each activities}}
   <h2 class="activity-text activity-title">{{this.name}}</h2>
   <p class="activity-text activity-location">{{this.location}}</p>
@@ -14,23 +14,37 @@
     </div>
     <form action="/favourites/addDeleteFavourite/{{this._id}}" method="post">
       <div>
-        <button type="submit" class="favourite-btn add-favourite" id={{this.id}}><img src="../../images/star.svg" alt="" class="activity-bookmark details"></button>
+        <button type="submit" class="favourite-btn add-favourite" id={{this.id}}><img src="../../images/star.svg" alt=""
+            class="activity-bookmark details"></button>
       </div>
     </form>
   </div>
+  <select name="type" class="add-to-trip" placeholder="Add to existing trip">
+    <option disabled selected>Add to trip</option>
+    {{#each ../currentUser.trips}}
+    <form action="/trips/{{this}}/addActivity/{{../currentUser._id}}" method="post">
+      <div>
+        <option value="{{this}}"><button type="submit">{{this}}</button></option>
+      </div>
+    </form>
+    
+    {{/each}}
+  </select>
+
   <br>
   <hr>
   <br>
   {{/each}}
-  {{!-- <script>
+  {{!--
+  <script>
     button = docuemnt.querySelectorAll(.favorites)
 
-    button.addEvenetListener('click', (event)=> {
+    button.addEvenetListener('click', (event) => {
       event.target.id
       axios.post('/favourites/add...')
-      .then(()=> {
-        button.classList.toggle('')
-      })
+        .then(() => {
+          button.classList.toggle('')
+        })
     })
 
   </script> --}}
