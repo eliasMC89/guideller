@@ -72,15 +72,22 @@ router.get('/search-near', authMiddleware.requireUser, async (req, res, next) =>
 });
 
 router.get('/result', (req, res, next) => {
-  const { country } = req.query;
-  // if (country && city && type && maxPrice){
+  const queryCond = {};
+  if (req.query.country) {
+    queryCond.country = req.query.country;
+  }
+  if (req.query.city) {
+    queryCond.city = req.query.city;
+  }
+  if (req.query.type) {
+    queryCond.type = req.query.type;
+  }
+  if (req.query.maxPrice) {
+    queryCond.price = { '$lte': req.query.maxPrice };
+  }
 
-  // }
-  // city, type, maxPrice
-
-  Activity.find({ 'country': country })
+  Activity.find(queryCond)
     .then((result) => {
-      console.log(result);
       res.render('activities/search-list-activities', { result });
     })
     .catch(next);
