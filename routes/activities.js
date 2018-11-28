@@ -12,15 +12,6 @@ const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
 const geocodingClient = mbxGeocoding({ accessToken: process.env.MAPBOX_API_KEY });
 const { getDistanceFromLatLonInKm } = require('../helpers/calcDistanceCoords');
 
-// // /* GET activities page. */
-// router.get('/', (req, res, next) => {
-//   Activity.find()
-//     .then((result) => {
-//       res.render('activities/list-activities', { activities: result });
-//     })
-//     .catch(next);
-// });
-
 router.get('/', authMiddleware.requireUser, async (req, res, next) => {
   // const { _id } = req.session.currentUser;
   // User.findById(_id);
@@ -30,35 +21,32 @@ router.get('/', authMiddleware.requireUser, async (req, res, next) => {
 
     const citiesCoordinates = {};
     for (let i = 0; i < activities.length; i++) {
-      if (!citiesCoordinates[activities[i].location]) {
+      if (!citiesCoordinates[activities[i].city]) {
         const queryObj = {
-          query: activities[i].location, // Barcelona = query
+          query: activities[i].city, // Barcelona = query
           limit: 2
         };
         const cityCoordinates = await geocodingClient.forwardGeocode(queryObj).send();
-        // console.log('down here coordinates');
-        // console.log(cityCoordinates.body);
-        // console.log('up here coordinates ');
-        citiesCoordinates[activities[i].location] = cityCoordinates.body.features[0].center;
+        citiesCoordinates[activities[i].city] = cityCoordinates.body.features[0].center;
       }
     }
     activities.sort((a, b) => {
       let result = -1;
-      if (a.location !== 'Barcelona' && b.location === 'Barcelona') {
+      if (a.city !== 'Barcelona' && b.city === 'Barcelona') {
         result = 1;
-      } else if (a.location !== 'Barcelona' && b.location !== 'Barcelona') {
-        const cityADistanceBarcelona = getDistanceFromLatLonInKm(citiesCoordinates['Barcelona'][0], citiesCoordinates['Barcelona'][1], citiesCoordinates[a.location][0], citiesCoordinates[a.location][1]);
-        const cityBDistanceBarcelona = getDistanceFromLatLonInKm(citiesCoordinates['Barcelona'][0], citiesCoordinates['Barcelona'][1], citiesCoordinates[b.location][0], citiesCoordinates[b.location][1]);
+      } else if (a.city !== 'Barcelona' && b.city !== 'Barcelona') {
+        const cityADistanceBarcelona = getDistanceFromLatLonInKm(citiesCoordinates['Barcelona'][0], citiesCoordinates['Barcelona'][1], citiesCoordinates[a.city][0], citiesCoordinates[a.city][1]);
+        const cityBDistanceBarcelona = getDistanceFromLatLonInKm(citiesCoordinates['Barcelona'][0], citiesCoordinates['Barcelona'][1], citiesCoordinates[b.city][0], citiesCoordinates[b.city][1]);
 
         if (cityADistanceBarcelona > cityBDistanceBarcelona) {
-          console.log(a.location, cityADistanceBarcelona);
-          console.log(b.location, cityBDistanceBarcelona);
+          console.log(a.city, cityADistanceBarcelona);
+          console.log(b.city, cityBDistanceBarcelona);
           console.log('swap');
 
           result = 1;
         } else {
-          console.log(a.location, cityADistanceBarcelona);
-          console.log(b.location, cityBDistanceBarcelona);
+          console.log(a.city, cityADistanceBarcelona);
+          console.log(b.city, cityBDistanceBarcelona);
           console.log('dont swap');
           result = -1;
         }
@@ -86,9 +74,9 @@ router.get('/create', authMiddleware.requireUser, (req, res, next) => {
 // Receive the acitivity post
 router.post('/', authMiddleware.requireUser, formMiddleware.requireCreateActivityFields, (req, res, next) => {
   // to see the information from the post, we need the body of the request
-  const { name, city, country, location, type, price, photoURL, reservation, description } = req.body;
+  const { name, country, city, address, type, price, photoURL, reservation, description } = req.body;
   const { _id } = req.session.currentUser;
-  const newActivity = new Activity({ name, city, country, location, type, price, photoURL, reservation, description, owner: _id });
+  const newActivity = new Activity({ name, country, city, address, type, price, photoURL, reservation, description, owner: _id });
   const updateUserPromise = User.findByIdAndUpdate(_id, { $push: { activities: newActivity._id } });
   const saveActivityPromise = newActivity.save();
 
@@ -132,19 +120,6 @@ router.post('/:activityId/delete', authMiddleware.requireUser, activityMiddlewar
     })
     .catch(next);
 });
-
-// >>>>>>>>>>>>>!!!!cambiar a my-profile
-// router.get('/my', authMiddleware.requireUser, (req, res, next) => {
-//   const { _id } = req.session.currentUser;
-//   User.findById(_id)
-//     .populate('activities')
-//     .populate('trips')
-//     .populate('favourites')
-//     .then((user) => {
-//       res.render('activities/my-activities', { user });
-//     })
-//     .catch(next);
-// });
 
 router.get('/:activityId/details', authMiddleware.requireUser, (req, res, next) => {
   const activityId = req.params.activityId;

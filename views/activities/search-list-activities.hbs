@@ -1,9 +1,9 @@
 <section class="list-activities activities">
   <h1 class="list-activities-title">
-    Explore Activities
+    Search results
   </h1>
 
-  {{#each activities}}
+  {{#each result}}
   <h2 class="activity-text activity-title">{{this.name}}</h2>
   <p class="activity-text activity-location">{{this.city}}</p>
   <a href="/activities/{{this._id}}/details"><img src="../images/ironhack.png" alt="" class="activity-img"></a>
@@ -22,17 +22,4 @@
   <hr>
   <br>
   {{/each}}
-  {{!-- <script>
-    button = docuemnt.querySelectorAll(.favorites)
-
-    button.addEvenetListener('click', (event)=> {
-      event.target.id
-      axios.post('/favourites/add...')
-      .then(()=> {
-        button.classList.toggle('')
-      })
-    })
-
-  </script> --}}
-
 </section>

@@ -22,8 +22,8 @@ formMiddleware.requireSignUpFields = (req, res, next) => {
 };
 
 formMiddleware.requireCreateActivityFields = (req, res, next) => {
-  const { name, city, country, location, type, price } = req.body;
-  if (!name || !city || !country || !location || !type || !price) {
+  const { name, country, city, address, type, price } = req.body;
+  if (!name || !country || !city || !type || !price) {
     req.flash('validationError', 'Fill in the required fields!');
     return res.redirect('/activities/create');
   }
@@ -31,9 +31,9 @@ formMiddleware.requireCreateActivityFields = (req, res, next) => {
 };
 
 formMiddleware.requireEditActivityFields = (req, res, next) => {
-  const { name, city, country, location, type, price } = req.body;
+  const { name, country, city, address, type, price } = req.body;
   // const activityId = req.params.activityId;
-  if (!name || !city || !country || !location || !type || !price) {
+  if (!name || !country || !city || !type || !price) {
     req.flash('validationError', 'Fill in the required fields!');
     return res.redirect(`/activities${req.path}`);
   }

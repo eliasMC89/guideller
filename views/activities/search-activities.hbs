@@ -1,0 +1,44 @@
+<section class="create-edit-activity">
+<form method="GET" action="/search/result" class="activity-form">
+  <div class="activity-container">
+    <h1 class="header-create">Search activity</h1>
+
+    <div class="field">
+      <input type="text" class="activity-input" name="country" placeholder="Country" />
+    </div>
+
+    {{!-- <div class="field">
+      <input type="text" class="activity-input" name="city" placeholder="City" />
+    </div>
+
+    <div class="field">
+      <select name="type" class="activity-input" placeholder="Type of activity">
+        <option disabled selected>Type of activity</option>
+        <option >Social</option>
+        <option >Nature</option>
+         <option >Museums</option>
+        <option >Guides</option>
+        <option >Restaurants</option>
+        <option >Sport</option>
+        <option >Shopping</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <input type="number" class="activity-input" name="maxPrice" placeholder="Maximum price" />
+    </div> --}}
+
+    <div class="field submit create">
+      <button type="submit">Search</button>
+    </div>
+
+  </div>
+</form>
+
+{{!-- {{#if messages.length}}
+    <h3>{{messages}}</h3>
+{{/if}} --}}
+</section>
+
+
+
