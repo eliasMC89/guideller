@@ -20,7 +20,7 @@ body {
 }
 
 a {
-  text-decoration: none;
+  /* text-decoration: none; */
   color: inherit;
 }
 
@@ -62,6 +62,14 @@ h1 {
   align-items: center;
 }
 
+.welcome-title {
+  margin: 0px;
+}
+
+.profile-title {
+  font-size: 26px;
+}
+
 .main-title {
   font-size: 40px;
 }
@@ -99,7 +107,6 @@ footer {
   justify-content: space-around;
 }
 
-
 section {
   padding-top: 90px;
   padding-bottom: 90px;
@@ -122,12 +129,12 @@ section {
   text-align: center;
 }
 
-.signup-container {
+.signup {
   margin: 0px;
   text-align: center;
 }
 
-.login-container {
+.welcome {
   padding-top: 80px;
   margin: 0px;
   text-align: center;
@@ -160,11 +167,10 @@ input:focus {
 }
 
 .login-signup-form {
-  /*position: relative;*/
   margin: 5% auto;
   margin-top: 45px;
-  width: 700px;
-  height: 900px;
+  height: 330px;
+  width: 90%;
   background: #FFF;
   border-radius: 2px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
@@ -222,13 +228,11 @@ input:focus {
   width: 100%;
 }
 
-.login-signup-form {
-  height: 240px;
-  width: 300px;
-}
+
 
 .form-title {
   font-size: 25px;
+  margin-bottom: 40px;
 }
 
 select {
@@ -247,10 +251,17 @@ select {
 
 button:not(.favourite-btn) {
   font-size: 25px;
+  padding: 5px 30px;
+  border-radius: 15px;
+  background-color: rgb(190, 224, 217);
+  /* border-style: none; */
+  /* background: white; */
+  color: white;
+  /* font-size: 25px;
   padding: 0px 30px;
   border-style: none;
   background: white;
-  color: rgb(190, 224, 217);
+  color: rgb(190, 224, 217); */
 }
 
 button:not(.favourite-btn):hover {
@@ -358,7 +369,10 @@ h2 {
   margin-top: 7px;
 }
 
-
+.my-profile-title {
+  padding-top: 80px;
+  text-align: center;
+}
 
 /* Provisional
 .create-trip-btn {
@@ -396,6 +410,10 @@ h2 {
   margin: 20px;
   border-radius: 15px;
   border: 2px solid rgb(157, 224, 209);
+}
+
+a.create-opt{
+  text-decoration: none;
 }
 
 .create-opt:hover {
@@ -458,8 +476,8 @@ h2 {
 }
 
 .list-title {
-  font-size: 25px;
-  text-decoration: underline;
+  font-size: 22px;
+  /* text-decoration: underline; */
 }
 
 .list-activities-title {

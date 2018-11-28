@@ -1,7 +1,11 @@
-<section class="signup-container">
+<section class="signup">
+
+{{#if messages.length}}
+    <h3 class="error-msg">{{messages}}</h3>
+{{/if}}
 <form method="POST" action="/auth/signup" class="login-signup-form">
   <div class="login-signup-container">
-    <h1 class="form-title">Sign Up</h1>
+    <h2 class="form-title">Sign Up</h2>
     <div class="field">
       <input type="text" name="username" placeholder="Username" class="login-signup-input" />
     </div>
@@ -13,11 +17,12 @@
     <div class="field submit">
       <button type="submit">Sign up</button>
     </div>
-    <p>Already have an account? Log in <a href="/"><b>here</b></a></p>
+    <p>Already have an account?</p>
+    </div>
+    <div>
+      <a href="/"><b>Log in</b></a>
     </div>
 </form>
 
-{{#if messages.length}}
-  <h3>{{messages}}</h3>
-{{/if}}
+
 </section>
