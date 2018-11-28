@@ -10,14 +10,16 @@
 
 <body>
   <nav class="nav-container">
-    <input type="button" value="<" onclick="window.history.back()" class="back-btn" /> 
-    {{!-- <a href="/activities"><div class="nav-item logo">GUIDELLER</div></a> --}}
-    <img src="/images/world.svg" alt="" class="logo-img">
-    {{#unless currentUser}}
-    <!--<div class="nav-item profile"><a href="/auth/signup">Sign Up</a></div>
-    <div class="nav-item profile"><a href="/auth/login">Log In</a></div>-->
-    {{else}}
     
+    
+    {{#unless currentUser}}
+    <div class="welcome-navbar">
+      <p class="logo-title">GUIDELLER</p>
+      <img src="/images/world.svg" alt="" class="logo-img-notlog">
+    </div>
+    {{else}}
+    <input type="button" value="<" onclick="window.history.back()" class="back-btn" /> 
+    <img src="/images/world.svg" alt="" class="logo-img">
     <div class="log-out profile">
       <div class="user-info"><p style="margin-bottom: 2px;"><b>{{currentUser.username}}</b></p></div>
     </div>
