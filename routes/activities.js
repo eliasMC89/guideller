@@ -1,5 +1,6 @@
 'use strict';
 
+const dotenv = require('dotenv').config();
 const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
@@ -8,7 +9,7 @@ const authMiddleware = require('../middlewares/authMiddleware'); // Middleware
 const formMiddleware = require('../middlewares/formMiddleware');
 const activityMiddleware = require('../middlewares/activityMiddleware');
 const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
-const geocodingClient = mbxGeocoding({ accessToken: 'pk.eyJ1IjoianFiYWVuYSIsImEiOiJjam92YTEwZ3kwMzJqM3FwY3g2bzQ3OHV3In0.u-dT5_6jWWZQ7F8etEMzfA' });
+const geocodingClient = mbxGeocoding({ accessToken: process.env.MAPBOX_API_KEY });
 const { getDistanceFromLatLonInKm } = require('../helpers/calcDistanceCoords');
 
 // // /* GET activities page. */
@@ -35,9 +36,15 @@ router.get('/', authMiddleware.requireUser, async (req, res, next) => {
           limit: 2
         };
         const cityCoordinates = await geocodingClient.forwardGeocode(queryObj).send();
+<<<<<<< HEAD:routes/activities.js
         console.log('down here coordinates');
         console.log(cityCoordinates.body.features[0]);
         console.log('up here coordinates');
+=======
+        // console.log('down here coordinates');
+        // console.log(cityCoordinates.body);
+        // console.log('up here coordinates ');
+>>>>>>> 650546f02fcb76c6ef55347df9b05cc4eee13db5:routes/activities.js
         citiesCoordinates[activities[i].location] = cityCoordinates.body.features[0].center;
       }
     }

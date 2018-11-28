@@ -32,7 +32,6 @@ a {
   background-color: rgb(190, 224, 217);
   margin-left: auto;
   padding-right: 15px;
-  padding-left: 15px;
   align-items: center;
   position: fixed;
   width: 100%;
@@ -43,7 +42,7 @@ a {
   font-size: 20px;
 }
 .logo-img {
-  padding-left: 10px;
+  margin: 0 auto;
   width: 50px;
 }
 
