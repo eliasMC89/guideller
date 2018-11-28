@@ -11,10 +11,11 @@
       <p class="activity-text">{{this.type}}</p>
       <p class="activity-text">{{this.price}}€</p>
     </div>
+
     {{#if this.addedFavourite}}
     <div>
-      <a type="submit" class="favourite-btn add-favourite yellow-star" activity={{this.id}}><img src="../../images/star.svg" alt=""
-          class="activity-bookmark details"></a>
+      <a type="submit" class="favourite-btn add-favourite yellow-star" activity={{this.id}}><img src="../../images/star.svg"
+          alt="" class="activity-bookmark details"></a>
     </div>
     {{else}}
     <div>
@@ -23,20 +24,13 @@
     </div>
     {{/if}}
   </div>
-  {{#each ../user.trips}}
-  <form action="/trips/{{this._id}}/addActivity/{{../this._id}}" method="post">
-    <div>
-      <button type="submit">{{this.name}}</button>
-    </div>
-    <!--<select name="type" class="add-to-trip" placeholder="Add to existing trip">
-      <option disabled selected>Add to trip</option>
-      <option class="add-trip-value" value="{{this}}">{{this}}</option>
-    </select>-->
-  </form>
-  {{/each}}
-
-
-
+  {{!-- <select name="" id="">
+    {{#each ../user.trips}}
+    <option value="">
+      <button type="submit" action="/trips/{{this._id}}/addActivity/{{../this._id}}" method="post">{{this.name}}</button>
+    </option>
+      {{/each}}
+  </select> --}}
   <br>
   <hr>
   <br>

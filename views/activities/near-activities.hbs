@@ -12,14 +12,24 @@
       <p class="activity-text">{{this.type}}</p>
       <p class="activity-text">{{this.price}}€</p>
     </div>
-    <form action="/favourites/addDeleteFavourite/{{this._id}}" method="post">
-      <div>
-        <button type="submit" class="favourite-btn add-favourite" id={{this.id}}><img src="../../images/star.svg" alt="" class="activity-bookmark details"></button>
-      </div>
-    </form>
+    {{#if this.addedFavourite}}
+    <div>
+      <a type="submit" class="favourite-btn add-favourite yellow-star" activity={{this.id}}><img src="../../images/star.svg"
+          alt="" class="activity-bookmark details"></a>
+    </div>
+    {{else}}
+    <div>
+      <a type="submit" class="favourite-btn add-favourite" activity={{this.id}}><img src="../../images/star.svg" alt=""
+          class="activity-bookmark details"></a>
+    </div>
+    {{/if}}
+  </div>
   </div>
   <br>
   <hr>
   <br>
   {{/each}}
 </section>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="/javascript/favourites.js"></script>
+  <script src="/javascript/addToTrip.js"></script>

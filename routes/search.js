@@ -4,6 +4,7 @@ const express = require('express');
 const router = express.Router();
 const authMiddleware = require('../middlewares/authMiddleware'); // Middleware
 const Activity = require('../models/activity');
+const User = require('../models/user');
 const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
 const geocodingClient = mbxGeocoding({ accessToken: process.env.MAPBOX_API_KEY });
 const { getDistanceFromLatLonInKm } = require('../helpers/calcDistanceCoords');
@@ -18,6 +19,18 @@ router.get('/search-near', authMiddleware.requireUser, async (req, res, next) =>
 
   try {
     const activities = await Activity.find();
+    const { _id } = req.session.currentUser;
+    const user = await User.findById(_id).populate('trips', 'favourites');
+    const userFavourites = user.favourites;
+
+    activities.map((activity) => {
+      activity.addedFavourite = false;
+      if (userFavourites.indexOf(activity._id) >= 0) {
+        console.log('hola');
+        activity.addedFavourite = true;
+      }
+    });
+
     const activitiesCopy = activities;
 
     const citiesCoordinates = {};
@@ -91,8 +104,26 @@ router.get('/result', (req, res, next) => {
   }
 
   Activity.find(queryCond)
-    .then((result) => {
-      res.render('activities/search-list-activities', { result });
+    .then((activities) => {
+      const { _id } = req.session.currentUser;
+      User.findById(_id)
+        .populate('trips')
+      // .populate('favourites')
+        .then((user) => {
+          console.log(user);
+          const userFavourites = user.favourites;
+          activities.map((activity) => {
+            activity.addedFavourite = false;
+            console.log(activity._id);
+            console.log(userFavourites);
+            if (userFavourites.indexOf(activity._id) >= 0) {
+              console.log('hola');
+              activity.addedFavourite = true;
+            }
+          });
+          res.render('activities/list-activities', { activities, user });
+        })
+        .catch(next);
     })
     .catch(next);
 });
