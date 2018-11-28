@@ -18,6 +18,7 @@ const activityRouter = require('./routes/activities');
 const tripRouter = require('./routes/trips');
 const favouritesRouter = require('./routes/favourites');
 const profileRouter = require('./routes/profile');
+const searchRouter = require('./routes/search');
 
 const app = express();
 
@@ -67,6 +68,7 @@ app.use('/activities', activityRouter);
 app.use('/trips', tripRouter);
 app.use('/favourites', favouritesRouter);
 app.use('/profile', profileRouter);
+app.use('/search', searchRouter);
 
 // -- 404 and error handler
 

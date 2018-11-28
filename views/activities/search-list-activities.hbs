@@ -1,0 +1,25 @@
+<section class="list-activities activities">
+  <h1 class="list-activities-title">
+    Search results
+  </h1>
+
+  {{#each result}}
+  <h2 class="activity-text activity-title">{{this.name}}</h2>
+  <p class="activity-text activity-location">{{this.city}}</p>
+  <a href="/activities/{{this._id}}/details"><img src="../images/ironhack.png" alt="" class="activity-img"></a>
+  <div class="activity-info-container">
+    <div class="activity-text-container">
+      <p class="activity-text">{{this.type}}</p>
+      <p class="activity-text">{{this.price}}€</p>
+    </div>
+    <form action="/favourites/addDeleteFavourite/{{this._id}}" method="post">
+      <div>
+        <button type="submit" class="favourite-btn add-favourite" id={{this.id}}><img src="../../images/star.svg" alt="" class="activity-bookmark details"></button>
+      </div>
+    </form>
+  </div>
+  <br>
+  <hr>
+  <br>
+  {{/each}}
+</section>

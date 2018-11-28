@@ -529,3 +529,7 @@ option {
   background-color: yellow;
 }
 
+.find-near-btn {
+  position: absolute;
+  top: 100px;
+}

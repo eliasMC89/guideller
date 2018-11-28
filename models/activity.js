@@ -9,17 +9,16 @@ const activitySchema = new Schema({
     type: String,
     required: true
   },
-  city: {
-    type: String,
-    required: true
-  },
   country: {
     type: String,
     required: true
   },
-  location: {
+  city: {
     type: String,
     required: true
+  },
+  address: {
+    type: String
   },
   type: {
     type: String,
