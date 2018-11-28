@@ -3,6 +3,16 @@
     Explore Activities
   </h1>
 
+  <form action="/activities" method="GET">
+    <input type="hidden" name="latitude" class="latitude">
+    <input type="hidden" name="longitude" class="longitude">
+    <button type="submit"> Find near </button>
+  </form>
+
+  <p id="demo"></p>
+
+  <script src="/javascript/geolocation.js"></script>
+
   {{#each activities}}
   <h2 class="activity-text activity-title">{{this.name}}</h2>
   <p class="activity-text activity-location">{{this.city}}</p>

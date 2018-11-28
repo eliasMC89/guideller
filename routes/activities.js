@@ -13,13 +13,14 @@ const geocodingClient = mbxGeocoding({ accessToken: process.env.MAPBOX_API_KEY }
 const { getDistanceFromLatLonInKm } = require('../helpers/calcDistanceCoords');
 
 router.get('/', authMiddleware.requireUser, async (req, res, next) => {
-  // const { _id } = req.session.currentUser;
-  // User.findById(_id);
+  let longitude = 0;
+  let latitude = 0;
 
   try {
     const activities = await Activity.find();
 
     const citiesCoordinates = {};
+
     for (let i = 0; i < activities.length; i++) {
       if (!citiesCoordinates[activities[i].city]) {
         const queryObj = {
@@ -28,36 +29,95 @@ router.get('/', authMiddleware.requireUser, async (req, res, next) => {
         };
         const cityCoordinates = await geocodingClient.forwardGeocode(queryObj).send();
         citiesCoordinates[activities[i].city] = cityCoordinates.body.features[0].center;
+        console.log(cityCoordinates.body.features[0]);
       }
     }
+    if (!req.query.longitude /* && !req.query.city */) {
+      longitude = citiesCoordinates['Paris'][1];
+      latitude = citiesCoordinates['Paris'][0];
+    } else {
+      longitude = req.query.latitude;
+      latitude = req.query.longitude;
+    }
+
+    const coords = [parseFloat(latitude), parseFloat(longitude)];
+    const reverseQueryObj = {
+      query: coords, // Barcelona = query
+      limit: 1
+    };
+
+    const userLocation = await geocodingClient.reverseGeocode(reverseQueryObj).send();
+    const userLocationName = userLocation.body.features[0].context[1].text;
+
     activities.sort((a, b) => {
       let result = -1;
-      if (a.city !== 'Barcelona' && b.city === 'Barcelona') {
+      if (a.city !== userLocationName && b.city === userLocationName) {
         result = 1;
-      } else if (a.city !== 'Barcelona' && b.city !== 'Barcelona') {
-        const cityADistanceBarcelona = getDistanceFromLatLonInKm(citiesCoordinates['Barcelona'][0], citiesCoordinates['Barcelona'][1], citiesCoordinates[a.city][0], citiesCoordinates[a.city][1]);
-        const cityBDistanceBarcelona = getDistanceFromLatLonInKm(citiesCoordinates['Barcelona'][0], citiesCoordinates['Barcelona'][1], citiesCoordinates[b.city][0], citiesCoordinates[b.city][1]);
+      } else if (a.city !== userLocationName && b.city !== userLocationName) {
+        const cityADistanceUser = getDistanceFromLatLonInKm(longitude, latitude, citiesCoordinates[a.city][0], citiesCoordinates[a.city][1]);
+        const cityBDistanceUser = getDistanceFromLatLonInKm(longitude, latitude, citiesCoordinates[b.city][0], citiesCoordinates[b.city][1]);
 
-        if (cityADistanceBarcelona > cityBDistanceBarcelona) {
-          console.log(a.city, cityADistanceBarcelona);
-          console.log(b.city, cityBDistanceBarcelona);
-          console.log('swap');
-
+        if (cityADistanceUser > cityBDistanceUser) {
           result = 1;
         } else {
-          console.log(a.city, cityADistanceBarcelona);
-          console.log(b.city, cityBDistanceBarcelona);
-          console.log('dont swap');
           result = -1;
         }
       }
       return result;
     });
+    console.log(activities);
     res.render('activities/list-activities', { activities });
   } catch (error) {
     next(error);
   }
 });
+
+// router.get('/', authMiddleware.requireUser, async (req, res, next) => {
+//   // const { _id } = req.session.currentUser;
+//   // User.findById(_id);
+
+//   try {
+//     const activities = await Activity.find();
+
+//     const citiesCoordinates = {};
+//     for (let i = 0; i < activities.length; i++) {
+//       if (!citiesCoordinates[activities[i].city]) {
+//         const queryObj = {
+//           query: activities[i].city, // Barcelona = query
+//           limit: 2
+//         };
+//         const cityCoordinates = await geocodingClient.forwardGeocode(queryObj).send();
+//         citiesCoordinates[activities[i].city] = cityCoordinates.body.features[0].center;
+//       }
+//     }
+//     activities.sort((a, b) => {
+//       let result = -1;
+//       if (a.city !== 'Barcelona' && b.city === 'Barcelona') {
+//         result = 1;
+//       } else if (a.city !== 'Barcelona' && b.city !== 'Barcelona') {
+//         const cityADistanceBarcelona = getDistanceFromLatLonInKm(citiesCoordinates['Barcelona'][0], citiesCoordinates['Barcelona'][1], citiesCoordinates[a.city][0], citiesCoordinates[a.city][1]);
+//         const cityBDistanceBarcelona = getDistanceFromLatLonInKm(citiesCoordinates['Barcelona'][0], citiesCoordinates['Barcelona'][1], citiesCoordinates[b.city][0], citiesCoordinates[b.city][1]);
+
+//         if (cityADistanceBarcelona > cityBDistanceBarcelona) {
+//           console.log(a.city, cityADistanceBarcelona);
+//           console.log(b.city, cityBDistanceBarcelona);
+//           console.log('swap');
+
+//           result = 1;
+//         } else {
+//           console.log(a.city, cityADistanceBarcelona);
+//           console.log(b.city, cityBDistanceBarcelona);
+//           console.log('dont swap');
+//           result = -1;
+//         }
+//       }
+//       return result;
+//     });
+//     res.render('activities/list-activities', { activities });
+//   } catch (error) {
+//     next(error);
+//   }
+// });
 
 router.get('/create-options', authMiddleware.requireUser, (req, res, next) => {
   res.render('activities/create-options', { title: 'Activities' });
