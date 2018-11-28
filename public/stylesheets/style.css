@@ -525,3 +525,7 @@ option {
   background-color: inherit;
 }
 
+.find-near-btn {
+  position: absolute;
+  top: 100px;
+}

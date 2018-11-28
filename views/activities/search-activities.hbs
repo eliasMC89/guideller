@@ -1,7 +1,19 @@
 <section class="create-edit-activity">
+
+<form action="/search/search-near" method="GET">
+    <input type="hidden" name="latitude" class="latitude">
+    <input type="hidden" name="longitude" class="longitude">
+    <button type="submit" class="find-near-btn"> Find near </button>
+  </form>
+
+  <p id="demo"></p>
+
+  <script src="/javascript/geolocation.js"></script>
 <form method="GET" action="/search/result" class="activity-form">
   <div class="activity-container">
     <h1 class="header-create">Search activity</h1>
+
+    
 
     <div class="field">
       <input type="text" class="activity-input" name="country" placeholder="Country" />
