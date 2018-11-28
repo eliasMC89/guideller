@@ -21,7 +21,7 @@ const profileRouter = require('./routes/profile');
 
 const app = express();
 
-mongoose.connect('mongodb://localhost/guideller', {
+mongoose.connect(process.env.MONGODB_URI, {
   keepAlive: true,
   useNewUrlParser: true,
   reconnectTries: Number.MAX_VALUE

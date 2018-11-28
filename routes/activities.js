@@ -9,7 +9,7 @@ const authMiddleware = require('../middlewares/authMiddleware'); // Middleware
 const formMiddleware = require('../middlewares/formMiddleware');
 const activityMiddleware = require('../middlewares/activityMiddleware');
 const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
-const geocodingClient = mbxGeocoding({ accessToken: 'pk.eyJ1IjoianFiYWVuYSIsImEiOiJjam92YTEwZ3kwMzJqM3FwY3g2bzQ3OHV3In0.u-dT5_6jWWZQ7F8etEMzfA' });
+const geocodingClient = mbxGeocoding({ accessToken: process.env.MAPBOX_API_KEY });
 const { getDistanceFromLatLonInKm } = require('../helpers/calcDistanceCoords');
 
 // // /* GET activities page. */
