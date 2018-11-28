@@ -31,9 +31,9 @@ authMiddleware.checkUserAvailable = (req, res, next) => {
         req.flash('validationError', 'User already exists!');
         return res.redirect('/auth/signup');
       }
+      next();
     })
     .catch(next);
-  next();
 };
 
 // check if user exist for login
@@ -45,9 +45,9 @@ authMiddleware.checkUserExists = (req, res, next) => {
         req.flash('validationError', "User doesn't exist!");
         return res.redirect('/');
       }
+      next();
     })
     .catch(next);
-  next();
 };
 
 // check user password
@@ -59,9 +59,9 @@ authMiddleware.checkPassword = (req, res, next) => {
         req.flash('validationError', 'Wrong password!');
         res.redirect('/');
       }
+      next();
     })
     .catch(next);
-  next();
 };
 
 module.exports = authMiddleware;
