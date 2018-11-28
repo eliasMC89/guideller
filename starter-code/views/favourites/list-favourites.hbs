@@ -1,0 +1,27 @@
+<section class="list-activities activities">
+  <h1 class="list-activities-title">
+    My favourite activities
+  </h1>
+
+  {{#each user.favourites}}
+    <h2 class="activity-text activity-title">{{this.name}}</h2>
+    <p class="activity-text activity-location">{{this.location}}</p>
+    <a href="/activities/{{this._id}}/details"><img src="../images/ironhack.png" alt="" class="activity-img"></a>
+    <div class="activity-info-container">
+      <div class="activity-text-container">
+        <p class="activity-text">{{this.type}}</p>
+        <p class="activity-text">{{this.price}}€</p>
+      </div>
+      <form action="/favourites/{{../currentUser._id}}/deleteFavourite/{{this._id}}" method="post">
+      <div>
+        <button type="submit" class="remove-favourites">X</button>
+      </div>
+    </form>
+    </div>
+  <br>
+  <hr>
+  <br>
+
+  {{/each}}
+
+</section>

@@ -1,0 +1,35 @@
+<section class="my-activities activities">
+  <div class="profile-container">
+    <div class="profile-list">
+      <h1 class="list-title">
+        My trips
+      </h1>
+    </div>
+    <div class="trips-list">
+      {{#each user.trips}}
+      <div class="each-trip activities">
+        <p class="activity-text activity-title">{{this.name}}</p>
+        <p class="activity-text activity-location">{{this.location}}</p>
+        <p class="activity-text">{{this.budget}}€</p>
+        <img src="../images/ironhack.png" alt="" class="activity-img">
+        <button class="btn-trip"><a href="/trips/{{this._id}}/addActivity">Add activities</a></button>
+        <button class="btn-trip"><a href="/trips/{{this._id}}/edit">Edit</a></button>
+        <form action="/trips/{{this._id}}/delete" method="post">
+          <div>
+            <button class="btn-trip" type="submit">Delete</button>
+          </div>
+        </form>
+        {{!--
+        {{#each activities}}
+        <h2>{{this.name}}</h2>
+        <p>{{this.location}}</p>
+        {{/each}}
+        --}}
+        <br>
+        <hr>
+        <br>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+</section>

@@ -6,6 +6,7 @@ html {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-size: 20px;
 }
 *, *:before, *:after {
   box-sizing: inherit;
@@ -14,30 +15,49 @@ html {
 
 body {
   margin: 0;
-  padding: 0; 
+  padding: 0;
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
 /* ---- nav ---- */ 
 
 .nav-container {
   display: flex;
-  height: 60px;
-  background-color: rgb(124, 206, 188);
+  height: 70px;
+  background-color: rgb(190, 224, 217);
   margin-left: auto;
   padding-right: 15px;
-  padding-left: 15px;
   align-items: center;
   position: fixed;
   width: 100%;
+  top: 0px;
 }
 
 .logo {
   font-size: 20px;
 }
+.logo-img {
+  margin: 0 auto;
+  width: 50px;
+}
 
+.user-info {
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 16px;
+}
 
-img {
-  width: 30px;
+.logout-btn {
+  border: 1px solid white;
+}
+
+.footer-img {
+  width: 35px;
 }
 
 .profile {
@@ -49,38 +69,27 @@ footer {
   display: flex;
   position: fixed;
   bottom: 0px;
-  height: 60px;
-  background-color: #7ccebc;
+  height: 70px;
+  background-color: rgb(190, 224, 217);
   width: 100%;
   justify-content: space-around;
 }
 
-.footer-img {
-  width: 35px;
-}
 
-.index-main {
-  padding-top: 60px;
-  background-image: url('../images/globe.png');
-  background-size: cover;
-  height: 695px;
-  background-repeat: no-repeat;
-}
-
-.ft-backpack {
-  padding-top: 9px;
+section {
+  padding-top: 90px;
+  padding-bottom: 90px;
 }
 
 .index-text {
   width: 70%;
   margin: auto;
-  padding-top: 130px;
   text-align: center;
   font-size: 20px;
 }
 
 .index-header {
-  font-size: 25px;
+  font-size: 20px;
 }
 
 .not-found-header {
@@ -90,7 +99,6 @@ footer {
 }
 
 .signup-container {
-  padding-top: 80px;
   margin: 0px;
   text-align: center;
 }
@@ -100,3 +108,420 @@ footer {
   margin: 0px;
   text-align: center;
 }
+
+input, select {
+  display: block;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  margin-top: 0px;
+  padding: 4px;
+  border: none;
+  border-bottom: 1px solid #AAA;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 23px;
+  transition: 0.2s ease;
+  height: 25px;
+  width: 310px;
+}
+
+input:focus {
+  border-bottom: 2px solid rgb(190, 224, 217);
+  color: rgb(141, 201, 187);
+  transition: 0.2s ease;
+}
+
+.login-signup-input {
+  width: 200px;
+}
+
+.login-signup-form {
+  /*position: relative;*/
+  margin: 5% auto;
+  margin-top: 140px;
+  width: 700px;
+  height: 900px;
+  background: #FFF;
+  border-radius: 2px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  justify-content: center;
+}
+.trip-form {
+  margin: 5% auto;
+  background: #FFF;
+  border-radius: 2px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  justify-content: center;
+  width: 90%;
+  margin-top: 130px;
+}
+
+.activity-form {
+  /*position: relative;*/
+  margin: 5% auto;
+  margin-top: 78px;
+  width: 90%;
+  height: 90%;
+  background: #FFF;
+  border-radius: 2px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  justify-content: center;
+}
+
+.activity-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  width: 100%;
+  height: 510px;
+}
+
+.trip-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  width: 100%;
+  height: 400px;
+  margin-top: 50px;
+}
+
+.login-signup-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  width: 100%;
+}
+
+.login-signup-form {
+  height: 240px;
+  width: 300px;
+}
+
+.form-title {
+  font-size: 25px;
+}
+
+select {
+  margin-bottom: 1em;
+  padding: .25em;
+  border: 0;
+  border-bottom: 2px solid; 
+  border-radius: 0;
+  background-color: white;
+  color: gray;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 23px;
+  height: 35px;
+}
+
+button:not(.favourite-btn) {
+  font-size: 25px;
+  padding: 0px 30px;
+  border-style: none;
+  background: white;
+  color: rgb(190, 224, 217);
+}
+
+button:not(.favourite-btn):hover {
+  background: rgb(190, 224, 217);
+  color: white;
+}
+
+.favourite-btn {
+  border-style: none;
+  background: inherit;
+}
+
+.activities {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-activity {
+  font-size: 25px;
+  width: 190px;
+  text-align: center;
+  padding: 0;
+}
+
+.btn-trip {
+  margin-top: 12px;
+  font-size: 25px;
+  width: 190px;
+  text-align: center;
+  padding: 0;
+}
+
+.each-activity {
+  justify-content: center;
+  align-items: center;
+}
+
+.each-trip {
+  justify-content: center;
+  align-items: center;
+}
+
+hr {
+  width: 250px;
+  color: gray;
+}
+
+h2 {
+  font-size: 30px;
+}
+
+
+
+.log-out {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.header-create {
+  font-size: 25px;
+}
+
+
+
+
+
+.activity-img {
+  width: 350px;
+}
+.activity-text {
+  margin-bottom: 8px;
+  margin-top: 3px;
+  font-size: 20px;
+}
+.activity-title {
+  margin-bottom: 0;
+  font-weight: bold;
+  font-size: 25px;
+  
+}
+
+.activity-location {
+  margin-top: 5px;
+  font-style: italic;
+}
+
+.activity-info-container {
+  height: 75px;
+  background-color: #edf4f4;
+  width: 350px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.activity-text-container {
+  margin-top: 7px;
+}
+
+
+
+/* Provisional
+.create-trip-btn {
+  position: absolute;
+  top: 100px;
+} */
+
+.create-options {
+  width: 100%;
+  height: 100%;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.create-options-container {
+  /*position: relative;*/
+  margin: 5% auto;
+  width: 310px;
+  height: 400px;
+  background: #FFF;
+  border-radius: 2px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  justify-content: center;
+  display: flex;
+}
+
+.create-opt {
+  font-size: 30px;
+  padding: 20px 30px;
+  border-style: none;
+  background: white;
+  color: rgb(141, 201, 187);
+  text-align: center;
+  margin: 20px;
+  border-radius: 15px;
+  border: 2px solid rgb(157, 224, 209);
+}
+
+.create-opt:hover {
+  background: rgb(157, 224, 209);
+  color: white;
+  padding: 20px 30px;
+  border-radius: 15px;
+  align-items: center;
+}
+
+.option-links-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.options-title {
+  font-size: 30px;
+}
+
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+}
+
+.profile-list {
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+}
+
+.triangle-icon {
+  width: 30px;
+  margin-left: 30px;
+}
+
+.hidden {
+  display: none;
+}
+
+.option-index {
+  padding-top: 0px;
+  /*margin-top: 0px;*/
+  /*margin-right: 50px;*/
+}
+
+.options-form {
+  margin-top: 0px;
+}
+
+.or {
+  font-size: 40px;
+  text-align: center;
+  margin-bottom: 0px;
+  margin-top: 60px;
+}
+
+.list-title {
+  font-size: 25px;
+  text-decoration: underline;
+}
+
+.list-activities-title {
+  font-size: 30px;
+}
+
+.activity-details-container {
+  display: flex;
+  justify-content: center;
+  padding-top: 130px;
+}
+
+.activity-bar {
+  width: 350px;
+  display: flex;
+  flex-direction: row;
+  height: 70px;
+  justify-content: space-between;
+}
+
+.activity-description {
+  font-size: 20px;
+  width: 350px;
+}
+
+.activity-bookmark, .details {
+  width: 35px;
+}
+
+.detail-button-add {
+  text-align: center;
+}
+
+option {
+  font-size: 20px;
+  height: 20px;
+}
+
+
+.signup-container {
+  padding-top: 0px;
+  margin: 0px;
+  text-align: center;
+}
+
+.trip-details-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.trip-details-text {
+  text-align: center;
+}
+
+.create-edit-activity {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.activity-bookmark {
+  padding-top: 15px;
+}
+
+.remove-favourites {
+  height: 50px;
+  margin-top: 10px;
+  border-radius: 50%;
+}
+
+.owner-name {
+  color: rgb(122, 153, 147);
+  text-decoration: underline;
+}
+
+.index-main {
+  padding-top: 65px;
+  padding-bottom: 0px;
+}
+
+.back-btn {
+  font-size: 60px;
+  width: 60px;
+  margin-right: 60px;
+  height: 60px;
+  border: 0;
+  background-color: inherit;
+}
+

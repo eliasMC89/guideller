@@ -1,0 +1,20 @@
+<section class="trip-details-container">
+  <div class="activity-details">
+    <img src="../../images/ironhack.png" alt="" class="activity-img">
+    <div class="activity-bar">
+      <div class="activity-titles-container">
+        <h2 class="activity-text activity-title">{{activity.name}}</h2>
+        <p class="activity-text activity-location">{{activity.location}}</p>
+      </div>
+      <form action="/favourites/addDeleteFavourite/{{activity._id}}" method="post">
+        <div>
+          <button type="submit" class="favourite-btn add-favourite"><img src="../../images/star.svg" alt="" class="activity-bookmark details"></button>
+        </div>
+      </form>
+    </div>
+    <p class="activity-text activity-owner">Created by: <a href="/profile/{{activity.owner._id}}/info"><span class="owner-name">{{activity.owner.username}}</span></a></p>
+    <p class="activity-text">{{activity.type}}</p>
+    <p class="activity-text">{{activity.price}}€</p>
+    <p class="activity-description">{{activity.description}}</p>
+  </div>
+</section>

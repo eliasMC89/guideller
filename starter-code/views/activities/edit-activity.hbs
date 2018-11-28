@@ -1,19 +1,56 @@
+<section class="create-edit-activity">
+  <form method="POST" action="/activities/{{activity._id}}/edit" class="activity-form">
+    <div class="activity-container">
+        <h1 class="header-create">Edit activity</h1>
+      <div class="field">
+        <input type="text" class="activity-input" name="name" value="{{activity.name}}" />
+      </div>
 
-<h1>Edit activity</h1>
+      <div class="field">
+        <input type="text" class="activity-input" name="city" value="{{activity.city}}" />
+      </div>
 
-<form method="POST" action="/activities/{{activity._id}}/edit">
+      <div class="field">
+        <input type="text" class="activity-input" name="country" value="{{activity.country}}" />
+      </div>
 
-  <div class="field" >
-    <label>Name</label>
-    <input type="text" name="name" value="{{activity.name}}"/>
-  </div>
+      <div class="field">
+        <input type="text" class="activity-input" name="location" value="{{activity.location}}" />
+      </div>
 
-  <div class="field" >
-    <label>Location</label>
-    <input type="text" name="location" value="{{activity.location}}"/>
-  </div>
+      <div class="field">
+        <select type="text" name="type" class="activity-input" value="{{activity.type}}">
+          <option disabled selected>Type of activity</option>
+          <option>Social</option>
+          <option>Nature</option>
+          <option>Museums</option>
+          <option>Guides</option>
+          <option>Restaurants</option>
+          <option>Sport</option>
+          <option>Shopping</option>
+        </select>
+      </div>
 
-  <div class="field submit">
-    <button type="submit">Edit</button>
-  </div>
-</form>
+      <div class="field">
+        <input type="number" class="activity-input" name="price" value="{{activity.price}}" />
+      </div>
+
+      <div class="field">
+        <input type="text" class="activity-input" name="reservation" value="{{activity.reservation}}" />
+      </div>
+
+      <div class="field">
+        <input type="text" class="activity-input" name="description" value="{{activity.description}}" />
+      </div>
+
+      <div class="field submit">
+        <button type="submit">Edit</button>
+      </div>
+    </div>
+  </form>
+
+  {{#if messages.length}}
+    <h3>{{messages}}</h3>
+  {{/if}}
+
+</section>

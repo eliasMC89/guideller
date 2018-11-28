@@ -1,0 +1,30 @@
+<section class="list-activities activities">
+  <h1>
+    Add some activities!
+  </h1>
+  {{#each activities}}
+
+    <h2 class="activity-text activity-title">{{this.name}}</h2>
+    <p class="activity-text activity-location">{{this.location}}</p>
+    <img src="../../images/ironhack.png" alt="" class="activity-img">
+    <div class="activity-info-container">
+      <div class="activity-text-container">
+        <p class="activity-text">{{this.type}}</p>
+        <p class="activity-text">{{this.price}}€</p>
+      </div>
+      <img src="../../images/star.svg" alt="" class="activity-bookmark add-favourite">
+    </div>
+        <br>
+    <form action="/trips/{{../tripId}}/addActivity/{{this._id}}" method="post">
+      <div>
+        <button type="submit">Add to trip</button>
+      </div>
+    </form>
+    <br>
+    <hr>
+    <br>
+    
+
+  {{/each}}
+</section>
+    

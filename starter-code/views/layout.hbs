@@ -2,34 +2,35 @@
 <html>
 
 <head>
-  <title>{{title}}</title>
+  <title>Guideller</title>
   <link rel='stylesheet' href='/stylesheets/style.css' />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
 
 <body>
   <nav class="nav-container">
-    <div class="nav-item logo">GUIDELLER</div>
+    <input type="button" value="<" onclick="window.history.back()" class="back-btn" /> 
+    {{!-- <a href="/activities"><div class="nav-item logo">GUIDELLER</div></a> --}}
+    <img src="/images/world.svg" alt="" class="logo-img">
     {{#unless currentUser}}
-    <div class="nav-item profile"><a href="/auth/signup">Sign Up</a></div>
-    <div class="nav-item profile"><a href="/auth/login">Log In</a></div>
+    <!--<div class="nav-item profile"><a href="/auth/signup">Sign Up</a></div>
+    <div class="nav-item profile"><a href="/auth/login">Log In</a></div>-->
     {{else}}
     
     <div class="log-out profile">
-      <div><p>{{currentUser.username}}</p></div>
-      <form action="/auth/logout" method="POST">
-        <button type="submit">Logout</button>
-      </form>
+      <div class="user-info"><p style="margin-bottom: 2px;"><b>{{currentUser.username}}</b></p></div>
     </div>
     {{/unless}}
   </nav>
   {{{body}}}
   {{#if currentUser}}
     <footer>
-      <div><a href="/"><img src="/images/home.svg" alt="" class="footer-img ft-home"></a></div>
+      <a href="/activities"><img src="/images/home.svg" alt="" class="footer-img ft-home"></a>
       <div><a href="/activities"><img src="/images/search.png" alt="" class="footer-img ft-search"></a></div>
-      <div><a href="/activities/create"><img src="/images/add.svg" alt="" class="footer-img ft-add"></a></div>
-      <div><a href="/"><img src="/images/heart.svg" alt="" class="footer-img ft-backpack"></a></div>
-      <div><a href="/activities/my"><img src="/images/profile.svg" alt="" class="footer-img ft-like"></a></div>
+      <div><a href="/activities/create-options"><img src="/images/add.svg" alt="" class="footer-img ft-add"></a></div>
+      <div><a href="/favourites"><img src="/images/star.svg" alt="" class="footer-img ft-backpack"></a></div>
+      <div><a href="/profile"><img src="/images/user.svg" alt="" class="footer-img ft-like"></a></div>
     </footer>
   {{/if}}
 </body>

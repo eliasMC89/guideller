@@ -17,8 +17,15 @@ const userSchema = new Schema({
   activities: [{
     type: ObjectId,
     ref: 'Activity'
+  }],
+  trips: [{
+    type: ObjectId,
+    ref: 'Trip'
+  }],
+  favourites: [{
+    type: ObjectId,
+    ref: 'Activity'
   }]
-
 });
 
 const User = mongoose.model('User', userSchema);

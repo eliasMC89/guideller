@@ -1,0 +1,26 @@
+<section class="create-edit-activity">
+  <form method="POST" action="/trips" class="trip-form">
+    <div class="trip-container">
+      <h1>Create Trip</h1>
+      <div class="field">
+        <input type="text" name="name" placeholder="Name" />
+      </div>
+
+      <div class="field">
+        <input type="text" name="location" placeholder="Location" />
+      </div>
+
+      <div class="field">
+        <input type="number" name="budget" placeholder="Budget" />
+      </div>
+
+      <div class="field submit create">
+        <button type="submit">Create</button>
+      </div>
+    </div>
+  </form>
+
+  {{#if messages.length}}
+    <h3>{{messages}}</h3>
+  {{/if}}
+</section>
