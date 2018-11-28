@@ -65,7 +65,11 @@ router.get('/search-near', authMiddleware.requireUser, async (req, res, next) =>
       }
       return result;
     });
-    res.render('activities/near-activities', { activitiesCopy });
+    const data = {
+      activitiesCopy,
+      userLocationName
+    };
+    res.render('activities/near-activities', data);
   } catch (error) {
     next(error);
   }
