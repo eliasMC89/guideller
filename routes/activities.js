@@ -17,53 +17,6 @@ router.get('/', authMiddleware.requireUser, (req, res, next) => {
     .catch(next);
 });
 
-// router.get('/', authMiddleware.requireUser, async (req, res, next) => {
-//   // const { _id } = req.session.currentUser;
-//   // User.findById(_id);
-
-//   try {
-//     const activities = await Activity.find();
-
-//     const citiesCoordinates = {};
-//     for (let i = 0; i < activities.length; i++) {
-//       if (!citiesCoordinates[activities[i].city]) {
-//         const queryObj = {
-//           query: activities[i].city, // Barcelona = query
-//           limit: 2
-//         };
-//         const cityCoordinates = await geocodingClient.forwardGeocode(queryObj).send();
-//         citiesCoordinates[activities[i].city] = cityCoordinates.body.features[0].center;
-//       }
-//     }
-//     activities.sort((a, b) => {
-//       let result = -1;
-//       if (a.city !== 'Barcelona' && b.city === 'Barcelona') {
-//         result = 1;
-//       } else if (a.city !== 'Barcelona' && b.city !== 'Barcelona') {
-//         const cityADistanceBarcelona = getDistanceFromLatLonInKm(citiesCoordinates['Barcelona'][0], citiesCoordinates['Barcelona'][1], citiesCoordinates[a.city][0], citiesCoordinates[a.city][1]);
-//         const cityBDistanceBarcelona = getDistanceFromLatLonInKm(citiesCoordinates['Barcelona'][0], citiesCoordinates['Barcelona'][1], citiesCoordinates[b.city][0], citiesCoordinates[b.city][1]);
-
-//         if (cityADistanceBarcelona > cityBDistanceBarcelona) {
-//           console.log(a.city, cityADistanceBarcelona);
-//           console.log(b.city, cityBDistanceBarcelona);
-//           console.log('swap');
-
-//           result = 1;
-//         } else {
-//           console.log(a.city, cityADistanceBarcelona);
-//           console.log(b.city, cityBDistanceBarcelona);
-//           console.log('dont swap');
-//           result = -1;
-//         }
-//       }
-//       return result;
-//     });
-//     res.render('activities/list-activities', { activities });
-//   } catch (error) {
-//     next(error);
-//   }
-// });
-
 router.get('/create-options', authMiddleware.requireUser, (req, res, next) => {
   res.render('activities/create-options', { title: 'Activities' });
 });

@@ -46,6 +46,12 @@ a {
   width: 50px;
 }
 
+.logo-img-notlog {
+  width: 50px;
+  margin-left: 10px;
+}
+
+
 .user-info {
   font-size: 18px;
   text-align: center;
