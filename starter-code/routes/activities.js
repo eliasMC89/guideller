@@ -35,6 +35,9 @@ router.get('/', authMiddleware.requireUser, async (req, res, next) => {
           limit: 2
         };
         const cityCoordinates = await geocodingClient.forwardGeocode(queryObj).send();
+        console.log('down here coordinates');
+        console.log(cityCoordinates.body);
+        console.log('up here coordinates ');
         citiesCoordinates[activities[i].location] = cityCoordinates.body.features[0].center;
       }
     }
