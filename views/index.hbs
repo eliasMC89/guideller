@@ -1,6 +1,11 @@
-<section class="login-container">
+<section class="welcome">
 
-  <h1>Welcome to Guideller</h1>
+  <h1 class="welcome-title">Welcome to</h1>
+  <h1 class="welcome-title main-title">Guideller</h1>
+
+  {{#if messages.length}}
+    <h3 class="error-msg">{{messages}}</h3>
+  {{/if}}
   
   <form method="POST" action="/auth/login" class="login-signup-form">
     <div class="login-signup-container">
@@ -16,11 +21,10 @@
     <div class="field submit">
       <button type="submit">Log in</button>
     </div>
-    <p>Not a member? Sign up <a href="/auth/signup"><b>here</b></a></p>
+    <p>Not a member?</p>
     </div>
+    <div><a class="signup-link" href="/auth/signup"><b>Sign up</b></a></div>
   </form>
 
-  {{#if messages.length}}
-    <h3>{{messages}}</h3>
-  {{/if}}
+  
 </section>

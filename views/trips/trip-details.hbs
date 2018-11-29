@@ -1,24 +1,32 @@
 <section class="trip-details-container">
   <div class="trip-details-text">
+    <img src="{{trip.photoURL}}" alt="image" class="activity-img">
     <h1>{{trip.name}}</h1>
     <p>{{trip.location}}</p>
     <p>{{trip.currentBudget}}/{{trip.budget}}</p>
   </div>
-  <br>
+  
   <hr>
-  <br>
+  
   {{#each trip.activities}}
   <h2 class="activity-text activity-title">{{this.name}}</h2>
   <p class="activity-text activity-location">{{this.city}}</p>
-  <a href="/activities/{{this._id}}/details"><img src="../../images/ironhack.png" alt="" class="activity-img"></a>
+  <a href="/activities/{{this._id}}/details"><img src="{{this.photoURL}}" alt="image" class="activity-img"></a>
   <div class="activity-info-container">
     <div class="activity-text-container">
       <p class="activity-text">{{this.type}}</p>
       <p class="activity-text">{{this.price}}€</p>
     </div>
   </div>
-  <br>
+  
+  <form action="/trips/{{../trip._id}}/delete/{{this._id}}" method="post">
+    <div>
+      <button class="btn-activity" type="submit">Delete from trip</button>
+    </div>
+  </form>
+  
   <hr>
-  <br>
+  
+
   {{/each}}
 </section>

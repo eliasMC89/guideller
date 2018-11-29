@@ -1,10 +1,10 @@
 <section class="my-activities activities">
   <div class="profile-container">
-    <p style="font-size: 25px;">Welcome to {{user.username}}'s profile</p>
+    <h1 class="profile-title">Welcome to {{user.username}}'s profile</h1>
     <div class="profile-list">
-      <h1 class="list-title">
+      <h2 class="list-title">
         Activities
-      </h1>
+      </h2>
       <div class="triangle-icon up triangle-act">Show</div>
     </div>
     <div class="activities-list hidden">
@@ -17,10 +17,10 @@
         </form> --}}
         <p class="activity-text activity-title">{{this.name}}</h2>
           <p class="activity-text activity-location">{{this.city}}</p>
-          <a href="/activities/{{this._id}}/details"><img src="../../images/ironhack.png" alt="" class="activity-img"></a>
-          <br>
+          <a href="/activities/{{this._id}}/details"><img src="{{this.photoURL}}" alt="image" class="activity-img"></a>
+          
           <hr>
-          <br>
+          
       </div>
 
       <!--<form action="/trips/{{../tripId}}/addActivity/{{this._id}}" method="post">
@@ -34,9 +34,9 @@
 
 
     <div class="profile-list">
-      <h1 class="list-title">
+      <h2 class="list-title">
         Trips
-      </h1>
+      </h2>
       <div class="triangle-icon up triangle-trip">Show</div>
     </div>
     <div class="trips-list hidden">
@@ -45,18 +45,18 @@
         <p class="activity-text activity-title">{{this.name}}</p>
         <p class="activity-text activity-location">{{this.location}}</p>
         <p class="activity-text">Budget: {{this.currentBudget}}/{{this.budget}}€</p>
-        <a href="/trips/{{this._id}}/details"><img src="../images/ironhack.png" alt="" class="activity-img"></a>
-        <br>
+        <a href="/trips/{{this._id}}/details"><img src="{{this.photoURL}}" alt="image" class="activity-img"></a>
+        
         <hr>
-        <br>
+        
       </div>
       {{/each}}
     </div>
 
     <div class="profile-list">
-      <h1 class="list-title">
+      <h2 class="list-title">
         Favourites
-      </h1>
+      </h2>
       <div class="triangle-icon up triangle-fav">Show</div>
     </div>
     <div class="favs-list hidden">
@@ -64,11 +64,11 @@
       <div class="each-trip activities">
         <p class="activity-text activity-title">{{this.name}}</p>
         <p class="activity-text activity-location">{{this.city}}</p>
-        <a href="/activities/{{this._id}}/details"><img src="../images/ironhack.png" alt="" class="activity-img"></a>
+        <a href="/activities/{{this._id}}/details"><img src="../images/ironhack.png" alt="image" class="activity-img"></a>
         <p class="activity-text activity-price">{{this.price}}€</p>
-        <br>
+        
         <hr>
-        <br>
+        
       </div>
       {{/each}}
     </div>

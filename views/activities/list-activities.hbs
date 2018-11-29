@@ -2,37 +2,39 @@
   <h1 class="list-activities-title">
     Explore Activities
   </h1>
-
   {{#each activities}}
   <h2 class="activity-text activity-title">{{this.name}}</h2>
   <p class="activity-text activity-location">{{this.city}}</p>
-  <a href="/activities/{{this._id}}/details"><img src="../images/ironhack.png" alt="" class="activity-img"></a>
+  <a href="/activities/{{this._id}}/details"><img src="{{this.photoURL}}" alt="image" class="activity-img"></a>
   <div class="activity-info-container">
     <div class="activity-text-container">
       <p class="activity-text">{{this.type}}</p>
       <p class="activity-text">{{this.price}}€</p>
     </div>
-    <form action="/favourites/addDeleteFavourite/{{this._id}}" method="post">
-      <div>
-        <button type="submit" class="favourite-btn add-favourite" id={{this.id}}><img src="../../images/star.svg" alt="" class="activity-bookmark details"></button>
-      </div>
-    </form>
+
+    {{#if this.addedFavourite}}
+    <div class="star-container">
+      <a type="submit" class="favourite-btn add-favourite yellow-star" activity={{this.id}}></a>
+    </div>
+    {{else}}
+    <div class="star-container">
+      <a type="submit" class="favourite-btn add-favourite" activity={{this.id}}></a>
+    </div>
+    {{/if}}
   </div>
-  <br>
+  {{!-- <select name="" id="">
+    {{#each ../user.trips}}
+    <option value="">
+      <button type="submit" action="/trips/{{this._id}}/addActivity/{{../this._id}}" method="post">{{this.name}}</button>
+    </option>
+      {{/each}}
+  </select> --}}
+  
   <hr>
-  <br>
+  
   {{/each}}
-  {{!-- <script>
-    button = docuemnt.querySelectorAll(.favorites)
-
-    button.addEvenetListener('click', (event)=> {
-      event.target.id
-      axios.post('/favourites/add...')
-      .then(()=> {
-        button.classList.toggle('')
-      })
-    })
-
-  </script> --}}
 
 </section>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="/javascript/favourites.js"></script>
+<script src="/javascript/addToTrip.js"></script>

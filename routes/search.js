@@ -4,6 +4,7 @@ const express = require('express');
 const router = express.Router();
 const authMiddleware = require('../middlewares/authMiddleware'); // Middleware
 const Activity = require('../models/activity');
+const User = require('../models/user');
 const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
 const geocodingClient = mbxGeocoding({ accessToken: process.env.MAPBOX_API_KEY });
 const { getDistanceFromLatLonInKm } = require('../helpers/calcDistanceCoords');
@@ -18,6 +19,17 @@ router.get('/search-near', authMiddleware.requireUser, async (req, res, next) =>
 
   try {
     const activities = await Activity.find();
+    const { _id } = req.session.currentUser;
+    const user = await User.findById(_id).populate('trips', 'favourites');
+    const userFavourites = user.favourites;
+
+    activities.map((activity) => {
+      activity.addedFavourite = false;
+      if (userFavourites.indexOf(activity._id) >= 0) {
+        activity.addedFavourite = true;
+      }
+    });
+
     const activitiesCopy = activities;
 
     const citiesCoordinates = {};
@@ -29,6 +41,7 @@ router.get('/search-near', authMiddleware.requireUser, async (req, res, next) =>
           limit: 2
         };
         const cityCoordinates = await geocodingClient.forwardGeocode(queryObj).send();
+        console.log('!!!!!!!!' + cityCoordinates.body.features[0].center);
         citiesCoordinates[activitiesCopy[i].city] = cityCoordinates.body.features[0].center;
       }
     }
@@ -48,15 +61,20 @@ router.get('/search-near', authMiddleware.requireUser, async (req, res, next) =>
 
     const userLocation = await geocodingClient.reverseGeocode(reverseQueryObj).send();
     const userLocationName = userLocation.body.features[0].context[1].text;
+    console.log('USERLOCATION????????' + userLocation.body.features[0].context[1]);
+    console.log('USERLOCATIONNAME!!!!!!!' + userLocationName);
 
     activitiesCopy.sort((a, b) => {
       let result = -1;
       if (a.city !== userLocationName && b.city === userLocationName) {
         result = 1;
       } else if (a.city !== userLocationName && b.city !== userLocationName) {
-        const cityADistanceUser = getDistanceFromLatLonInKm(longitude, latitude, citiesCoordinates[a.city][0], citiesCoordinates[a.city][1]);
-        const cityBDistanceUser = getDistanceFromLatLonInKm(longitude, latitude, citiesCoordinates[b.city][0], citiesCoordinates[b.city][1]);
-
+        const cityADistanceUser = getDistanceFromLatLonInKm(longitude, latitude, citiesCoordinates[a.city][1], citiesCoordinates[a.city][0]);
+        const cityBDistanceUser = getDistanceFromLatLonInKm(longitude, latitude, citiesCoordinates[b.city][1], citiesCoordinates[b.city][0]);
+        // DEBUGGIN COORDINATES AND DISTANCES
+        // console.log(userLocationName + ': ' + longitude + ',' + latitude + '  ' + a.city + ':' + Math.floor(cityADistanceUser) + ' ' +
+        // citiesCoordinates[a.city][0] + ' ' + citiesCoordinates[a.city][1] + ' ' + b.city + ':' + Math.floor(cityBDistanceUser) + ' ' +
+        // citiesCoordinates[b.city][0] + ' ' + citiesCoordinates[b.city][1]);
         if (cityADistanceUser > cityBDistanceUser) {
           result = 1;
         } else {
@@ -91,8 +109,22 @@ router.get('/result', (req, res, next) => {
   }
 
   Activity.find(queryCond)
-    .then((result) => {
-      res.render('activities/search-list-activities', { result });
+    .then((activities) => {
+      const { _id } = req.session.currentUser;
+      User.findById(_id)
+        .populate('trips')
+      // .populate('favourites')
+        .then((user) => {
+          const userFavourites = user.favourites;
+          activities.map((activity) => {
+            activity.addedFavourite = false;
+            if (userFavourites.indexOf(activity._id) >= 0) {
+              activity.addedFavourite = true;
+            }
+          });
+          res.render('activities/list-activities', { activities, user });
+        })
+        .catch(next);
     })
     .catch(next);
 });

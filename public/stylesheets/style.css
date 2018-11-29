@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab');
 
 /* ---- reset ---- */
 
@@ -20,15 +20,20 @@ body {
 }
 
 a {
-  text-decoration: none;
+  /* text-decoration: none; */
   color: inherit;
+}
+
+h1 {
+  font-family: 'Roboto Slab', serif;
 }
 
 /* ---- nav ---- */ 
 
 .nav-container {
   display: flex;
-  height: 70px;
+  justify-content: center;
+  height: 50px;
   background-color: rgb(190, 224, 217);
   margin-left: auto;
   padding-right: 15px;
@@ -43,7 +48,30 @@ a {
 }
 .logo-img {
   margin: 0 auto;
-  width: 50px;
+  width: 35px;
+}
+
+.logo-img-notlog {
+  margin-left: 7px;
+  width: 35px;
+}
+
+.welcome-navbar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.welcome-title {
+  margin: 0px;
+}
+
+.profile-title {
+  font-size: 26px;
+}
+
+.main-title {
+  font-size: 40px;
 }
 
 .logo-img-notlog {
@@ -62,6 +90,10 @@ a {
   border: 1px solid white;
 }
 
+.error-msg{
+  color: red;
+}
+
 .footer-img {
   width: 35px;
 }
@@ -75,16 +107,15 @@ footer {
   display: flex;
   position: fixed;
   bottom: 0px;
-  height: 70px;
+  height: 50px;
   background-color: rgb(190, 224, 217);
   width: 100%;
   justify-content: space-around;
 }
 
-
 section {
-  padding-top: 90px;
-  padding-bottom: 90px;
+  padding-top: 60px;
+  padding-bottom: 60px;
 }
 
 .index-text {
@@ -104,12 +135,12 @@ section {
   text-align: center;
 }
 
-.signup-container {
+.signup {
   margin: 0px;
   text-align: center;
 }
 
-.login-container {
+.welcome {
   padding-top: 80px;
   margin: 0px;
   text-align: center;
@@ -142,11 +173,10 @@ input:focus {
 }
 
 .login-signup-form {
-  /*position: relative;*/
   margin: 5% auto;
-  margin-top: 140px;
-  width: 700px;
-  height: 900px;
+  margin-top: 45px;
+  height: 330px;
+  width: 90%;
   background: #FFF;
   border-radius: 2px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
@@ -204,13 +234,11 @@ input:focus {
   width: 100%;
 }
 
-.login-signup-form {
-  height: 240px;
-  width: 300px;
-}
+
 
 .form-title {
   font-size: 25px;
+  margin-bottom: 40px;
 }
 
 select {
@@ -229,10 +257,17 @@ select {
 
 button:not(.favourite-btn) {
   font-size: 25px;
+  padding: 5px 30px;
+  border-radius: 15px;
+  background-color: rgb(190, 224, 217);
+  /* border-style: none; */
+  /* background: white; */
+  color: white;
+  /* font-size: 25px;
   padding: 0px 30px;
   border-style: none;
   background: white;
-  color: rgb(190, 224, 217);
+  color: rgb(190, 224, 217); */
 }
 
 button:not(.favourite-btn):hover {
@@ -240,10 +275,35 @@ button:not(.favourite-btn):hover {
   color: white;
 }
 
-.favourite-btn {
-  border-style: none;
-  background: inherit;
+.star-container {
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  padding-top: 15px;
+  padding-left: 24px;
 }
+
+.star-details {
+  padding-left: 0px;
+}
+
+.favourite-btn {
+  
+  display: inline-block;
+  border-style: none;
+  width: 60px;
+  height: 60px;
+  background: inherit;
+  background-image: url('../images/star.svg');
+  background-size: 40px;
+  background-repeat: no-repeat;
+}
+
+.yellow-star {
+  background-image: url('../images/yellow-star.svg');
+}
+
+
 
 .activities {
   display: flex;
@@ -283,7 +343,9 @@ button:not(.favourite-btn):hover {
 hr {
   width: 250px;
   color: gray;
-}
+  margin-top: 30px;
+  margin-bottom: 30px;
+ }
 
 h2 {
   font-size: 30px;
@@ -302,11 +364,15 @@ h2 {
 }
 
 
-
+/* .container-img {
+  width: 350px;
+  height: 340px;
+} */
 
 
 .activity-img {
   width: 350px;
+  height: 100%;
 }
 .activity-text {
   margin-bottom: 8px;
@@ -340,7 +406,9 @@ h2 {
   margin-top: 7px;
 }
 
-
+.my-profile-title {
+  text-align: center;
+}
 
 /* Provisional
 .create-trip-btn {
@@ -378,6 +446,10 @@ h2 {
   margin: 20px;
   border-radius: 15px;
   border: 2px solid rgb(157, 224, 209);
+}
+
+a.create-opt{
+  text-decoration: none;
 }
 
 .create-opt:hover {
@@ -432,16 +504,9 @@ h2 {
   margin-top: 0px;
 }
 
-.or {
-  font-size: 40px;
-  text-align: center;
-  margin-bottom: 0px;
-  margin-top: 60px;
-}
-
 .list-title {
-  font-size: 25px;
-  text-decoration: underline;
+  font-size: 22px;
+  /* text-decoration: underline; */
 }
 
 .list-activities-title {
@@ -531,7 +596,44 @@ option {
   background-color: inherit;
 }
 
-.find-near-btn {
-  position: absolute;
-  top: 100px;
+
+.search {
+  height: 350px;
+}
+
+.search-section {
+  padding-top: 0px;
+}
+
+.search-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  width: 100%;
+  height: 350px;
+}
+
+.find-near-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  width: 100%;
+  height: 100px;
+}
+
+.near-img {
+  height: 50px;
+  padding-bottom: 10px;
+}
+
+.or {
+  width: 100%;
+  text-align: center;
+  font-size: 30px;
+  margin-top: 0px;
+  margin-bottom: 12px;
 }

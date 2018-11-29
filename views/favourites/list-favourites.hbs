@@ -6,7 +6,7 @@
   {{#each user.favourites}}
     <h2 class="activity-text activity-title">{{this.name}}</h2>
     <p class="activity-text activity-location">{{this.city}}</p>
-    <a href="/activities/{{this._id}}/details"><img src="../images/ironhack.png" alt="" class="activity-img"></a>
+    <a href="/activities/{{this._id}}/details"><img src="{{this.photoURL}}" alt="image" class="activity-img"></a>
     <div class="activity-info-container">
       <div class="activity-text-container">
         <p class="activity-text">{{this.type}}</p>
@@ -18,9 +18,9 @@
       </div>
     </form>
     </div>
-  <br>
+  
   <hr>
-  <br>
+  
 
   {{/each}}
 

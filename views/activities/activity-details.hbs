@@ -1,20 +1,50 @@
+
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.css' rel='stylesheet' />
+  <script async defer src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.js'></script>
+  <script async defer src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.3.0/mapbox-gl-geocoder.min.js'></script>
+  <script async defer src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script async defer src='https://unpkg.com/es6-promise@4.2.4/dist/es6-promise.auto.min.js'></script>
+  <script async defer src="https://unpkg.com/@mapbox/mapbox-sdk/umd/mapbox-sdk.min.js"></script>
+  <script src="/javascript/map.js"></script>
+
 <section class="trip-details-container">
   <div class="activity-details">
-    <img src="../../images/ironhack.png" alt="" class="activity-img">
+    <div class="container-img">
+      <img src="{{activity.photoURL}}" alt="image" class="activity-img">
+    </div>
     <div class="activity-bar">
       <div class="activity-titles-container">
         <h2 class="activity-text activity-title">{{activity.name}}</h2>
         <p class="activity-text activity-location">{{activity.city}}</p>
       </div>
-      <form action="/favourites/addDeleteFavourite/{{activity._id}}" method="post">
-        <div>
-          <button type="submit" class="favourite-btn add-favourite"><img src="../../images/star.svg" alt="" class="activity-bookmark details"></button>
-        </div>
-      </form>
+      {{#if activity.addedFavourite}}
+    <div class="star-container star-details">
+      <a type="submit" class="favourite-btn add-favourite yellow-star" activity={{activity.id}}></a>
+    </div>
+    {{else}}
+    <div class="star-container">
+      <a type="submit" class="favourite-btn add-favourite" activity={{activity.id}}></a>
+    </div>
+    {{/if}}
     </div>
     <p class="activity-text activity-owner">Created by: <a href="/profile/{{activity.owner._id}}/info"><span class="owner-name">{{activity.owner.username}}</span></a></p>
     <p class="activity-text">{{activity.type}}</p>
     <p class="activity-text">{{activity.price}}€</p>
     <p class="activity-description">{{activity.description}}</p>
+    <p class="activity-address" address="{{activity.address}}">{{activity.address}}</p>
+    <p class="activity-city" city= "{{activity.city}}"></p>
   </div>
+
+    <div id='map' style='width: 400px; height: 300px;'></div>
 </section>
+
+    <div>
+      <a href="/trips/user-trips/{{activity._id}}">
+       <button type="submit">Add to trip</button>
+       </a>
+     </div>
+  </form>
+</section>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="/javascript/favourites.js"></script>

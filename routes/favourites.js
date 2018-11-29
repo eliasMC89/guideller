@@ -23,14 +23,14 @@ router.get('/', authMiddleware.requireUser, (req, res, next) => {
 //     });
 // });
 
-// router.post('/:userId/deleteFavourite/:activityId', (req, res, next) => {
-//   const userId = req.session.currentUser;
-//   const activityId = req.params.activityId;
-//   User.findByIdAndUpdate(userId, { $pull: { favourites: activityId } })
-//     .then(() => {
-//       return res.redirect('/favourites');
-//     });
-// });
+router.post('/:userId/deleteFavourite/:activityId', (req, res, next) => {
+  const userId = req.session.currentUser;
+  const activityId = req.params.activityId;
+  User.findByIdAndUpdate(userId, { $pull: { favourites: activityId } })
+    .then(() => {
+      return res.redirect('/favourites');
+    });
+});
 
 router.post('/addDeleteFavourite/:activityId', (req, res, next) => {
   const userId = req.session.currentUser;
@@ -41,12 +41,12 @@ router.post('/addDeleteFavourite/:activityId', (req, res, next) => {
       if (userFavourites.indexOf(activityId) < 0) {
         User.findByIdAndUpdate(userId, { $push: { favourites: activityId } })
           .then(() => {
-            return res.redirect('/favourites');
+            return res.json({ status: 'Added' });
           });
       } else {
         User.findByIdAndUpdate(userId, { $pull: { favourites: activityId } })
           .then(() => {
-            return res.redirect('/favourites');
+            return res.json({ status: 'Deleted' });
           });
       }
     })
