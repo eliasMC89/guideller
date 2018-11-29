@@ -82,9 +82,12 @@ router.get('/:activityId/edit', authMiddleware.requireUser, activityMiddleware.c
 });
 
 // U in CRUD
-router.post('/:activityId/edit', authMiddleware.requireUser, activityMiddleware.checkActivityUser, formMiddleware.requireEditActivityFields, (req, res, next) => {
+router.post('/:activityId/edit', authMiddleware.requireUser, activityMiddleware.checkActivityUser, parser.single('photoURL'), formMiddleware.requireEditActivityFields, (req, res, next) => {
   const activityId = req.params.activityId;
-  const updatedActivityInformation = req.body;
+  const body = req.body;
+  const photoURL = req.file.secure_url;
+  const updatedActivityInformation = { body, photoURL };
+
   Activity.findByIdAndUpdate(activityId, { $set: updatedActivityInformation })
     .then(() => {
       res.redirect('/profile');
