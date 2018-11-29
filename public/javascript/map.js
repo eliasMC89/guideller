@@ -24,7 +24,8 @@ const main = () => {
   }
 
   const pAddress = document.querySelector('.activity-address');
-  const address = pAddress.getAttribute('address');
+  const pCity = document.querySelector('.activity-city');
+  const address = pAddress.getAttribute('address') || pCity.getAttribute('city');
   console.log(address);
 
   var mapboxClient = mapboxSdk({ accessToken: mapboxgl.accessToken });
