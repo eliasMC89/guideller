@@ -1,3 +1,12 @@
+
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.css' rel='stylesheet' />
+  <script async defer src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.js'></script>
+  <script async defer src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.3.0/mapbox-gl-geocoder.min.js'></script>
+  <script async defer src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script async defer src='https://unpkg.com/es6-promise@4.2.4/dist/es6-promise.auto.min.js'></script>
+  <script async defer src="https://unpkg.com/@mapbox/mapbox-sdk/umd/mapbox-sdk.min.js"></script>
+  <script src="/javascript/map.js"></script>
+
 <section class="trip-details-container">
   <div class="activity-details">
     <img src="{{activity.photoURL}}" alt="" class="activity-img">
@@ -20,7 +29,13 @@
     <p class="activity-text">{{activity.type}}</p>
     <p class="activity-text">{{activity.price}}€</p>
     <p class="activity-description">{{activity.description}}</p>
+    <p class="activity-address" address="{{activity.address}}">{{activity.address}}</p>
+    <p class="activity-city" city= "{{activity.city}}"></p>
   </div>
+
+    <div id='map' style='width: 400px; height: 300px;'></div>
+</section>
+
     <div>
       <a href="/trips/user-trips/{{activity._id}}">
        <button type="submit">Add to trip</button>
