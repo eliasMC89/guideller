@@ -13,16 +13,15 @@
       <p class="activity-text">{{this.price}}€</p>
     </div>
     {{#if this.addedFavourite}}
-    <div>
-      <a type="submit" class="favourite-btn add-favourite yellow-star" activity={{this.id}}><img src="../../images/star.svg"
-          alt="" class="activity-bookmark details"></a>
+    <div class="star-container">
+      <a type="submit" class="favourite-btn add-favourite yellow-star" activity={{this.id}}></a>
     </div>
     {{else}}
-    <div>
-      <a type="submit" class="favourite-btn add-favourite" activity={{this.id}}><img src="../../images/star.svg" alt=""
-          class="activity-bookmark details"></a>
+    <div class="star-container">
+      <a type="submit" class="favourite-btn add-favourite" activity={{this.id}}></a>
     </div>
     {{/if}}
+  </div>
   </div>
   </div>
   <br>

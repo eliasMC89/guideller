@@ -1,56 +1,49 @@
-<section class="create-edit-activity">
-
-<form action="/search/search-near" method="GET">
-    <input type="hidden" name="latitude" class="latitude">
-    <input type="hidden" name="longitude" class="longitude">
-    <button type="submit" class="find-near-btn"> Find near </button>
-  </form>
-
-  <p id="demo"></p>
-
+<section class="search-section">
   <script src="/javascript/geolocation.js"></script>
-<form method="GET" action="/search/result" class="activity-form">
-  <div class="activity-container">
-    <h1 class="header-create">Search activity</h1>
+  <form method="GET" action="/search/result" class="activity-form search">
+    <div class="search-container">
+      <h1 class="header-create">Search activity</h1>
+      <div class="field">
+        <input type="text" class="activity-input" name="country" placeholder="Country" />
+      </div>
 
-    
+      <div class="field">
+        <input type="text" class="activity-input" name="city" placeholder="City" />
+      </div>
 
-    <div class="field">
-      <input type="text" class="activity-input" name="country" placeholder="Country" />
+      <div class="field">
+        <select name="type" class="activity-input" placeholder="Type of activity">
+          <option disabled selected>Type of activity</option>
+          <option>Social</option>
+          <option>Nature</option>
+          <option>Museums</option>
+          <option>Guides</option>
+          <option>Restaurants</option>
+          <option>Sport</option>
+          <option>Shopping</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <input type="number" class="activity-input" name="maxPrice" placeholder="Maximum price" />
+      </div>
+
+      <div class="field submit create">
+        <button type="submit">Search</button>
+      </div>
+
     </div>
-
-    <div class="field">
-      <input type="text" class="activity-input" name="city" placeholder="City" />
-    </div> 
-
-    <div class="field">
-      <select name="type" class="activity-input" placeholder="Type of activity">
-        <option disabled selected>Type of activity</option>
-        <option >Social</option>
-        <option >Nature</option>
-         <option >Museums</option>
-        <option >Guides</option>
-        <option >Restaurants</option>
-        <option >Sport</option>
-        <option >Shopping</option>
-      </select>
+  </form>
+  <p class="or">------ or ------</p>
+  <form action="/search/search-near" method="GET">
+    <div class="find-near-container">
+      <input type="hidden" name="latitude" class="latitude"/>
+      <input type="hidden" name="longitude" class="longitude"/>
+      <img src="/images/near.svg" alt="" class="near-img">
+      <div>
+      <button type="submit" class="find-near-btn"> Find near </button>
+      </div>
     </div>
-
-    <div class="field">
-      <input type="number" class="activity-input" name="maxPrice" placeholder="Maximum price" />
-    </div>
-
-    <div class="field submit create">
-      <button type="submit">Search</button>
-    </div>
-
-  </div>
-</form>
-
-{{!-- {{#if messages.length}}
-    <h3>{{messages}}</h3>
-{{/if}} --}}
+  </form>
+  <p id="demo"></p>
 </section>
-
-
-

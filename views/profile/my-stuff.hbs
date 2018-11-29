@@ -2,11 +2,10 @@
   <img src="../../../../images/off-btn.png" alt="logout">
 </div> --}}
 
-<div>
+<section class="my-activities activities">
+  <div>
   <h1 class="my-profile-title">My Profile</h1>
 </div>
-
-<section class="my-activities activities">
   <div class="profile-container">
     <div class="profile-list">
       <h2 class="list-title">
@@ -17,11 +16,6 @@
     <div class="activities-list hidden">
       {{#each user.activities}}
       <div class="each-activity activities">
-        {{!-- <form action="/favourites/{{../user._id}}/addFavourite/{{this._id}}" method="post">
-          <div>
-            <button type="submit" class="favourite-btn"><img src="../images/star.svg" alt="" class="activity-bookmark details"></button>
-          </div>
-        </form> --}}
         <p class="activity-text activity-title">{{this.name}}</h2>
           <p class="activity-text activity-location">{{this.city}}</p>
           <a href="/activities/{{this._id}}/details"><img src="{{this.photoURL}}" alt="" class="activity-img"></a>
@@ -35,13 +29,6 @@
           <hr>
           <br>
       </div>
-
-      <!--<form action="/trips/{{../tripId}}/addActivity/{{this._id}}" method="post">
-        <div>
-          <button type="submit">Add to trip</button>
-        </div>
-      </form>-->
-
       {{/each}}
     </div>
 

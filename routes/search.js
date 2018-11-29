@@ -26,7 +26,6 @@ router.get('/search-near', authMiddleware.requireUser, async (req, res, next) =>
     activities.map((activity) => {
       activity.addedFavourite = false;
       if (userFavourites.indexOf(activity._id) >= 0) {
-        console.log('hola');
         activity.addedFavourite = true;
       }
     });
@@ -67,9 +66,12 @@ router.get('/search-near', authMiddleware.requireUser, async (req, res, next) =>
       if (a.city !== userLocationName && b.city === userLocationName) {
         result = 1;
       } else if (a.city !== userLocationName && b.city !== userLocationName) {
-        const cityADistanceUser = getDistanceFromLatLonInKm(longitude, latitude, citiesCoordinates[a.city][0], citiesCoordinates[a.city][1]);
-        const cityBDistanceUser = getDistanceFromLatLonInKm(longitude, latitude, citiesCoordinates[b.city][0], citiesCoordinates[b.city][1]);
-
+        const cityADistanceUser = getDistanceFromLatLonInKm(longitude, latitude, citiesCoordinates[a.city][1], citiesCoordinates[a.city][0]);
+        const cityBDistanceUser = getDistanceFromLatLonInKm(longitude, latitude, citiesCoordinates[b.city][1], citiesCoordinates[b.city][0]);
+        // DEBUGGIN COORDINATES AND DISTANCES
+        // console.log(userLocationName + ': ' + longitude + ',' + latitude + '  ' + a.city + ':' + Math.floor(cityADistanceUser) + ' ' +
+        // citiesCoordinates[a.city][0] + ' ' + citiesCoordinates[a.city][1] + ' ' + b.city + ':' + Math.floor(cityBDistanceUser) + ' ' +
+        // citiesCoordinates[b.city][0] + ' ' + citiesCoordinates[b.city][1]);
         if (cityADistanceUser > cityBDistanceUser) {
           result = 1;
         } else {

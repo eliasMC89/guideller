@@ -19,7 +19,14 @@
     </div>
   </div>
   <br>
+  <form action="/trips/{{../trip._id}}/delete/{{this._id}}" method="post">
+    <div>
+      <button class="btn-activity" type="submit">Delete from trip</button>
+    </div>
+  </form>
+  <br>
   <hr>
   <br>
+
   {{/each}}
 </section>

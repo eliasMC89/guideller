@@ -15,16 +15,11 @@ router.get('/', authMiddleware.requireUser, (req, res, next) => {
       const { _id } = req.session.currentUser;
       User.findById(_id)
         .populate('trips')
-        // .populate('favourites')
         .then((user) => {
-          // console.log(user);
           const userFavourites = user.favourites;
           activities.map((activity) => {
             activity.addedFavourite = false;
-            // console.log(activity._id);
-            // console.log(userFavourites);
             if (userFavourites.indexOf(activity._id) >= 0) {
-              // console.log('hola');
               activity.addedFavourite = true;
             }
           });
@@ -124,7 +119,17 @@ router.get('/:activityId/details', authMiddleware.requireUser, (req, res, next) 
   Activity.findById({ _id: activityId })
     .populate('owner')
     .then((activity) => {
-      res.render('activities/activity-details', { activity });
+      const { _id } = req.session.currentUser;
+      User.findById(_id)
+        .populate('trips')
+        .then((user) => {
+          const userFavourites = user.favourites;
+          activity.addedFavourite = false;
+          if (userFavourites.indexOf(activity._id) >= 0) {
+            activity.addedFavourite = true;
+          }
+          res.render('activities/activity-details', { activity, user });
+        });
     })
     .catch(next);
 });
