@@ -24,7 +24,7 @@
         </form> --}}
         <p class="activity-text activity-title">{{this.name}}</h2>
           <p class="activity-text activity-location">{{this.city}}</p>
-          <a href="/activities/{{this._id}}/details"><img src="../images/ironhack.png" alt="" class="activity-img"></a>
+          <a href="/activities/{{this._id}}/details"><img src="{{this.photoURL}}" alt="" class="activity-img"></a>
           <button class="btn-activity add-favourite"><a href="/activities/{{this._id}}/edit">Edit</a></button>
           <form action="/activities/{{this._id}}/delete" method="post">
             <div>
@@ -99,5 +99,7 @@
     <button type="submit" class="logout-btn">Logout</button>
   </form>
 </div>
+
+
 </section>
 <script src="/javascript/main.js"></script>
