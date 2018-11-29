@@ -2,11 +2,10 @@
   <img src="../../../../images/off-btn.png" alt="logout">
 </div> --}}
 
-<div>
+<section class="my-activities activities">
+  <div>
   <h1 class="my-profile-title">My Profile</h1>
 </div>
-
-<section class="my-activities activities">
   <div class="profile-container">
     <div class="profile-list">
       <h2 class="list-title">
@@ -17,14 +16,9 @@
     <div class="activities-list hidden">
       {{#each user.activities}}
       <div class="each-activity activities">
-        {{!-- <form action="/favourites/{{../user._id}}/addFavourite/{{this._id}}" method="post">
-          <div>
-            <button type="submit" class="favourite-btn"><img src="../images/star.svg" alt="" class="activity-bookmark details"></button>
-          </div>
-        </form> --}}
         <p class="activity-text activity-title">{{this.name}}</h2>
           <p class="activity-text activity-location">{{this.city}}</p>
-          <a href="/activities/{{this._id}}/details"><img src="../images/ironhack.png" alt="" class="activity-img"></a>
+          <a href="/activities/{{this._id}}/details"><img src="{{this.photoURL}}" alt="" class="activity-img"></a>
           <button class="btn-activity add-favourite"><a href="/activities/{{this._id}}/edit">Edit</a></button>
           <form action="/activities/{{this._id}}/delete" method="post">
             <div>
@@ -35,13 +29,6 @@
           <hr>
           <br>
       </div>
-
-      <!--<form action="/trips/{{../tripId}}/addActivity/{{this._id}}" method="post">
-        <div>
-          <button type="submit">Add to trip</button>
-        </div>
-      </form>-->
-
       {{/each}}
     </div>
 
@@ -58,7 +45,7 @@
         <p class="activity-text activity-title">{{this.name}}</p>
         <p class="activity-text activity-location">{{this.location}}</p>
         <p class="activity-text">Budget: {{this.currentBudget}}/{{this.budget}}€</p>
-        <a href="/trips/{{this._id}}/details"><img src="../images/ironhack.png" alt="" class="activity-img"></a>
+        <a href="/trips/{{this._id}}/details"><img src="{{this.photoURL}}" alt="" class="activity-img"></a>
         <button class="btn-trip"><a href="/trips/{{this._id}}/addActivity">Add activities</a></button>
         <button class="btn-trip"><a href="/trips/{{this._id}}/edit">Edit</a></button>
         <form action="/trips/{{this._id}}/delete" method="post">
@@ -99,5 +86,7 @@
     <button type="submit" class="logout-btn">Logout</button>
   </form>
 </div>
+
+
 </section>
 <script src="/javascript/main.js"></script>

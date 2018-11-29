@@ -11,12 +11,15 @@ const tripSchema = new Schema({
     unique: true
   },
   location: {
-    type: String
-    // required: true
+    type: String,
+    required: true
   },
   budget: {
-    type: Number
-    // required: true
+    type: Number,
+    required: true
+  },
+  photoURL: {
+    type: String
   },
   currentBudget: {
     type: Number

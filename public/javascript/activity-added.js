@@ -1,19 +1,19 @@
 'use strict';
 
 function index () {
-  const buttonsFavourites = document.querySelectorAll('.favourite-btn');
-  buttonsFavourites.forEach((button) => {
+  const buttonsTrip = document.querySelectorAll('.btn-trip');
+  buttonsTrip.forEach((button) => {
     button.addEventListener('click', (event) => {
+      console.log('clicked');
       event.preventDefault();
       const activityId = event.currentTarget.attributes.activity.value;
-      axios.post(`/favourites/addDeleteFavourite/${activityId}`)
+      const tripId = event.currentTarget.attributes.trip.value;
+      axios.post(`/trips/${tripId}/add-delete-this/${activityId}`)
         .then((result) => {
-          // console.log(result.data.status);
-          // ahora con dom manipulation hay que mirar el status y hacer un toggle de la class para que te ponga una cosa u otra
           if (result.data.status === 'Added') {
-            button.classList.add('yellow-star');
+            button.innerText = 'Remove';
           } else if (result.data.status === 'Deleted') {
-            button.classList.remove('yellow-star');
+            button.innerText = 'Add';
           }
         })
         .catch((error) => {
