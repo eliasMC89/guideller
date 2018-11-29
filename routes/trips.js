@@ -103,7 +103,19 @@ router.get('/:tripId/addActivity', (req, res, next) => {
       tripActivities = trip.activities;
       Activity.find({ _id: { $nin: tripActivities } })
         .then((activities) => {
-          res.render('trips/activities-trip', { activities, tripId }); // tripId: req.params.tripId
+          const { _id } = req.session.currentUser;
+          User.findById(_id)
+            .populate('trips')
+            .then((user) => {
+              const userFavourites = user.favourites;
+              activities.map((activity) => {
+                activity.addedFavourite = false;
+                if (userFavourites.indexOf(activity._id) >= 0) {
+                  activity.addedFavourite = true;
+                }
+              });
+              res.render('trips/activities-trip', { activities, tripId, user }); // tripId: req.params.tripId
+            });
         })
         .catch(next);
     })
@@ -140,6 +152,25 @@ router.get('/:tripId/details', authMiddleware.requireUser, (req, res, next) => {
     .populate('activities')
     .then((trip) => {
       res.render('trips/trip-details', { trip });
+    })
+    .catch(next);
+});
+
+router.post('/:tripId/delete/:activityId', authMiddleware.requireUser, (req, res, next) => {
+  const tripId = req.params.tripId;
+  const activityId = req.params.activityId;
+  Trip.findById(tripId)
+    .then((trip) => {
+      Activity.findById(activityId)
+        .then((activity) => {
+          let newBudget = trip.currentBudget + activity.price;
+          Trip.findByIdAndUpdate(tripId, { $set: { currentBudget: newBudget }, $pull: { activities: activityId } }) //, { $push: { activities: activityId } }
+            .then(() => {
+              res.redirect(`/trips/${tripId}/details`);
+            })
+            .catch(next);
+        })
+        .catch(next);
     })
     .catch(next);
 });

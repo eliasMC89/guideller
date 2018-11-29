@@ -269,10 +269,31 @@ button:not(.favourite-btn):hover {
   color: white;
 }
 
-.favourite-btn {
-  border-style: none;
-  background: inherit;
+.star-container {
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  padding-top: 15px;
+  padding-left: 24px;
 }
+
+.favourite-btn {
+  
+  display: inline-block;
+  border-style: none;
+  width: 60px;
+  height: 60px;
+  background: inherit;
+  background-image: url('../images/star.svg');
+  background-size: 40px;
+  background-repeat: no-repeat;
+}
+
+.yellow-star {
+  background-image: url('../images/green-star.svg');
+}
+
+
 
 .activities {
   display: flex;
@@ -370,7 +391,6 @@ h2 {
 }
 
 .my-profile-title {
-  padding-top: 80px;
   text-align: center;
 }
 
@@ -567,9 +587,6 @@ option {
   background-color: inherit;
 }
 
-.yellow-star {
-  background-color: yellow;
-}
 
 .find-near-btn {
   position: absolute;
