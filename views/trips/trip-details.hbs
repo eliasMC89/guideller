@@ -1,6 +1,6 @@
 <section class="trip-details-container">
   <div class="trip-details-text">
-    <img src="{{trip.photoURL}}" alt="" class="activity-img">
+    <img src="{{trip.photoURL}}" alt="image" class="activity-img">
     <h1>{{trip.name}}</h1>
     <p>{{trip.location}}</p>
     <p>{{trip.currentBudget}}/{{trip.budget}}</p>
@@ -11,7 +11,7 @@
   {{#each trip.activities}}
   <h2 class="activity-text activity-title">{{this.name}}</h2>
   <p class="activity-text activity-location">{{this.city}}</p>
-  <a href="/activities/{{this._id}}/details"><img src="{{this.photoURL}}" alt="" class="activity-img"></a>
+  <a href="/activities/{{this._id}}/details"><img src="{{this.photoURL}}" alt="image" class="activity-img"></a>
   <div class="activity-info-container">
     <div class="activity-text-container">
       <p class="activity-text">{{this.type}}</p>
