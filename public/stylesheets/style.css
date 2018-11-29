@@ -277,6 +277,10 @@ button:not(.favourite-btn):hover {
   padding-left: 24px;
 }
 
+.star-details {
+  padding-left: 0px;
+}
+
 .favourite-btn {
   
   display: inline-block;

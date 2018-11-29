@@ -7,7 +7,7 @@
         <p class="activity-text activity-location">{{activity.city}}</p>
       </div>
       {{#if activity.addedFavourite}}
-    <div class="star-container">
+    <div class="star-container star-details">
       <a type="submit" class="favourite-btn add-favourite yellow-star" activity={{activity.id}}></a>
     </div>
     {{else}}
@@ -21,7 +21,14 @@
     <p class="activity-text">{{activity.price}}€</p>
     <p class="activity-description">{{activity.description}}</p>
   </div>
+    <div>
+      <a href="/trips/user-trips/{{activity._id}}">
+       <button type="submit">Add to trip</button>
+       </a>
+     </div>
+  </form>
 </section>
+
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="/javascript/favourites.js"></script>
 <script src="/javascript/addToTrip.js"></script>

@@ -1,7 +1,6 @@
 'use strict';
 
 function index () {
-  console.log('clicked');
   const buttonsFavourites = document.querySelectorAll('.favourite-btn');
   buttonsFavourites.forEach((button) => {
     button.addEventListener('click', (event) => {

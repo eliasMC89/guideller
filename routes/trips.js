@@ -21,6 +21,20 @@ router.get('/', (req, res, next) => {
     .catch(next);
 });
 
+router.get('/user-trips/:activityId', (req, res, next) => {
+  const activityId = req.params.activityId;
+  const { _id } = req.session.currentUser;
+  User.findById(_id)
+    .populate('trips')
+    .then((user) => {
+      Activity.findById(activityId)
+        .then((activity) => {
+          res.render('trips/user-trips', { user, activity });
+        });
+    })
+    .catch(next);
+});
+
 // router.get('/my', authMiddleware.requireUser, (req, res, next) => {
 //   const { _id } = req.session.currentUser;
 //   User.findById(_id)
