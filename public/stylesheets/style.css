@@ -108,8 +108,8 @@ footer {
 }
 
 section {
-  padding-top: 90px;
-  padding-bottom: 90px;
+  padding-top: 60px;
+  padding-bottom: 60px;
 }
 
 .index-text {
@@ -290,7 +290,7 @@ button:not(.favourite-btn):hover {
 }
 
 .yellow-star {
-  background-image: url('../images/green-star.svg');
+  background-image: url('../images/yellow-star.svg');
 }
 
 
@@ -488,13 +488,6 @@ a.create-opt{
   margin-top: 0px;
 }
 
-.or {
-  font-size: 40px;
-  text-align: center;
-  margin-bottom: 0px;
-  margin-top: 60px;
-}
-
 .list-title {
   font-size: 22px;
   /* text-decoration: underline; */
@@ -588,7 +581,43 @@ option {
 }
 
 
-.find-near-btn {
-  position: absolute;
-  top: 100px;
+.search {
+  height: 350px;
+}
+
+.search-section {
+  padding-top: 0px;
+}
+
+.search-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  width: 100%;
+  height: 350px;
+}
+
+.find-near-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  width: 100%;
+  height: 100px;
+}
+
+.near-img {
+  height: 50px;
+  padding-bottom: 10px;
+}
+
+.or {
+  width: 100%;
+  text-align: center;
+  font-size: 30px;
+  margin-top: 0px;
+  margin-bottom: 12px;
 }
