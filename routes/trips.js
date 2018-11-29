@@ -2,6 +2,7 @@
 
 const express = require('express');
 const router = express.Router();
+const parser = require('../helpers/file-upload');
 const User = require('../models/user');
 const Trip = require('../models/trip');
 const Activity = require('../models/activity');
@@ -21,16 +22,6 @@ router.get('/', (req, res, next) => {
     .catch(next);
 });
 
-// router.get('/my', authMiddleware.requireUser, (req, res, next) => {
-//   const { _id } = req.session.currentUser;
-//   User.findById(_id)
-//     .populate('activities')
-//     .then((user) => {
-//       res.render('activities/my-activities', { user });
-//     })
-//     .catch(next);
-// });
-
 // Render the create trips form
 router.get('/create', authMiddleware.requireUser, (req, res, next) => {
   const messageData = {
@@ -40,11 +31,17 @@ router.get('/create', authMiddleware.requireUser, (req, res, next) => {
 });
 
 // Receive the trips post
-router.post('/', authMiddleware.requireUser, formMiddleware.requireCreateTripFields, (req, res, next) => {
+router.post('/', authMiddleware.requireUser, parser.single('photoURL'), formMiddleware.requireCreateTripFields, (req, res, next) => {
   // to see the information from the post, we need the body of the request
   const { name, location, budget } = req.body;
+  let photoURL;
+  if (!req.file) {
+    photoURL = 'https://res.cloudinary.com/emcar7ih/image/upload/v1543490675/demo/ironhack.png';
+  } else {
+    photoURL = req.file.secure_url;
+  }
   const { _id } = req.session.currentUser;
-  const newTrip = new Trip({ name, location, budget });
+  const newTrip = new Trip({ name, location, budget, photoURL });
   const updateCurrentBudgetPromise = Trip.findByIdAndUpdate(newTrip._id, { $set: { currentBudget: budget } });
   const updateUserPromise = User.findByIdAndUpdate(_id, { $push: { trips: newTrip._id } }, { new: true });
   const saveTripPromise = newTrip.save();
@@ -70,9 +67,17 @@ router.get('/:tripId/edit', authMiddleware.requireUser, tripMiddleware.checkTrip
 });
 
 // U in CRUD
-router.post('/:tripId/edit', authMiddleware.requireUser, tripMiddleware.checkTripUser, formMiddleware.requireEditTripFields, (req, res, next) => {
+router.post('/:tripId/edit', authMiddleware.requireUser, tripMiddleware.checkTripUser, parser.single('photoURL'), formMiddleware.requireEditTripFields, (req, res, next) => {
   const tripId = req.params.tripId;
-  const updatedTripInformation = req.body;
+  const body = req.body;
+  let photoURL;
+  if (!req.file) {
+    photoURL = 'https://res.cloudinary.com/emcar7ih/image/upload/v1543490675/demo/ironhack.png';
+  } else {
+    photoURL = req.file.secure_url;
+  }
+  const updatedTripInformation = { body, photoURL };
+
   Trip.findByIdAndUpdate(tripId, { $set: updatedTripInformation })
     .then(() => {
       res.redirect('/profile');
