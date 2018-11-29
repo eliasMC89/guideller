@@ -85,7 +85,12 @@ router.get('/:activityId/edit', authMiddleware.requireUser, activityMiddleware.c
 router.post('/:activityId/edit', authMiddleware.requireUser, activityMiddleware.checkActivityUser, parser.single('photoURL'), formMiddleware.requireEditActivityFields, (req, res, next) => {
   const activityId = req.params.activityId;
   const body = req.body;
-  const photoURL = req.file.secure_url;
+  let photoURL;
+  if (!req.file) {
+    photoURL = 'https://res.cloudinary.com/emcar7ih/image/upload/v1543490675/demo/ironhack.png';
+  } else {
+    photoURL = req.file.secure_url;
+  }
   const updatedActivityInformation = { body, photoURL };
 
   Activity.findByIdAndUpdate(activityId, { $set: updatedActivityInformation })
