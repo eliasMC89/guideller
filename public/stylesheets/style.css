@@ -28,6 +28,7 @@ a {
 
 h1 {
   font-family: 'Roboto Slab', serif;
+  color: #214E34;
 }
 
 /* ---- nav ---- */ 
@@ -83,8 +84,10 @@ h1 {
   margin-bottom: 16px;
 }
 
-.logout-btn {
-  border: 1px solid white;
+.logout-img {
+  width: 25px;
+  top: 60px;
+  right: 20px;
 }
 
 .error-msg{
@@ -256,7 +259,7 @@ select {
   height: 35px;
 }
 
-button:not(.favourite-btn) {
+button:not(.favourite-btn, .signout-btn) {
   font-size: 25px;
   padding: 5px 30px;
   border-radius: 15px;
@@ -275,6 +278,8 @@ button:not(.favourite-btn):hover {
   background: rgb(190, 224, 217);
   color: white;
 }
+
+
 
 .star-container {
   width: 60px;
@@ -516,6 +521,7 @@ a.create-opt{
 
 .list-title {
   font-size: 22px;
+  color: #214E34;
   /* text-decoration: underline; */
 }
 
@@ -657,5 +663,14 @@ option {
 .mapboxgl-canvas-container {
   width: 200px;
   align-items: center;
+}
+.signout-btn {
+  border:none;
+  background-color: inherit;
+}
+
+.signout-form {
+  align-self: flex-end;
+  margin-right: 10px;
 }
 
