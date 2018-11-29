@@ -356,11 +356,15 @@ h2 {
 }
 
 
-
+/* .container-img {
+  width: 350px;
+  height: 340px;
+} */
 
 
 .activity-img {
   width: 350px;
+  height: 100%;
 }
 .activity-text {
   margin-bottom: 8px;

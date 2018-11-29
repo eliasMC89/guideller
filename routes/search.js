@@ -41,6 +41,7 @@ router.get('/search-near', authMiddleware.requireUser, async (req, res, next) =>
           limit: 2
         };
         const cityCoordinates = await geocodingClient.forwardGeocode(queryObj).send();
+        console.log('!!!!!!!!' + cityCoordinates.body.features[0]);
         citiesCoordinates[activitiesCopy[i].city] = cityCoordinates.body.features[0].center;
       }
     }
