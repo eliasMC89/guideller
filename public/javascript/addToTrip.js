@@ -7,7 +7,7 @@ function index () {
       event.preventDefault();
       const tripId = document.querySelectorAll('.add-trip-value').value;
       // const activityId = event.currentTarget.attributes.activityId.value;
-      console.log(tripId);
+      // console.log(tripId);
       // console.log(activityId);
       // axios.post(`/trips/${tripId}/addActivity/${activityId}`);
     });

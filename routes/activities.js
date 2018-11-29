@@ -78,14 +78,14 @@ router.get('/', authMiddleware.requireUser, (req, res, next) => {
         .populate('trips')
         // .populate('favourites')
         .then((user) => {
-          console.log(user);
+          // console.log(user);
           const userFavourites = user.favourites;
           activities.map((activity) => {
             activity.addedFavourite = false;
-            console.log(activity._id);
-            console.log(userFavourites);
+            // console.log(activity._id);
+            // console.log(userFavourites);
             if (userFavourites.indexOf(activity._id) >= 0) {
-              console.log('hola');
+              // console.log('hola');
               activity.addedFavourite = true;
             }
           });
