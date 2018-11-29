@@ -5,9 +5,9 @@
     <p>{{trip.location}}</p>
     <p>{{trip.currentBudget}}/{{trip.budget}}</p>
   </div>
-  <br>
+  
   <hr>
-  <br>
+  
   {{#each trip.activities}}
   <h2 class="activity-text activity-title">{{this.name}}</h2>
   <p class="activity-text activity-location">{{this.city}}</p>
@@ -18,15 +18,15 @@
       <p class="activity-text">{{this.price}}€</p>
     </div>
   </div>
-  <br>
+  
   <form action="/trips/{{../trip._id}}/delete/{{this._id}}" method="post">
     <div>
       <button class="btn-activity" type="submit">Delete from trip</button>
     </div>
   </form>
-  <br>
+  
   <hr>
-  <br>
+  
 
   {{/each}}
 </section>

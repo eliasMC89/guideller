@@ -337,7 +337,9 @@ button:not(.favourite-btn):hover {
 hr {
   width: 250px;
   color: gray;
-}
+  margin-top: 30px;
+  margin-bottom: 30px;
+ }
 
 h2 {
   font-size: 30px;
