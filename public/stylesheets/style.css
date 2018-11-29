@@ -90,17 +90,10 @@ h1 {
   margin-bottom: 16px;
 }
 
-<<<<<<< HEAD
-.logout-btn {
-  border: 1px solid white;
-  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
-
-=======
 .logout-img {
   width: 25px;
   top: 60px;
   right: 20px;
->>>>>>> dev
 }
 
 .error-msg{
@@ -272,7 +265,7 @@ select {
   height: 35px;
 }
 
-button:not(.favourite-btn, .signout-btn) {
+button:not(.favourite-btn) {
   font-size: 25px;
   padding: 5px 30px;
   border-radius: 15px;
@@ -292,7 +285,10 @@ button:not(.favourite-btn):hover {
   color: white;
 }
 
-
+#logout-btn {
+  background-color: inherit;
+  border: 0px;
+}
 
 .star-container {
   width: 60px;
