@@ -1,5 +1,5 @@
 <section class="create-edit-activity">
-<form method="POST" action="/activities" class="activity-form">
+<form method="POST" action="/activities" class="activity-form" enctype="multipart/form-data">
   <div class="activity-container">
     <h1 class="header-create">Create activity</h1>
     <div class="field">
@@ -42,6 +42,14 @@
     <div class="field">
       <input type="text" class="activity-input" name="description" placeholder="Description" />
     </div>
+
+
+
+  <div class="field upload-btn">
+    <input type='file' class="activity-input" name='photoURL' accept="image/*"/>
+  </div>
+
+    
 
     <div class="field submit create">
       <button type="submit">Create</button>
