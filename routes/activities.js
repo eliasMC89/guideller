@@ -38,7 +38,12 @@ router.get('/', authMiddleware.requireUser, (req, res, next) => {
 router.post('/', authMiddleware.requireUser, parser.single('photoURL'), formMiddleware.requireCreateActivityFields, (req, res, next) => { /// parser.single('photoURL')
   // to see the information from the post, we need the body of the request
   const { name, country, city, address, type, price, reservation, description } = req.body;
-  const photoURL = req.file.secure_url;
+  let photoURL;
+  if (!req.file) {
+    photoURL = 'https://res.cloudinary.com/emcar7ih/image/upload/v1543490675/demo/ironhack.png';
+  } else {
+    photoURL = req.file.secure_url;
+  }
   const { _id } = req.session.currentUser;
   const newActivity = new Activity({ name, country, city, address, type, price, photoURL, reservation, description, owner: _id });
   const updateUserPromise = User.findByIdAndUpdate(_id, { $push: { activities: newActivity._id } });
