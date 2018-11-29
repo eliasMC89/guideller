@@ -91,6 +91,8 @@ h1 {
 
 .logout-btn {
   border: 1px solid white;
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+
 }
 
 .error-msg{
@@ -522,6 +524,7 @@ a.create-opt{
 
 .list-title {
   font-size: 22px;
+  color: #214E34;
   /* text-decoration: underline; */
 }
 
