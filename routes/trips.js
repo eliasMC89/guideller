@@ -35,15 +35,26 @@ router.get('/user-trips/:activityId', (req, res, next) => {
     .catch(next);
 });
 
-// router.get('/my', authMiddleware.requireUser, (req, res, next) => {
-//   const { _id } = req.session.currentUser;
-//   User.findById(_id)
-//     .populate('activities')
-//     .then((user) => {
-//       res.render('activities/my-activities', { user });
-//     })
-//     .catch(next);
-// });
+router.post('/:tripId/add-delete-this/:activityId', (req, res, next) => {
+  const tripId = req.params.tripId;
+  const activityId = req.params.activityId;
+  Trip.findById(tripId)
+    .then((trip) => {
+      const tripActivities = trip.activities;
+      if (tripActivities.indexOf(activityId) < 0) {
+        Trip.findByIdAndUpdate(tripId, { $push: { activities: activityId } })
+          .then(() => {
+            return res.json({ status: 'Added' });
+          });
+      } else {
+        Trip.findByIdAndUpdate(tripId, { $pull: { activities: activityId } })
+          .then(() => {
+            return res.json({ status: 'Deleted' });
+          });
+      }
+    })
+    .catch(next);
+});
 
 // Render the create trips form
 router.get('/create', authMiddleware.requireUser, (req, res, next) => {

@@ -7,12 +7,12 @@
     </div>
     <div class="trips-list">
       {{#each user.trips}}
-      <div class="each-trip activities">
+      <div class="each-trip activities" activity="{{../activity._id}}" trip="{{this._id}}">
         <p class="activity-text activity-title">{{this.name}}</p>
         <p class="activity-text activity-location">{{this.location}}</p>
         <p class="activity-text">{{this.currentBudget}}/{{this.budget}}€</p>
         <img src="../images/ironhack.png" alt="" class="activity-img">
-        <form action="/trips/{{this._id}}/addActivity/{{../activity._id}}" method="post">
+        <form action="/trips/{{this._id}}/add-delete-this/{{../activity._id}}" method="post">
           <div>
             <button class="btn-trip" type="submit">Add to this trip</button>
           </div>
@@ -25,3 +25,4 @@
     </div>
   </div>
 </section>
+<script src="/javascript/activityAdded.js"></script>
