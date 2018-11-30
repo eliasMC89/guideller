@@ -21,7 +21,7 @@
     <div class="activities-list hidden">
       {{#each user.activities}}
       <div class="each-activity activities">
-        <p class="activity-text activity-title">{{this.name}}</h2>
+          <a href="/activities/{{this._id}}/details"><h2 class="activity-text activity-title">{{this.name}}</h2></a>
           <p class="activity-text activity-location">{{this.city}}</p>
           <a href="/activities/{{this._id}}/details"><img src="{{this.photoURL}}" alt="image" class="activity-img"></a>
           <button class="btn-activity add-favourite"><a href="/activities/{{this._id}}/edit">Edit</a></button>
@@ -47,7 +47,7 @@
     <div class="trips-list hidden">
       {{#each user.trips}}
       <div class="each-trip activities">
-        <p class="activity-text activity-title">{{this.name}}</p>
+        <a href="/trips/{{this._id}}/details"><h2 class="activity-text activity-title">{{this.name}}</h2></a>
         <p class="activity-text activity-location">{{this.location}}</p>
         <p class="activity-text">Budget: {{this.currentBudget}}/{{this.budget}}€</p>
         <a href="/trips/{{this._id}}/details"><img src="{{this.photoURL}}" alt="image" class="activity-img"></a>

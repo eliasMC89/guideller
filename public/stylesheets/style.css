@@ -411,8 +411,9 @@ h2 {
   margin-bottom: 0;
   font-weight: bold;
   font-size: 25px;
-  
+  text-decoration: none;
 }
+
 
 .activity-location {
   margin-top: 5px;
