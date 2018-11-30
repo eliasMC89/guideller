@@ -37,10 +37,6 @@ router.post('/', authMiddleware.requireUser, parser.single('photoURL'), formMidd
   if (!req.file) {
     photoURL = 'https://res.cloudinary.com/emcar7ih/image/upload/v1543490675/demo/ironhack.png';
   } else {
-    // if (req.fileValidationError) {
-    //   req.flash('validationError', 'Wrong file type uploaded');
-    //   return res.redirect('/activities/create');
-    // }
     photoURL = req.file.secure_url;
   }
   const { _id } = req.session.currentUser;
