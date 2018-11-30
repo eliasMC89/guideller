@@ -104,16 +104,14 @@ router.get('/:tripId/edit', authMiddleware.requireUser, tripMiddleware.checkTrip
 // U in CRUD
 router.post('/:tripId/edit', authMiddleware.requireUser, tripMiddleware.checkTripUser, parser.single('photoURL'), formMiddleware.requireEditTripFields, (req, res, next) => {
   const tripId = req.params.tripId;
-  const body = req.body;
-  let photoURL;
+  const updatedTrip = req.body;
   if (!req.file) {
-    photoURL = 'https://res.cloudinary.com/emcar7ih/image/upload/v1543490675/demo/ironhack.png';
+    updatedTrip.photoURL = 'https://res.cloudinary.com/emcar7ih/image/upload/v1543490675/demo/ironhack.png';
   } else {
-    photoURL = req.file.secure_url;
+    updatedTrip.photoURL = req.file.secure_url;
   }
-  const updatedTripInformation = { body, photoURL };
 
-  Trip.findByIdAndUpdate(tripId, { $set: updatedTripInformation })
+  Trip.findByIdAndUpdate(tripId, { $set: updatedTrip })
     .then(() => {
       res.redirect('/profile');
     })

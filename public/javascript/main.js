@@ -32,16 +32,20 @@ function main () {
 
   buttonTrips.addEventListener('click', hideTrips);
 
-  const hideFavs = function (event) {
-    event.stopPropagation();
-    favsSectionElement.classList.toggle('hidden');
-    if (favsSectionElement.classList.contains('hidden')) {
-      buttonFavs.innerText = 'Show';
-    } else {
-      buttonFavs.innerText = 'Hide';
-    }
-  };
+  const isProfile = document.querySelector('.profile-script');
 
-  buttonFavs.addEventListener('click', hideFavs);
+  if (!isProfile) {
+    const hideFavs = function (event) {
+      event.stopPropagation();
+      favsSectionElement.classList.toggle('hidden');
+      if (favsSectionElement.classList.contains('hidden')) {
+        buttonFavs.innerText = 'Show';
+      } else {
+        buttonFavs.innerText = 'Hide';
+      }
+    };
+
+    buttonFavs.addEventListener('click', hideFavs);
+  }
 }
 window.addEventListener('load', main);
