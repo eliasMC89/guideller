@@ -44,7 +44,7 @@
       <div class="each-trip activities">
         <p class="activity-text activity-title">{{this.name}}</p>
         <p class="activity-text activity-location">{{this.location}}</p>
-        <p class="activity-text">Budget: {{this.currentBudget}}/{{this.budget}}€</p>
+        {{!-- <p class="activity-text">Budget: {{this.currentBudget}}/{{this.budget}}€</p> --}}
         <img src="{{this.photoURL}}" alt="image" class="activity-img">
         
         <hr>
@@ -64,7 +64,7 @@
       <div class="each-trip activities">
         <p class="activity-text activity-title">{{this.name}}</p>
         <p class="activity-text activity-location">{{this.city}}</p>
-        <a href="/activities/{{this._id}}/details"><img src="../images/ironhack.png" alt="image" class="activity-img"></a>
+        <a href="/activities/{{this._id}}/details"><img src="{{this.photoURL}}" alt="image" class="activity-img"></a>
         <p class="activity-text activity-price">{{this.price}}€</p>
         
         <hr>
