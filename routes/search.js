@@ -46,8 +46,8 @@ router.get('/search-near', authMiddleware.requireUser, async (req, res, next) =>
       }
     }
     if (!req.query.longitude /* && !req.query.city */) {
-      longitude = citiesCoordinates['Paris'][1];
-      latitude = citiesCoordinates['Paris'][0];
+      longitude = 41.397860;
+      latitude = 2.189950;
     } else {
       longitude = req.query.latitude;
       latitude = req.query.longitude;
