@@ -15,7 +15,7 @@
             <button type="submit" class="favourite-btn"><img src="../images/star.svg" alt="" class="activity-bookmark details"></button>
           </div>
         </form> --}}
-        <p class="activity-text activity-title">{{this.name}}</h2>
+          <a href="/activities/{{this._id}}/details"><h2 class="activity-text activity-title">{{this.name}}</h2></a>
           <p class="activity-text activity-location">{{this.city}}</p>
           <a href="/activities/{{this._id}}/details"><img src="{{this.photoURL}}" alt="image" class="activity-img"></a>
           
@@ -44,7 +44,6 @@
       <div class="each-trip activities">
         <p class="activity-text activity-title">{{this.name}}</p>
         <p class="activity-text activity-location">{{this.location}}</p>
-        {{!-- <p class="activity-text">Budget: {{this.currentBudget}}/{{this.budget}}€</p> --}}
         <img src="{{this.photoURL}}" alt="image" class="activity-img">
         
         <hr>
@@ -62,7 +61,7 @@
     <div class="favs-list hidden">
       {{#each user.favourites}}
       <div class="each-trip activities">
-        <p class="activity-text activity-title">{{this.name}}</p>
+        <a href="/activities/{{this._id}}/details"><h2 class="activity-text activity-title">{{this.name}}</h2></a>
         <p class="activity-text activity-location">{{this.city}}</p>
         <a href="/activities/{{this._id}}/details"><img src="{{this.photoURL}}" alt="image" class="activity-img"></a>
         <p class="activity-text activity-price">{{this.price}}€</p>

@@ -4,7 +4,7 @@
   </h1>
 
   {{#each result}}
-  <h2 class="activity-text activity-title">{{this.name}}</h2>
+  <a href="/activities/{{this._id}}/details"><h2 class="activity-text activity-title">{{this.name}}</h2></a>
   <p class="activity-text activity-location">{{this.city}}</p>
   <a href="/activities/{{this._id}}/details"><img src="{{this.photoURL}}" alt="image" class="activity-img"></a>
   <div class="activity-info-container">
