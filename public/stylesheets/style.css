@@ -98,10 +98,13 @@ h1 {
 
 .error-msg{
   color: red;
+  padding-top: 90px;
+  text-align: center;
 }
 
 .footer-img {
   width: 35px;
+  padding-top: 5px;
 }
 
 .profile {
@@ -113,7 +116,7 @@ footer {
   display: flex;
   position: fixed;
   bottom: 0px;
-  height: 50px;
+  height: 60px;
   background-color: rgb(190, 224, 217);
   width: 100%;
   justify-content: space-around;
@@ -306,7 +309,7 @@ button:not(.favourite-btn):hover {
   
   display: inline-block;
   border-style: none;
-  width: 60px;
+  width: 40px;
   height: 60px;
   background: inherit;
   background-image: url('../images/star.svg');
@@ -536,6 +539,7 @@ a.create-opt{
 
 .list-activities-title {
   font-size: 30px;
+  text-align: center;
 }
 
 .activity-details-container {
