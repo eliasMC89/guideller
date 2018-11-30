@@ -41,6 +41,7 @@ router.get('/search-near', authMiddleware.requireUser, async (req, res, next) =>
           limit: 2
         };
         const cityCoordinates = await geocodingClient.forwardGeocode(queryObj).send();
+        console.log('!!!!!!!!' + cityCoordinates.body.features[0].center);
         citiesCoordinates[activitiesCopy[i].city] = cityCoordinates.body.features[0].center;
       }
     }
@@ -60,6 +61,8 @@ router.get('/search-near', authMiddleware.requireUser, async (req, res, next) =>
 
     const userLocation = await geocodingClient.reverseGeocode(reverseQueryObj).send();
     const userLocationName = userLocation.body.features[0].context[1].text;
+    console.log('USERLOCATION????????' + userLocation.body.features[0].context[1]);
+    console.log('USERLOCATIONNAME!!!!!!!' + userLocationName);
 
     activitiesCopy.sort((a, b) => {
       let result = -1;

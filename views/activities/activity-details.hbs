@@ -9,7 +9,9 @@
 
 <section class="trip-details-container">
   <div class="activity-details">
-    <img src="{{activity.photoURL}}" alt="" class="activity-img">
+    <div class="container-img">
+      <img src="{{activity.photoURL}}" alt="image" class="activity-img">
+    </div>
     <div class="activity-bar">
       <div class="activity-titles-container">
         <h2 class="activity-text activity-title">{{activity.name}}</h2>
@@ -33,7 +35,7 @@
     <p class="activity-city" city= "{{activity.city}}"></p>
   </div>
 
-    <div id='map' style='width: 400px; height: 300px;'></div>
+    <div id='map' style='width: 350px; height: 300px;'></div>
 </section>
 
     <div>

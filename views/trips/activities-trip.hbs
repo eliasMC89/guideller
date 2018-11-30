@@ -6,7 +6,7 @@
 
     <h2 class="activity-text activity-title">{{this.name}}</h2>
     <p class="activity-text activity-location">{{this.city}}</p>
-    <img src="../../images/ironhack.png" alt="" class="activity-img">
+    <img src="../../images/ironhack.png" alt="image" class="activity-img">
     <div class="activity-info-container">
       <div class="activity-text-container">
         <p class="activity-text">{{this.type}}</p>
@@ -22,15 +22,15 @@
     </div>
     {{/if}}
     </div>
-        <br>
+        
     <form action="/trips/{{../tripId}}/addActivity/{{this._id}}" method="post">
       <div>
         <button type="submit">Add to trip</button>
       </div>
     </form>
-    <br>
+    
     <hr>
-    <br>
+    
     
 
   {{/each}}

@@ -3,9 +3,14 @@
 </div> --}}
 
 <section class="my-activities activities">
+<form action="/auth/logout" method="POST" class="signout-form">
+  <button type="submit" class="signout-btn"><img src="../images/off-btn.svg" alt="image" class="logout-img"></button>
+</form>
   <div>
   <h1 class="my-profile-title">My Profile</h1>
 </div>
+
+
   <div class="profile-container">
     <div class="profile-list">
       <h2 class="list-title">
@@ -18,16 +23,16 @@
       <div class="each-activity activities">
         <p class="activity-text activity-title">{{this.name}}</h2>
           <p class="activity-text activity-location">{{this.city}}</p>
-          <a href="/activities/{{this._id}}/details"><img src="{{this.photoURL}}" alt="" class="activity-img"></a>
+          <a href="/activities/{{this._id}}/details"><img src="{{this.photoURL}}" alt="image" class="activity-img"></a>
           <button class="btn-activity add-favourite"><a href="/activities/{{this._id}}/edit">Edit</a></button>
           <form action="/activities/{{this._id}}/delete" method="post">
             <div>
               <button class="btn-activity" type="submit">Delete</button>
             </div>
           </form>
-          <br>
+          
           <hr>
-          <br>
+          
       </div>
       {{/each}}
     </div>
@@ -45,7 +50,7 @@
         <p class="activity-text activity-title">{{this.name}}</p>
         <p class="activity-text activity-location">{{this.location}}</p>
         <p class="activity-text">Budget: {{this.currentBudget}}/{{this.budget}}€</p>
-        <a href="/trips/{{this._id}}/details"><img src="{{this.photoURL}}" alt="" class="activity-img"></a>
+        <a href="/trips/{{this._id}}/details"><img src="{{this.photoURL}}" alt="image" class="activity-img"></a>
         <button class="btn-trip"><a href="/trips/{{this._id}}/addActivity">Add activities</a></button>
         <button class="btn-trip"><a href="/trips/{{this._id}}/edit">Edit</a></button>
         <form action="/trips/{{this._id}}/delete" method="post">
@@ -53,9 +58,9 @@
             <button class="btn-trip" type="submit">Delete</button>
           </div>
         </form>
-        <br>
+        
         <hr>
-        <br>
+        
       </div>
       {{/each}}
     </div>
@@ -73,19 +78,21 @@
         <p class="activity-text activity-location">{{this.location}}</p>
         <a href="/activities/{{this._id}}/details"><img src="../images/ironhack.png" alt="" class="activity-img"></a>
         <p class="activity-text activity-price">{{this.price}}€</p>
-        <br>
+        
         <hr>
-        <br>
+        
       </div>
       {{/each}}
     </div> --}}
 
   </div>
   <div>
-  <form action="/auth/logout" method="POST">
+  {{!-- <form action="/auth/logout" method="POST">
     <button type="submit" class="logout-btn">Logout</button>
-  </form>
+  </form> --}}
 </div>
+
+
 
 
 </section>
