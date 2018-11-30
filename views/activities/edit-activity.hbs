@@ -1,5 +1,8 @@
 <section class="create-edit-activity">
 
+  {{#if messages.length}}
+    <h3 class="error-msg">{{messages}}</h3>
+  {{/if}}
   
   <form method="POST" action="/activities/{{activity._id}}/edit" class="activity-form" enctype="multipart/form-data">
     
@@ -51,16 +54,16 @@
         <input type='file' class="activity-input" name='photoURL' accept="image/*"/>
       </div> --}}
 
-      {{!-- <input type='file' class="activity-input upload-btn" name='photoURL' accept="image/*"/> --}}
+      <p class="upload-label">Upload Photo</p>
+
+      <input type='file' class="activity-input upload-btn" name='photoURL' accept="image/*"/>
 
       <div class="field submit">
         <button type="submit">Edit</button>
       </div>
     </div>
   </form>
-  {{#if messages.length}}
-    <h3>{{messages}}</h3>
-  {{/if}}
+  
   
 
 </section>
