@@ -188,5 +188,7 @@ const activitySchema = new Schema({
 
 ## Link
 
+Mobile version:
+
 https://guideller.herokuapp.com/
 
